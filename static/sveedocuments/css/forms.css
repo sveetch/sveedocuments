@@ -1,0 +1,158 @@
+/*
+* Form styles
+* Created by David THENON en February 2012
+*/
+/* Ajustement sur des styles de uniform */
+.uniForm{
+    border:0;
+}
+
+.uniForm fieldset {
+    border: 1px solid #d0d0d0;
+    margin:1.5em 0.5em 0.5em 0.5em;
+    padding:0.5em;
+    display:block;
+}
+.uniForm fieldset + fieldset {
+    margin-top:2.4em;
+}
+.uniForm fieldset legend {
+    font-size: 1.40em;
+}
+
+.uniForm .ctrlHolder label{
+    color:#202020;
+}
+.uniForm div{
+    text-shadow:none;
+}
+
+.uniForm .ctrlHolder{
+    border:0;
+    padding-left:0.2em;
+    padding-right:0.2em;
+    border-bottom: 1px solid #ffffff;
+}
+.uniForm .ctrlHolder + .ctrlHolder,
+.uniForm .combined-fields + .combined-fields,
+.uniForm .ctrlHolder + .combined-fields,
+.uniForm .combined-fields + .ctrlHolder{
+    border-top: 1px solid #d0d0d0;
+}
+.uniForm .combined-fields{
+    border-top: 1px solid #d0d0d0;
+    border-bottom: 1px solid #ffffff;
+}
+.uniForm .combined-fields .ctrlHolder{
+    border-top:0;
+    border-bottom:0;
+}
+.uniForm .ctrlHolder:last-child,
+.uniForm .combined-fields:last-child{
+    border-bottom:0;
+}
+.uniForm .ctrlHolder.error, .uniForm .ctrlHolder.focused.error{
+    border-left:0;
+    border-right:0;
+}
+
+.uniForm .combined-fields .ctrlHolder{
+    clear: none;
+    float: left;
+    width: 50%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.uniForm .combined-fields .ctrlHolder label{
+    clear: both;
+    display:block;
+    float:none;
+    margin: 0;
+    padding: 0;
+    width:auto;
+}
+.uniForm .combined-fields .ctrlHolder .formHint{
+    display:none;
+}
+
+.uniForm .buttonHolder {
+    background:transparent;
+    border-radius:0;
+    margin:0;
+    padding:1.5em 0 0 0;
+    text-align: center;
+}
+.uniForm .buttonHolder input + input{
+    margin-left: 1em;
+}
+
+/* Label */
+label{
+    font-weight:bold;
+}
+/* Champs */
+input,
+textarea,
+select{
+    margin:0;
+    padding:.4em;
+    font-size:1em;
+    color:#424242;
+    text-decoration:none;
+    border-top:1px solid #abadb3 !important;
+    border-left:1px solid #e2e3ea !important;
+    border-right:1px solid #e2e3ea !important;
+    border-bottom:1px solid #e3e9ef !important;
+    background-color:#ffffff;
+}
+/* Champs de date séparé (date+time) */
+input.splitdatetimewidget{
+    width:8em !important;
+    margin-right:1em !important;
+    text-align:center;
+}
+
+/* Empeche la "stylisation" de certains paramètres des radio et checkbox que les "vieux" 
+   IE essayent d'interprêter (mal) */
+input[type="checkbox"],
+input[type="radio"]{
+    padding:auto !important;
+    width:auto !important;
+    border:0 !important;
+    background-color:transparent !important;
+}
+
+/* Boutons */
+input[type="submit"],
+input[type="button"]{
+    border-top:1px solid #e3e9ef !important;
+    border-left:1px solid #e3e9ef !important;
+    border-right:1px solid #abadb3 !important;
+    border-bottom:1px solid #abadb3 !important;
+    font-size:1.2em;
+    font-weight:bold;
+    background-color:#f0f0f0;
+}
+input[type="submit"]:active,
+input[type="button"]:active{
+    border-top:1px solid #abadb3 !important;
+    border-left:1px solid #abadb3 !important;
+    border-right:1px solid #e3e9ef !important;
+    border-bottom:1px solid #e3e9ef !important;
+}
+input[type="submit"].actived,
+input[type="button"].actived{
+    border-top:1px solid #abadb3 !important;
+    border-left:1px solid #abadb3 !important;
+    border-right:1px solid #e3e9ef !important;
+    border-bottom:1px solid #e3e9ef !important;
+    font-style:italic;
+    color:#a0a0a0;
+    background-color:#f0f0f0;
+}
+input[type="image"]{
+    border:0;
+    background-color:transparent;
+}

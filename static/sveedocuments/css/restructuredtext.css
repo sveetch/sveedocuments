@@ -1,0 +1,177 @@
+.restructuredtext_container h3 a, 
+.restructuredtext_container h4 a, 
+.restructuredtext_container h5 a, 
+.restructuredtext_container h6 a{
+    text-decoration:none;
+}
+
+/* Topics */
+.restructuredtext_container .topic{
+    padding: .5em 1em .5em 1em;
+    border: 1px solid #cdcdcd;
+    background-color: #f2f2f2;
+    font-size:.9em;
+    color:#384976;
+    text-shadow: none;
+}
+.restructuredtext_container .topic-title{
+    font-size:1.1em;
+    color:#365578;
+    font-weight:bold;
+}
+
+/* Admonitions */
+.restructuredtext_container .admonition-title{
+    font-weight:bold;
+}
+.restructuredtext_container .attention,
+.restructuredtext_container .caution,
+.restructuredtext_container .danger,
+.restructuredtext_container .error,
+.restructuredtext_container .hint,
+.restructuredtext_container .important,
+.restructuredtext_container .note,
+.restructuredtext_container .tip,
+.restructuredtext_container .warning{
+    padding: .1em .7em .1em 3.4em;
+    border: 1px solid #cdd9f7;
+    background-color: #e8efff;
+    font-size:.9em;
+    color:#384976;
+    text-shadow: none;
+    background-repeat: no-repeat;
+    background-position: .7em .7em;
+}
+.restructuredtext_container .attention p + p,
+.restructuredtext_container .caution p + p,
+.restructuredtext_container .danger p + p,
+.restructuredtext_container .error p + p,
+.restructuredtext_container .hint p + p,
+.restructuredtext_container .important p + p,
+.restructuredtext_container .note p + p,
+.restructuredtext_container .tip p + p,
+.restructuredtext_container .warning p + p{
+    padding-top: .2em;
+}
+.restructuredtext_container .note{
+    background-image: url('images/admonitions/about.png');
+}
+.restructuredtext_container .attention,
+.restructuredtext_container .important,
+.restructuredtext_container .warning,
+.restructuredtext_container .danger,
+.restructuredtext_container .error{
+    color:#763848;
+    border: 1px solid #f7cdd7;
+    background-color: #ffe8ed;
+    background-image: url('images/admonitions/alert.png');
+}
+.restructuredtext_container .danger,
+.restructuredtext_container .error{
+    background-image: url('images/admonitions/stop.png');
+}
+
+/* Citations, codes, etc.. */
+.restructuredtext_container blockquote{
+    width:96%;
+    margin-left:1%;
+    margin-right:1%;
+    padding:1%;
+    border-left:3px solid #aaaaaa;
+    background-color:#ffffff;
+    text-shadow:none;
+}
+.restructuredtext_container pre{
+    width:98%;
+    padding-left:1%;
+    padding-right:1%;
+    background-color:#e8efff;
+    border:1px solid #d3d3d3;
+    overflow:auto;
+    text-shadow:none;
+}
+.restructuredtext_container code{
+    width:100%;
+    background-color:#e8efff;
+    border-bottom:1px solid #d3d3d3;
+    overflow:auto;
+}
+
+.restructuredtext_container tt.literal{
+    background-color:#e8efff;
+    border-bottom:1px solid #B0B0B0;
+    text-shadow:none;
+}
+/* Listes */
+.restructuredtext_container ul{
+    margin:0;
+    padding:6px 13px 6px 0;
+}
+.restructuredtext_container ul li{
+    display:list-item;
+    margin-left:20px;
+    margin-bottom:4px;
+    border:0;
+}
+.restructuredtext_container ol{
+    margin:0;
+    padding:6px 13px 6px 0;
+    list-style-type:upper-latin;
+}
+.restructuredtext_container ol li{
+    margin-left:26px;
+    margin-bottom:4px;
+    border:0;
+}
+.restructuredtext_container dl {
+    margin:1em;
+}
+.restructuredtext_container dt {
+    margin: .5em 0 .25em 0;
+    font-weight: bold;
+    border-bottom:1px solid #B0B0B0;
+    float:left;
+}
+.restructuredtext_container dt:first-child {
+    margin-top:0;
+}
+.restructuredtext_container dd {
+    clear:both;
+    margin: .5em 0 .5em 2em;
+}
+
+/* Pygments */
+.pygmentstable,
+.pygments{
+    width:98%;
+    margin: .5em 1% .5em 1%;
+    border-top:1px solid #aaaaaa;
+    border-bottom:1px solid #aaaaaa;
+}
+.pygmentstable .pygments{
+    width:auto;
+    margin-left:0;
+    margin-right:0;
+    border:0;
+}
+.pygmentstable td.linenos{
+    width:1%;
+    padding-left:.4em;
+    padding-right:.4em;
+    border-right:1px solid #aaaaaa;
+    text-align:right;
+    background-color:#f0f0f0;
+}
+.pygmentstable td.code{
+    padding-left:.4em;
+    background-color:#ffffff;
+}
+.restructuredtext_container .pygmentstable pre,
+.restructuredtext_container .pygments pre{
+    width:auto;
+    padding-left:.5em;
+    padding-right:.5em;
+    background-color:transparent;
+    border:0;
+    overflow:auto;
+}

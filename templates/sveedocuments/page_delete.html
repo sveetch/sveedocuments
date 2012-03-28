@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load documents_utils autobreadcrumb %}
+
+{% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
+{% block head_more_links %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}uni_form/uni-form.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}uni_form/default.uni-form.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}documents/css/forms.css" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<h2>{% current_title_from_breadcrumbs %}</h2>
+
+<div>
+{% pprint_recurse relations %}
+</div>
+
+<form action="." class="uniForm" method="post">
+    {% csrf_token %}
+    <div class="buttonHolder">
+        <input type="submit" name="confirm_delete" value="Confirmer la suppression" class="submit submitButton"/>
+    </div>
+</form>
+{% endblock %}

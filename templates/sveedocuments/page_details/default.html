@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load mptt_tags documents_markup documents_utils %}
+
+{% block head_title %}{{ page_instance.title }}{% endblock %}
+
+{% block head_more_links %}
+    <link rel="Stylesheet" title="Normal" media="screen" type="text/css" href="{{ STATIC_URL }}documents/css/pygments.css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}documents/css/restructuredtext.css" type="text/css" />
+{% endblock %}
+
+{% block action_menu %}
+<div class="document_action_menu">
+    <ul class="flat_bulletlist">
+        {% if user.is_staff %}<li><a href="{% url documents-page-edit page_instance.slug %}">Editer</a></li>
+        <li><a href="{% url documents-page-delete page_instance.slug %}">Supprimer</a></li>{% endif %}
+        <li><a href="{% url documents-page-source page_instance.slug %}">Source</a></li>
+    </ul>
+    <div class="cale"></div>
+</div>{% endblock %}
+
+{% block breadcrumbs %}{{ block.super }}
+{% for item in page_instance.get_ancestors %}
+    <a href="{% url documents-page-details item.slug %}">{{ item.title }}</a> &gt; 
+{% endfor %}
+    <a href="{% url documents-page-details page_instance.slug %}">{{ page_instance.title }}</a>
+{% endblock %}
+
+{% block content %}
+{% document_context page_instance %}
+
+<h2{% if page_instance.level == 0 %} class="root_page"{% endif %}>{{ page_instance.title }}</h2>
+
+<div class="restructuredtext_container">
+    {{ page_instance|document_render }}
+</div>
+{% endblock %}

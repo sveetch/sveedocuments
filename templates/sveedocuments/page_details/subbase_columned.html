@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load documents_utils %}
+
+{% block content_column_css %}columned cols-by-two{% endblock %}
+
+{% block context_menu %}<div id="menu_content"><div class="sub-layer">{% block context_menu_content %}{% endblock %}</div></div>{% endblock %}
+{% block body_content %}{% document_context page_instance %}{{ block.super }}{% endblock %}
+

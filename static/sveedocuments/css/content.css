@@ -1,0 +1,310 @@
+/*
+* Common styles
+* Created by David THENON en February 2012
+*/
+hr,
+.cale{
+    margin:0;
+    padding:0;
+    visibility:hidden;
+    width:0px;
+    height:0.05px;
+    font-size:0;
+    clear:both;
+}
+/* Liste à puces mises à "plat" pour en faire un menu horizontal */
+.flat_bulletlist{
+    margin:0;
+    padding:0;
+}
+.flat_bulletlist li{
+    margin:.3em;
+    padding:0;
+    float:left;
+    list-style-type:none;
+}
+.flat_bulletlist li a{
+    display:block;
+    margin:0;
+    padding:.5em;
+}
+.module.changelist{
+    padding:.5em;
+    background-color:#ffffff;
+    border: 1px solid #d0d0d0;
+}
+.module.changelist + .module.changelist{
+    margin-top:3em;
+}
+.module.changelist h3{
+    margin-top: 0;
+}
+
+/* Menu */
+.module.changelist .actions{
+    margin-top: .3em;
+    float:right;
+}
+.actions li a{
+    display: block;
+    margin: 0;
+    padding: .4em;
+    font-size: .6em;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+.actions .icon a{
+    padding-left:2em;
+    background-position:.2em center;
+    background-repeat:no-repeat;
+}
+.actions .icon a:hover{
+    background-color:#ededed;
+}
+.actions .icon.add-page a{
+    background-image: url('images/page_add.png');
+}
+
+/* ____________________
+    Simple liste d'arborescence
+*/
+ul.list-tree, ul.list-tree ul, ul.list-tree li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ul.list-tree{
+    margin: 0 0 0 1.5em;
+}
+ul.list-tree li{
+    padding-left: 1em;
+    padding-bottom: .8em;
+    background: url('images/list-tree-bold-vline.png') repeat-y 0 0;
+    font-size: 1em;
+    line-height: 1em;
+}
+ul.list-tree ul{
+    padding-top: .8em;
+}
+ul.list-tree li div.tree-node-pointer{
+    position:relative;
+    left:-1em;
+    padding-left:1em;
+    background: url('images/list-tree-bold-node.png') no-repeat 0 0;
+}
+ul.list-tree li:last-child{
+    padding-bottom: 0;
+    background: none;
+}
+ul.list-tree li:last-child div.tree-node-pointer{
+    background: url('images/list-tree-bold-lastnode.png') no-repeat 0 0;
+}
+
+/* ____________________
+    Liste d'arborescence intéractive
+*/
+ul.list-tree-alt, ul.list-tree-alt ul {
+    margin: 0 1.4em 1.4em 1.4em;
+    padding: 0;
+    list-style-type: none;
+    background-image: url('images/list-tree-alt-vline.png');
+    background-repeat:repeat-y;
+}
+ul.list-tree-alt ul {
+    margin: 0 0 0 .5em;
+}
+ul.list-tree-alt ul {
+    margin-left: 1.3em;
+    padding-top: .6em;
+}
+ul.list-tree-alt li {
+    margin: 0;
+    padding: 0 0 0 .6em;
+    font-size: 1em;
+    line-height: 1em;
+    background-image: url('images/list-tree-alt-node.png');
+    background-repeat:no-repeat;
+    background-position:0 1.2em;
+    color: #369;
+}
+ul.list-tree-alt li + li{
+    padding-top: .6em;
+}
+ul.list-tree-alt li.last,
+ul.list-tree-alt li:last-child {
+    background-image: url('images/list-tree-alt-lastnode.png');
+    background-color:#ffffff; 
+    background-position:0 -1em; 
+}
+ul.list-tree-alt .container{
+    margin: 0;
+    background-color:#f3f3f3;
+    border: 1px solid #d0d0d0;
+}
+ul.list-tree-alt .container.hidden{
+    opacity: 0.5;
+}
+ul.list-tree-alt .container.hidden:hover,
+ul.list-tree-alt .container.hidden.hover_highlight{
+    opacity: 1.0;
+}
+ul.list-tree-alt li .container:hover,
+ul.list-tree-alt li .container.hover_highlight{
+    background-color:#d9e4ff;
+    border: 1px solid #a9b4df;
+}
+/*ul.list-tree-alt li:hover li .container{
+    background-color:#e8efff;
+}*/
+ul.list-tree-alt .item-infos{
+    margin: 0;
+    float:left;
+    padding: .3em;
+}
+ul.list-tree-alt .item-infos h4{
+    margin: 0;
+    padding: 0;
+    font-size: .9em;
+    text-shadow:none;
+}
+
+/* Panneau d'actions */
+ul.list-tree-alt .menu{
+    margin: 0;
+    background-color:#ffffff;
+    float:right;
+    padding: .3em .3em .3em .3em;
+    border-left: 1px dashed #d0d0d0;
+    font-size: .6em;
+}
+ul.list-tree-alt .menu p{
+    margin:0;
+    padding: 0 1.3em 0 1.3em;
+}
+ul.list-tree-alt .menu p a{
+    display:block;
+    margin: .4em 0 .4em 0;
+    padding:0 0 0 20px;
+    color:#505050;
+    background-repeat:no-repeat;
+    text-transform:uppercase;
+}
+ul.list-tree-alt .menu p a:hover{
+    color:#0072ff;
+    background-color:#ededed;
+}
+ul.list-tree-alt .menu .tile.toggle-visibility-to-on a,
+ul.list-tree-alt .menu .tile.toggle-visibility-to-off a{
+    background-image: url('images/eye.png');
+}
+ul.list-tree-alt .menu .tile.toggle-visibility-to-on a:hover{
+    background-image: url('images/accept.png');
+}
+ul.list-tree-alt .menu .tile.toggle-visibility-to-off a:hover{
+    background-image: url('images/stop.png');
+}
+ul.list-tree-alt .menu .tile.delete a{
+    background-image: url('images/page_delete.png');
+}
+ul.list-tree-alt .menu .tile.add-child a{
+    background-image: url('images/page_add.png');
+}
+ul.list-tree-alt .menu .tile.move-to a{
+    background-image: url('images/page_go.png');
+}
+
+/* Panneau d'infos */
+ul.list-tree-alt .item-infos .panel{
+    margin: .5em 0 0 .5em;
+    padding: 0 0 0 .3em;
+    font-size: .7em;
+}
+ul.list-tree-alt .item-infos .panel p{
+    margin: 0;
+    padding:0;
+}
+ul.list-tree-alt .item-infos .panel a{
+    text-decoration: none;
+}
+
+ul.list-tree-alt .item-infos .panel .block{
+    display:block;
+}
+ul.list-tree-alt .item-infos .panel .tile{
+    padding-left:18px;
+    float:left;
+    color:#505050;
+    background-repeat:no-repeat;
+}
+ul.list-tree-alt .item-infos .panel .tile + .tile{
+    margin-left: 1em;
+}
+ul.list-tree-alt .item-infos .panel .tile a{
+    margin:0;
+    padding:0;
+    display:block;
+    width:16px;
+    height:16px;
+    text-indent:-10000px;
+    background-repeat:no-repeat;
+}
+ul.list-tree-alt .item-infos .panel .tile.published{
+    background-image: url('images/calendar-alt-1.png');
+}
+ul.list-tree-alt .item-infos .panel .tile.visibility-on{
+    background-image: url('images/view.png');
+}
+ul.list-tree-alt .item-infos .panel .tile.visibility-off{
+    background-image: url('images/data-alt-2.png');
+}
+ul.list-tree-alt .item-infos .panel .tile.template{
+    background-image: url('images/layout.png');
+}
+
+/* Tableau d'arborescence */
+.module.changelist table{
+    width:100%;
+    font-size:.8em;
+}
+.module.changelist tr{
+    border-bottom:1px dotted #d0d0d0;
+}
+.module.changelist tbody tr.hidden{
+    opacity: 0.6;
+}
+.module.changelist tbody tr:hover{
+    opacity: 1.0;
+}
+
+.module.changelist thead th{
+    padding: .5em;
+    color:#ffffff;
+    background-color:#808080;
+    font-size:1em;
+}
+.module.changelist thead th.col-even{
+    background-color:#a0a0a0;
+}
+.module.changelist tbody th,
+.module.changelist tbody td{
+    padding: .5em .5em .5em .5em;
+    background-color:#e0e0e0;
+    font-size:1em;
+    text-align:left;
+}
+.module.changelist tbody th a,
+.module.changelist tbody td a{
+    text-decoration:none;
+}
+.module.changelist tbody th a:hover,
+.module.changelist tbody td a:hover{
+    text-decoration:underline;
+}
+.module.changelist tbody th.col-even,
+.module.changelist tbody td.col-even{
+    background-color:#f0f0f0;
+}
+.module.changelist tbody tr:hover th,
+.module.changelist tbody tr:hover td{
+    background-color:#FFFCDF;
+}

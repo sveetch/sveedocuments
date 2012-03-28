@@ -1,0 +1,14 @@
+{% load mptt_tags %}
+<ul class="tree_bulletlist">
+    {% recursetree page_list %}
+        <li{% if active_page_instance and active_page_instance.slug == node.slug %} class="active"{% endif %}>
+            <a href="{% url documents-page-details node.slug %}">{{ node.title }}</a>
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+<div class="cale"></div>

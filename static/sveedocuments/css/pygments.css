@@ -1,0 +1,60 @@
+.pygments .hll { background-color: #ffffcc }
+.pygments  { background: #ffffff; }
+.pygments .pygments_c { color: #999988; font-style: italic } /* Comment */
+.pygments .pygments_err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.pygments .pygments_k { font-weight: bold } /* Keyword */
+.pygments .pygments_o { font-weight: bold } /* Operator */
+.pygments .pygments_cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.pygments .pygments_cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.pygments .pygments_c1 { color: #999988; font-style: italic } /* Comment.Single */
+.pygments .pygments_cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.pygments .pygments_gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.pygments .pygments_ge { font-style: italic } /* Generic.Emph */
+.pygments .pygments_gr { color: #aa0000 } /* Generic.Error */
+.pygments .pygments_gh { color: #999999 } /* Generic.Heading */
+.pygments .pygments_gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.pygments .pygments_go { color: #888888 } /* Generic.Output */
+.pygments .pygments_gp { color: #555555 } /* Generic.Prompt */
+.pygments .pygments_gs { font-weight: bold } /* Generic.Strong */
+.pygments .pygments_gu { color: #aaaaaa } /* Generic.Subheading */
+.pygments .pygments_gt { color: #aa0000 } /* Generic.Traceback */
+.pygments .pygments_kc { font-weight: bold } /* Keyword.Constant */
+.pygments .pygments_kd { font-weight: bold } /* Keyword.Declaration */
+.pygments .pygments_kn { font-weight: bold } /* Keyword.Namespace */
+.pygments .pygments_kp { font-weight: bold } /* Keyword.Pseudo */
+.pygments .pygments_kr { font-weight: bold } /* Keyword.Reserved */
+.pygments .pygments_kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.pygments .pygments_m { color: #009999 } /* Literal.Number */
+.pygments .pygments_s { color: #bb8844 } /* Literal.String */
+.pygments .pygments_na { color: #008080 } /* Name.Attribute */
+.pygments .pygments_nb { color: #999999 } /* Name.Builtin */
+.pygments .pygments_nc { color: #445588; font-weight: bold } /* Name.Class */
+.pygments .pygments_no { color: #008080 } /* Name.Constant */
+.pygments .pygments_ni { color: #800080 } /* Name.Entity */
+.pygments .pygments_ne { color: #990000; font-weight: bold } /* Name.Exception */
+.pygments .pygments_nf { color: #990000; font-weight: bold } /* Name.Function */
+.pygments .pygments_nn { color: #555555 } /* Name.Namespace */
+.pygments .pygments_nt { color: #000080 } /* Name.Tag */
+.pygments .pygments_nv { color: #008080 } /* Name.Variable */
+.pygments .pygments_ow { font-weight: bold } /* Operator.Word */
+.pygments .pygments_w { color: #bbbbbb } /* Text.Whitespace */
+.pygments .pygments_mf { color: #009999 } /* Literal.Number.Float */
+.pygments .pygments_mh { color: #009999 } /* Literal.Number.Hex */
+.pygments .pygments_mi { color: #009999 } /* Literal.Number.Integer */
+.pygments .pygments_mo { color: #009999 } /* Literal.Number.Oct */
+.pygments .pygments_sb { color: #bb8844 } /* Literal.String.Backtick */
+.pygments .pygments_sc { color: #bb8844 } /* Literal.String.Char */
+.pygments .pygments_sd { color: #bb8844 } /* Literal.String.Doc */
+.pygments .pygments_s2 { color: #bb8844 } /* Literal.String.Double */
+.pygments .pygments_se { color: #bb8844 } /* Literal.String.Escape */
+.pygments .pygments_sh { color: #bb8844 } /* Literal.String.Heredoc */
+.pygments .pygments_si { color: #bb8844 } /* Literal.String.Interpol */
+.pygments .pygments_sx { color: #bb8844 } /* Literal.String.Other */
+.pygments .pygments_sr { color: #808000 } /* Literal.String.Regex */
+.pygments .pygments_s1 { color: #bb8844 } /* Literal.String.Single */
+.pygments .pygments_ss { color: #bb8844 } /* Literal.String.Symbol */
+.pygments .pygments_bp { color: #999999 } /* Name.Builtin.Pseudo */
+.pygments .pygments_vc { color: #008080 } /* Name.Variable.Class */
+.pygments .pygments_vg { color: #008080 } /* Name.Variable.Global */
+.pygments .pygments_vi { color: #008080 } /* Name.Variable.Instance */
+.pygments .pygments_il { color: #009999 } /* Literal.Number.Integer.Long */
