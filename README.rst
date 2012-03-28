@@ -1,3 +1,4 @@
+============
 Introduction
 ============
 
@@ -144,7 +145,7 @@ projet de la manière suivante : ::
 
 Vous pouver utiliser un autre chemin que ``documents/`` si besoin. Pour des besoins plus spécifiques vous
 pouvez redéfinir la *map* des pages et garder celles de l'interface de gestion des documents (voir la 
-page :page:`utilisation`).
+page `Utilisation`_.
 
 Synchronisation des données de la brique logicielle
 ***************************************************
@@ -468,7 +469,7 @@ soit ``None`` pour désactiver l'utilisation d'un éditeur (l'édition se fera d
 textarea conventionnel).
 
 **CodeMirror** a le grand avantage de posséder une coloration syntaxique du texte. Une 
-:page:`aide-edition` est disponible.
+`Aide à l'édition`_ est disponible.
 
 .. figure:: /static/docs/supercodemirror_editor.png
    :alt: CodeMirror en mode édition
@@ -497,9 +498,9 @@ Si votre projet ne nécessite pas d'utilisation du cache, il vous suffit de l'ig
 pas configuré dans les *settings*, Django n'utilise pas de cache.
 
 
-==================
+================
 Aide à l'édition
-==================
+================
 
 L'édition se fait uniquement dans la syntaxe de **ReStructuredText**, l'insertion directe de HTML 
 n'est en général pas permise.
