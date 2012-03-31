@@ -6,9 +6,10 @@ from django import template
 from django.utils.safestring import mark_safe
 from django.core.cache import cache
 
+from sveedocuments import DOCUMENTS_PAGE_TREEMENU, DOCUMENTS_PAGE_FLATMENU
 from sveedocuments.models import Insert, Page
 from sveedocuments.templatetags import get_render_with_cache, get_toc_with_cache
-from sveedocuments import DOCUMENTS_PAGE_TREEMENU, DOCUMENTS_PAGE_FLATMENU
+from sveedocuments.utils.templatetags import resolve_string_or_variable
 
 register = template.Library()
 
@@ -59,13 +60,13 @@ class DocumentTagContext(template.Node):
         content_render = toc_render = navigation_render = None
         
         # Résolution des arguments
-        instance = template.resolve_variable(self.insert_instance_varname, context)
+        instance = resolve_string_or_variable(self.insert_instance_varname, context)
         
-        setting_key = template.resolve_variable(self.setting_key_varname, context)
+        setting_key = resolve_string_or_variable(self.setting_key_varname, context)
         if setting_key:
             parser_kwargs['setting_key'] = setting_key
         
-        title_level = template.resolve_variable(self.title_level_varname, context)
+        title_level = resolve_string_or_variable(self.title_level_varname, context)
         if title_level:
             parser_kwargs['initial_header_level'] = title_level
         
@@ -124,13 +125,13 @@ class InsertTagRender(template.Node):
         parser_kwargs = {}
         
         # Résolution de l'instance du formulaire
-        self.insert_instance = template.resolve_variable(self.insert_instance_varname, context)
+        self.insert_instance = resolve_string_or_variable(self.insert_instance_varname, context)
         
-        self.setting_key = template.resolve_variable(self.setting_key_varname, context)
+        self.setting_key = resolve_string_or_variable(self.setting_key_varname, context)
         if self.setting_key:
             parser_kwargs['setting_key'] = self.setting_key
         
-        self.title_level = template.resolve_variable(self.title_level_varname, context)
+        self.title_level = resolve_string_or_variable(self.title_level_varname, context)
         if self.title_level:
             parser_kwargs['initial_header_level'] = self.title_level
         
@@ -185,7 +186,7 @@ class PageMenuTagRender(template.Node):
         active_page_instance = None
         
         # Résolution des arguments
-        page_var = template.resolve_variable(self.page_var_name, context)
+        page_var = resolve_string_or_variable(self.page_var_name, context)
         # Template par défaut selon le mode (arborescence/plat)
         if not self.flat_mode:
             self.template_path = DOCUMENTS_PAGE_TREEMENU
@@ -193,7 +194,7 @@ class PageMenuTagRender(template.Node):
             self.template_path = DOCUMENTS_PAGE_FLATMENU
         # Template spécifié if any
         if self.template_path_varname:
-            self.template_path = template.resolve_variable(self.template_path_varname, context)
+            self.template_path = resolve_string_or_variable(self.template_path_varname, context)
         
         # Transmet au contexte du tag l'instance de la page courante si elle est présente 
         # dans le contexte de la page

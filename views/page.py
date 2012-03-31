@@ -2,7 +2,7 @@
 """
 Page document views
 """
-import json
+import json, os
 from datetime import datetime
 
 from django.core.urlresolvers import reverse
@@ -12,12 +12,12 @@ from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 
-from Sveetchies.django.utils.objects import get_instance_children
-
+import sveedocuments
 from sveedocuments.models import Page
 from sveedocuments.parser import SourceParser
 from sveedocuments.forms import PageForm, PageQuickForm
 from sveedocuments.views import RestrictedView, RestrictedCreateView, RestrictedUpdateView, RestrictedDeleteView
+from sveedocuments.utils.objects import get_instance_children
 
 class PageIndex(TemplateView):
     """
@@ -36,7 +36,12 @@ class HelpPage(TemplateView):
     template_name = "sveedocuments/help.html"
     
     def get(self, request, *args, **kwargs):
-        content = render_to_string("sveedocuments/help.rst", {}) #TODO: wrong path, should use the "README.rst"
+        path_root = os.path.abspath(os.path.dirname(sveedocuments.__file__))
+        f = open(os.path.join(path_root, "HELP.rst"))
+        content = f.read()
+        f.close()
+        
+        #content = render_to_string("sveedocuments/help.rst", {}) #TODO: wrong path, should use the "README.rst"
         #print content
         context = {'content' : SourceParser(content, silent=False)}
         return self.render_to_response(context)

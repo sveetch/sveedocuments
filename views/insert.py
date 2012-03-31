@@ -7,12 +7,11 @@ import json
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 
-from Sveetchies.django.utils.objects import get_instance_children # TODO
-
 from sveedocuments.models import Insert
 from sveedocuments.parser import SourceParser
 from sveedocuments.forms import InsertForm, InsertQuickForm
 from sveedocuments.views import RestrictedCreateView, RestrictedUpdateView, RestrictedDeleteView
+from sveedocuments.utils.objects import get_instance_children
 
 class InsertCreate(RestrictedCreateView):
     """
