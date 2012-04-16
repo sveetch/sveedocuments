@@ -41,8 +41,6 @@ class HelpPage(TemplateView):
         content = f.read()
         f.close()
         
-        #content = render_to_string("sveedocuments/help.rst", {}) #TODO: wrong path, should use the "README.rst"
-        #print content
         context = {'content' : SourceParser(content, silent=False)}
         return self.render_to_response(context)
 

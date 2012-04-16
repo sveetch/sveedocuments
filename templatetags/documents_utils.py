@@ -151,8 +151,12 @@ class InsertTagRender(template.Node):
 class PageMenuTagRender(template.Node):
     """
     Generate HTML of the node *PageMenuTagRender*
+    
+    TODO: @flat_mode usage is a failure because it works like the tree, flat menu should 
+          never include the Page from where to start and display only his direct 
+          children.
     """
-    def __init__(self, page_var_name, template_path_varname=None, flat_mode=False):
+    def __init__(self, page_var_name, template_path_varname=None, flat_mode=0):
         """
         :type page_var_name: string or object ``django.db.models.Model``
         :param page_var_name: Nom de variable de l'instance ou un string 
@@ -162,7 +166,7 @@ class PageMenuTagRender(template.Node):
         :param template_path_varname: (optionnel) Chemin d'un template à utiliser pour 
                                       le rendu du menu à générer
                                         
-        :type flat_mode: bool
+        :type flat_mode: int
         :param flat_mode: (optionnel) Indique si on doit gérer un menu avec seulement les 
                           pages adjacentes (flat) à la page ciblée ou bien l'arborescence 
                           récursive de ses enfants (tree).
@@ -222,8 +226,10 @@ class PageMenuTagRender(template.Node):
         # Instance directement transmise
         elif isinstance(page_var, Page):
             page_instance = page_var
-            if self.flat_mode:
+            if self.flat_mode == 1:
                 page_list = page_var.get_siblings(include_self=True).filter(visible=True)
+            elif self.flat_mode == 2:
+                page_list = page_var.get_children().filter(visible=True)
             else:
                 page_list = page_var.get_descendants(include_self=False).filter(visible=True)
         # Réception d'un slug pour récupérer l'instance
@@ -234,8 +240,10 @@ class PageMenuTagRender(template.Node):
                 return ''
             else:
                 page_instance = instance
-                if self.flat_mode:
+                if self.flat_mode == 1:
                     page_list = instance.get_siblings(include_self=True).filter(visible=True)
+                elif self.flat_mode == 2:
+                    page_list = instance.get_children().filter(visible=True)
                 else:
                     page_list = instance.get_descendants(include_self=False).filter(visible=True)
         
@@ -374,31 +382,37 @@ def do_document_page_treemenu(parser, token):
 
 do_document_page_treemenu.is_safe = True
 
-@register.tag(name="document_page_flatmenu")
-def do_document_page_flatmenu(parser, token):
+#@register.tag(name="document_page_flatmenu")
+#def do_document_page_flatmenu(parser, token):
+    #pass
+
+#do_document_page_flatmenu.is_safe = True
+
+@register.tag(name="document_page_flat_adjacents")
+def do_document_page_flat_adjacents(parser, token):
     """
-    Display a flat menu of **Pages**
-    
-    Identique à l'utilisation du tag ``document_page_treemenu``, mais au lieu de rendre 
-    une arborescence des enfants de la page ciblée, renvoi un menu de ses pages 
-    adjacentes.
-        
-    :type parser: object ``django.template.Parser``
-    :param parser: Objet du parser de template.
-    
-    :type token: object ``django.template.Token``
-    :param token: Objet de la chaîne découpée du tag capturé dans le template.
-    
-    :rtype: object ``PageMenuTagRender``
-    :return: L'objet du générateur de rendu du tag.
+    Display a flat menu of adjacents **Pages**
     """
     args = token.split_contents()
     if len(args) < 2:
         raise template.TemplateSyntaxError, "You need to specify at less a \"Page\" instance or a slug"
     else:
-        return PageMenuTagRender(*args[1:], flat_mode=True)
+        return PageMenuTagRender(*args[1:], flat_mode=1)
 
-do_document_page_flatmenu.is_safe = True
+do_document_page_flat_adjacents.is_safe = True
+
+@register.tag(name="document_page_flat_children")
+def do_document_page_flat_children(parser, token):
+    """
+    Display a flat menu of children **Pages**
+    """
+    args = token.split_contents()
+    if len(args) < 2:
+        raise template.TemplateSyntaxError, "You need to specify at less a \"Page\" instance or a slug"
+    else:
+        return PageMenuTagRender(*args[1:], flat_mode=2)
+
+do_document_page_flat_children.is_safe = True
 
 @register.simple_tag
 def pprint_recurse(elements):

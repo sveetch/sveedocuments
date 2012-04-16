@@ -1,0 +1,12 @@
+{% extends "sveedocuments/page_details/subbase.html" %}
+{% load mptt_tags documents_markup documents_utils %}
+
+{% block content %}
+{% document_context page_instance %}
+
+<h2{% if page_instance.level == 0 %} class="root_page"{% endif %}>{{ page_instance.title }}</h2>
+
+<div class="restructuredtext_container">
+    {{ page_instance|document_render }}
+</div>
+{% endblock %}

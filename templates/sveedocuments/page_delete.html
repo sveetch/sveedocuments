@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}uni_form/default.uni-form.css" type="text/css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}sveedocuments/css/forms.css" type="text/css" />
 {% endblock %}
+{% block body_attr %} class="fixed_width absolute_width"{% endblock %}
 
 {% block content %}
 <h2>{% current_title_from_breadcrumbs %}</h2>

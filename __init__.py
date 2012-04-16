@@ -16,8 +16,12 @@ DOCUMENTS_PAGE_FLATMENU = getattr(settings, 'DOCUMENTS_PAGE_FLATMENU', "sveedocu
 
 # Available templates for Pages
 DOCUMENTS_PAGE_TEMPLATES = {
-    'default': ('sveedocuments/page_details/default.html', u'Gabarit par défaut sans colonnes'),
-    'column_by_2': ('sveedocuments/page_details/columned_bytwo.html', u'Gabarit colonné avec sommaire et navigation'),
+    'elastic': ('sveedocuments/page_details/elastic.html', u'Élastique à colonne unique'),
+    'elastic_with_columns': ('sveedocuments/page_details/elastic_with_columns.html', u'Élastique avec deux colonnes'),
+    'fixed_absolute': ('sveedocuments/page_details/fixed_absolute.html', u'Largeur fixe à colonne unique'),
+    'fixed_absolute_with_columns': ('sveedocuments/page_details/fixed_absolute_with_columns.html', u'Largeur fixe avec deux colonnes'),
+    'fixed_relative': ('sveedocuments/page_details/fixed_relative.html', u'Largeur relative à colonne unique'),
+    'fixed_relative_with_columns': ('sveedocuments/page_details/fixed_relative_with_columns.html', u'Largeur relative avec deux colonnes'),
 }
 DOCUMENTS_PAGE_TEMPLATES.update(getattr(settings, 'DOCUMENTS_PAGE_TEMPLATES', {}))
 
