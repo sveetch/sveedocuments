@@ -10,7 +10,7 @@ from mptt.forms import TreeNodeChoiceField
 from uni_form.helper import FormHelper
 from uni_form.layout import Layout, Fieldset, MultiField, Div, ButtonHolder, Submit, HTML
 
-from djangocodemirror import CODEMIRROR_SETTINGS
+from djangocodemirror.settings_local import CODEMIRROR_SETTINGS
 from djangocodemirror.fields import CodeMirrorWidget
 
 from sveedocuments import DOCUMENTS_PAGE_RESERVED_SLUGS

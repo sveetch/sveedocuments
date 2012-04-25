@@ -11,6 +11,7 @@
     <link rel="Stylesheet" title="Normal" media="screen" type="text/css" href="{{ STATIC_URL }}jquery/ui/themes/smoothness/jquery-ui-1.8.17.custom.css"/>
 {% endblock %}
 {% block head_more_js %}
+    {% get_current_language as LANGUAGE_CODE %}
     <script type="text/javascript" src="{{ STATIC_URL }}uni_form/uni-form.jquery.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}jquery/ui/jquery-ui-1.8.17.custom.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}jquery/ui/jquery.ui.datepicker-fr.js"></script>
@@ -18,6 +19,7 @@
     {{ form.media }}
     <script language="JavaScript" type="text/javascript">
     //<![CDATA[
+    DCM_lang = "{{ LANGUAGE_CODE }}";
     $(document).ready(function() {
         $("#id_published_0").datepicker($.datepicker.regional['fr']);
         $("#id_slug").slugify("#id_title");
