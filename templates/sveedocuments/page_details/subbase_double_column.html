@@ -1,5 +1,5 @@
 {% extends "sveedocuments/page_details/subbase.html" %}
-{% load mptt_tags documents_markup documents_utils %}
+{% load i18n mptt_tags documents_markup documents_utils %}
 
 {% block body_attr %} class="columned cols-by-two"{% endblock %}
 
@@ -19,13 +19,13 @@ menu{% endcomment %}
 {% block context_menu %}{% document_context page_instance %}
 <div id="context-menu">
     {% if document_toc %}<div class="brick">
-        <h2>Sommaire</h2>
+        <h2>{% trans "Table of content" %}</h2>
         {{ document_toc }}
     </div>{% endif %}
     
     {% with document_navigation as tree_descendants %}
     {% if tree_descendants %}<div class="brick">
-        <h2>Navigation</h2>
+        <h2>{% trans "Navigation" %}</h2>
         <ul class="tree_bulletlist">
             {% recursetree tree_descendants %}
                 <li{% if active_page_instance and active_page_instance.slug == node.slug %} class="active"{% endif %}>

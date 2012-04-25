@@ -1,0 +1,260 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# DAVID THENON <sveetch@gmail.com>, 2012.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: sveetch@gmail.com\n"
+"POT-Creation-Date: 2012-04-25 01:49+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: DAVID THENON <sveetch@gmail.com>\n"
+"Language-Team: FRENCH <FR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: __init__.py:20
+msgid "Elastic with an unique column"
+msgstr "Elastique avec une colonne unique"
+
+#: __init__.py:21
+msgid "Elastic with two columns"
+msgstr "Elastique avec deux colonnes"
+
+#: __init__.py:22
+msgid "Absolute fixed with an unique column"
+msgstr "Fixe absolu avec une colonne unique"
+
+#: __init__.py:23
+msgid "Absolute fixed with two columns"
+msgstr "Fixe absolu avec deux colonnes"
+
+#: __init__.py:24
+msgid "Relative fixed an unique column"
+msgstr "Fixe relatif avec une colonne unique"
+
+#: __init__.py:25
+msgid "Relative fixed with two columns"
+msgstr "Fixe relatif avec deux colonnes"
+
+#: crumbs.py:9
+msgid "Sitemap"
+msgstr "Plan du site"
+
+#: crumbs.py:10
+msgid "Document management"
+msgstr "Gestion des documents"
+
+#: crumbs.py:11 templates/sveedocuments/board.html:49
+msgid "Add a new insert document"
+msgstr "Ajouter un nouveau document insérable"
+
+#: crumbs.py:12
+msgid "Delete insert document #{{ insert_instance.slug }}"
+msgstr "Supprimer le document insérable #{{ insert_instance.slug }}"
+
+#: crumbs.py:13
+msgid "Edit insert document #{{ insert_instance.slug }}"
+msgstr "Editer le document insérable #{{ insert_instance.slug }}"
+
+#: crumbs.py:14 templates/sveedocuments/board.html:15
+msgid "Add a new page"
+msgstr "Ajouter une nouvelle page"
+
+#: crumbs.py:15
+msgid "Delete page #{{ page_instance.slug }}"
+msgstr "Supprimer la page #{{ page_instance.slug }}"
+
+#: crumbs.py:16
+msgid "Usage help"
+msgstr "Aide à l'utilisation"
+
+#: crumbs.py:17
+msgid "Edit page #{{ page_instance.slug }}"
+msgstr "Editer la page #{{ page_instance.slug }}"
+
+#: crumbs.py:18
+msgid "Add a new child page to #{{ parent_page_instance.slug }}"
+msgstr "Ajouter une nouvelle sous-page à #{{ parent_page_instance.slug }}"
+
+#: forms.py:28
+msgid "Root"
+msgstr "Racine"
+
+#: forms.py:39
+msgid "Content"
+msgstr "Contenu"
+
+#: forms.py:44
+msgid "Settings"
+msgstr "Paramètres"
+
+#: forms.py:48 forms.py:120
+msgid "Save and continue"
+msgstr "Sauvegarder et continuer"
+
+#: forms.py:49 forms.py:121
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: forms.py:62
+msgid "-- Root --"
+msgstr "-- Racine --"
+
+#: forms.py:81 forms.py:140
+msgid "This is a reserved keyword"
+msgstr "Ce mot clé est réservé"
+
+#: models.py:24
+msgid "Visible"
+msgstr "Visible"
+
+#: models.py:25
+msgid "Hidden"
+msgstr "Caché"
+
+#: models.py:32 models.py:91
+msgid "created"
+msgstr "créé"
+
+#: models.py:33 models.py:92
+msgid "last edit"
+msgstr "dernière modification"
+
+#: models.py:34 models.py:94
+msgid "author"
+msgstr "auteur"
+
+#: models.py:35 models.py:95
+msgid "title"
+msgstr "titre"
+
+#: models.py:36 models.py:97
+msgid "slug"
+msgstr "nom de raccourci"
+
+#: models.py:37 models.py:100
+msgid "visibility"
+msgstr "visibilité"
+
+#: models.py:38 models.py:101
+msgid "content"
+msgstr "contenu"
+
+#: models.py:84 models.py:85
+msgid "insert document"
+msgstr "document insérable"
+
+#: models.py:96
+msgid "publish date"
+msgstr "date de publication"
+
+#: models.py:96
+msgid "Define when the document will be displayed on the site. Empty value mean an instant publish, use a coming date to program a futur publish."
+msgstr "Définit quand le document sera affiché sur le site. Si non rempli la publication sera instantanée, utilisez une date future pour programmer une publication."
+
+#: models.py:97
+msgid "Unique slug used in URL, should be automatically filled with sluggified title."
+msgstr "Nom de raccourci unique utilisé dans les URL, rempli automatiquement à la création par une version modifiée du titre."
+
+#: models.py:98
+msgid "template"
+msgstr "gabarit"
+
+#: models.py:98
+msgid "This template will be used to render the page."
+msgstr "Ce gabarit sera utilisé pour afficher la page."
+
+#: models.py:99
+msgid "order"
+msgstr "ordre"
+
+#: models.py:99
+msgid "Display order in lists and trees."
+msgstr "Ordre d'affichage dans les listes et arborescences."
+
+#: models.py:157
+msgid "page"
+msgstr "page"
+
+#: models.py:158
+msgid "pages"
+msgstr "pages"
+
+#: templates/sveedocuments/board.html:17
+msgid "Pages"
+msgstr "Pages"
+
+#: templates/sveedocuments/board.html:27
+#, python-format
+msgid "Published on %(modified)s"
+msgstr "Publié le %(modified)s"
+
+#: templates/sveedocuments/board.html:33
+msgid "Add a new child page to this one"
+msgstr "Ajouter une nouvelle page à celle-ci"
+
+#: templates/sveedocuments/board.html:33
+msgid "New child page"
+msgstr "Nouvelle sous-page"
+
+#: templates/sveedocuments/board.html:36
+msgid "Recursively delete this page and his children"
+msgstr "Supprimer la page et tout ses enfants"
+
+#: templates/sveedocuments/board.html:36 templates/sveedocuments/board.html:71
+#: templates/sveedocuments/page_details/subbase.html:23
+msgid "Delete"
+msgstr "Supprimer"
+
+#: templates/sveedocuments/board.html:51
+msgid "Insert documents"
+msgstr "Documents insérables"
+
+#: templates/sveedocuments/board.html:57
+msgid "Title"
+msgstr "Titre"
+
+#: templates/sveedocuments/board.html:58
+msgid "Slug"
+msgstr "Nom de raccourci"
+
+#: templates/sveedocuments/board.html:59
+msgid "Visibility"
+msgstr "Visibilité"
+
+#: templates/sveedocuments/board.html:60
+msgid "Last modified"
+msgstr "Dernière modification"
+
+#: templates/sveedocuments/insert_delete.html:22
+#: templates/sveedocuments/page_delete.html:22
+msgid "Confirm delete"
+msgstr "Confirmez la suppression"
+
+#: templates/sveedocuments/page_form.html:39
+msgid "View on site"
+msgstr "Voir sur le site"
+
+#: templates/sveedocuments/page_details/subbase.html:20
+msgid "Actions on this document"
+msgstr "Actions sur ce document"
+
+#: templates/sveedocuments/page_details/subbase.html:22
+msgid "Edit"
+msgstr "Editer"
+
+#: templates/sveedocuments/page_details/subbase.html:24
+msgid "Source"
+msgstr "Voir la source"
+
+#: templates/sveedocuments/page_details/subbase_double_column.html:23
+msgid "Table of content"
+msgstr "Sommaire"
+
+#: templates/sveedocuments/page_details/subbase_double_column.html:29
+msgid "Navigation"
+msgstr "Navigation"

@@ -3,6 +3,7 @@
 Sveetchies-documents
 """
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 __version__ = '0.8.0'
 
@@ -16,12 +17,12 @@ DOCUMENTS_PAGE_FLATMENU = getattr(settings, 'DOCUMENTS_PAGE_FLATMENU', "sveedocu
 
 # Available templates for Pages
 DOCUMENTS_PAGE_TEMPLATES = {
-    'elastic': ('sveedocuments/page_details/elastic.html', u'Élastique à colonne unique'),
-    'elastic_with_columns': ('sveedocuments/page_details/elastic_with_columns.html', u'Élastique avec deux colonnes'),
-    'fixed_absolute': ('sveedocuments/page_details/fixed_absolute.html', u'Largeur fixe à colonne unique'),
-    'fixed_absolute_with_columns': ('sveedocuments/page_details/fixed_absolute_with_columns.html', u'Largeur fixe avec deux colonnes'),
-    'fixed_relative': ('sveedocuments/page_details/fixed_relative.html', u'Largeur relative à colonne unique'),
-    'fixed_relative_with_columns': ('sveedocuments/page_details/fixed_relative_with_columns.html', u'Largeur relative avec deux colonnes'),
+    'elastic': ('sveedocuments/page_details/elastic.html', _('Elastic with an unique column')),
+    'elastic_with_columns': ('sveedocuments/page_details/elastic_with_columns.html', _('Elastic with two columns')),
+    'fixed_absolute': ('sveedocuments/page_details/fixed_absolute.html', _('Absolute fixed with an unique column')),
+    'fixed_absolute_with_columns': ('sveedocuments/page_details/fixed_absolute_with_columns.html', _('Absolute fixed with two columns')),
+    'fixed_relative': ('sveedocuments/page_details/fixed_relative.html', _('Relative fixed an unique column')),
+    'fixed_relative_with_columns': ('sveedocuments/page_details/fixed_relative_with_columns.html', _('Relative fixed with two columns')),
 }
 DOCUMENTS_PAGE_TEMPLATES.update(getattr(settings, 'DOCUMENTS_PAGE_TEMPLATES', {}))
 

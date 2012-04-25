@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block head_title %}{{ page_instance.title }}{% endblock %}
 
@@ -16,11 +17,11 @@
 
 {% block action_menu %}
 <div class="document_action_menu">
-    <h2>Actions sur le document</h2>
+    <h2>{% trans "Actions on this document" %}</h2>
     <ul class="flat_bulletlist">
-        {% if user.is_staff %}<li><a href="{% url documents-page-edit page_instance.slug %}">Editer</a></li>
-        <li><a href="{% url documents-page-delete page_instance.slug %}">Supprimer</a></li>{% endif %}
-        <li><a href="{% url documents-page-source page_instance.slug %}">Source</a></li>
+        {% if user.is_staff %}<li><a href="{% url documents-page-edit page_instance.slug %}">{% trans "Edit" %}</a></li>
+        <li><a href="{% url documents-page-delete page_instance.slug %}">{% trans "Delete" %}</a></li>{% endif %}
+        <li><a href="{% url documents-page-source page_instance.slug %}">{% trans "Source" %}</a></li>
     </ul>
     <div class="cale"></div>
 </div>{% endblock %}

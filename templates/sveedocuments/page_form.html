@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load uni_form_tags autobreadcrumb %}
+{% load i18n uni_form_tags autobreadcrumb %}
 
 {% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
 {% block head_more_links %}
@@ -36,7 +36,7 @@
 {% block action_menu %}{% if page_instance %}
 <div class="document_action_menu">
     <ul class="flat_bulletlist">
-        <li><a href="{% url documents-page-details page_instance.slug %}">Voir la page</a></li>
+        <li><a href="{% url documents-page-details page_instance.slug %}">{% trans "View on site" %}</a></li>
     </ul>
     <div class="cale"></div>
 </div>{% endif %}{% endblock %}

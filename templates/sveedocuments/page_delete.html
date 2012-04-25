@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load documents_utils autobreadcrumb %}
+{% load i18n documents_utils autobreadcrumb %}
 
 {% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
 {% block head_more_links %}
@@ -19,7 +19,7 @@
 <form action="." class="uniForm" method="post">
     {% csrf_token %}
     <div class="buttonHolder">
-        <input type="submit" name="confirm_delete" value="Confirmer la suppression" class="submit submitButton"/>
+        <input type="submit" name="confirm_delete" value="{% trans "Confirm delete" %}" class="submit submitButton"/>
     </div>
 </form>
 {% endblock %}

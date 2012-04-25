@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load mptt_tags autobreadcrumb documents_admin %}
+{% load i18n mptt_tags autobreadcrumb documents_admin %}
 
 {% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
 {% block head_more_links %}
@@ -12,9 +12,9 @@
 
 <div class="module changelist">
     <ul class="actions flat_bulletlist">
-        <li class="icon add-page"><a href="{% url documents-page-add %}">Nouvelle page</a></li>
+        <li class="icon add-page"><a href="{% url documents-page-add %}">{% trans "Add a new page" %}</a></li>
     </ul>
-    <h3>Pages</h3>
+    <h3>{% trans "Pages" %}</h3>
     <div class="cale"></div>
     
     <ul class="list-tree-alt">{% recursetree page_list %}
@@ -24,19 +24,18 @@
                     <h4><a href="{% url documents-page-edit node.slug %}">{{ node.title }}</a></h4>
                     <div class="panel">
                         <p class="tile visibility-{% if node.visible %}on{% else %}off{% endif %}"><strong>{{ node.get_visible_display }}</strong></p>
-                        <p class="tile published">Publié le {{ node.modified|date:"d/m/Y H:i" }}</p>
-                        {% comment %}<p class="tile template">{{ node.get_template_display }}</p>{% endcomment %}
+                        <p class="tile published">{% blocktrans with modified=node.modified|date:"d/m/Y H:i" %}Published on {{ modified }}{% endblocktrans %}</p>
                     </div>
                     <div class="cale"></div>
                 </div>
                 <div class="menu">
-                    <p class="tile add-child"><a href="{% url documents-page-add-child node.slug %}" title="Créer une nouvelle page parente de celle-ci">Sous-page</a></p>
-                    <p class="tile delete"><a href="{% url documents-page-delete node.slug %}" title="Supprimer définitivement cette page et sous-pages">Supprimer</a></p>
+                    <p class="tile add-child">
+                        <a href="{% url documents-page-add-child node.slug %}" title="{% blocktrans %}Add a new child page to this one{% endblocktrans %}">{% trans "New child page" %}</a>
+                    </p>
+                    <p class="tile delete">
+                        <a href="{% url documents-page-delete node.slug %}" title="{% blocktrans %}Recursively delete this page and his children{% endblocktrans %}">{% trans "Delete" %}</a>
+                    </p>
                 </div>
-                {% comment %}<div class="menu">
-                    <p class="tile toggle-visibility-to-{% if not node.visible %}on{% else %}off{% endif %}"><a href="{% url documents-page-delete node.slug %}" title="Visibilité">Visibilité</a></p>
-                    <p class="tile move-to"><a href="" title="Déplacer cette page (et ses sous pages) dans l'arborescence">Déplacer</a></p>
-                </div>{% endcomment %}
                 <div class="cale"></div>
             </div>
             {% if not node.is_leaf_node %}<ul class="children">{{ children }}</ul>{% endif %}
@@ -47,18 +46,18 @@
 
 <div class="module changelist">
     <ul class="actions flat_bulletlist">
-        <li class="icon add-page"><a href="{% url documents-insert-add %}">Nouveau document insérable</a></li>
+        <li class="icon add-page"><a href="{% url documents-insert-add %}">{% trans "Add a new insert document" %}</a></li>
     </ul>
-    <h3>Documents insérables</h3>
+    <h3>{% trans "Insert documents" %}</h3>
     <div class="cale"></div>
     
     <table>
         <thead>
             <tr>
-                <th class="title-cell col-odd">Titre</th>
-                <th class="slug-cell col-even">Raccourci</th>
-                <th class="visible-cell col-odd">Visible</th>
-                <th class="modified-cell col-even">Dernière modification</th>
+                <th class="title-cell col-odd">{% trans "Title" %}</th>
+                <th class="slug-cell col-even">{% trans "Slug" %}</th>
+                <th class="visible-cell col-odd">{% trans "Visibility" %}</th>
+                <th class="modified-cell col-even">{% trans "Last modified" %}</th>
                 <th class="actions-cell col-odd">#</th>
             </tr>
         </thead>
@@ -69,7 +68,7 @@
                 <td class="slug-cell col-even">{{ item.slug }}</td>
                 <td class="visible-cell col-odd">{{ item.visible }}</td>
                 <td class="modified-cell col-even">{{ item.modified|date:"l d F Y à H:i"|title }}</td>
-                <td class="actions-cell col-odd"><a href="{% url documents-insert-delete item.slug %}">Supprimer</a></td>
+                <td class="actions-cell col-odd"><a href="{% url documents-insert-delete item.slug %}">{% trans "Delete" %}</a></td>
             </tr>
         </tr>
     {% endfor %}

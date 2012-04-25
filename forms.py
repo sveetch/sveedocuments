@@ -3,6 +3,7 @@
 Forms
 """
 from django import forms
+from django.utils.translation import ugettext
 
 from mptt.forms import TreeNodeChoiceField
 
@@ -24,6 +25,7 @@ class PageForm(forms.ModelForm):
         self.author = author
         self.parent = parent
         
+        empty_label = u"-- {0} --".format(ugettext("Root"))
         layout_parameters_fields = ['order', 'visible', 'published', 'template', 'slug']
         if not self.parent:
             layout_parameters_fields = ['parent']+layout_parameters_fields
@@ -34,17 +36,17 @@ class PageForm(forms.ModelForm):
         self.helper.layout = Layout(
             Div(
                 Fieldset(
-                    u'Contenu',
+                    ugettext('Content'),
                     'title',
                     'content',
                 ),
                 Fieldset(
-                    u'Paramètres', *layout_parameters_fields),
+                    ugettext('Settings'), *layout_parameters_fields),
                 css_class = 'combined-multiple-fieldsets'
             ),
             ButtonHolder(
-                Submit('submit', u'Enregistrer et continuer'),
-                Submit('submit', u'Enregistrer'),
+                Submit('submit_and_continue', ugettext('Save and continue')),
+                Submit('submit', ugettext('Save')),
             ),
         )
         
@@ -57,7 +59,7 @@ class PageForm(forms.ModelForm):
             parent_queryset = Page.objects.all()
             children = self.instance.get_descendants(include_self=True).values_list('id', flat=True)
             parent_queryset = parent_queryset.exclude(id__in=children)
-            self.fields['parent'] = TreeNodeChoiceField(queryset=parent_queryset, empty_label=u"-- Racine --", required=False)
+            self.fields['parent'] = TreeNodeChoiceField(queryset=parent_queryset, empty_label=ugettext(u"-- Root --"), required=False)
             # Options par défaut pour le widget d'édition
             content_widget_settings = CODEMIRROR_SETTINGS['sveetchies-documents-page']
         # En cas de création, mode pour ajouter une page directement sous un "parent"
@@ -76,7 +78,7 @@ class PageForm(forms.ModelForm):
         slug = self.cleaned_data.get("slug")
         if slug:
             if slug in DOCUMENTS_PAGE_RESERVED_SLUGS:
-                raise forms.ValidationError(u'Ce nom de raccourci est reservé.')
+                raise forms.ValidationError(ugettext('This is a reserved keyword'))
         return slug
     
     def clean_content(self):
@@ -115,8 +117,8 @@ class InsertForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_action = '.'
         self.helper.form_style = 'inline'
-        self.helper.add_input(Submit('submit', u'Enregistrer et continuer'))
-        self.helper.add_input(Submit('submit', u'Enregistrer'))
+        self.helper.add_input(Submit('submit_and_continue', ugettext('Save and continue')))
+        self.helper.add_input(Submit('submit', ugettext('Save')))
         
         super(InsertForm, self).__init__(*args, **kwargs)
         
@@ -135,7 +137,7 @@ class InsertForm(forms.ModelForm):
         slug = self.cleaned_data.get("slug")
         if slug:
             if slug in DOCUMENTS_PAGE_RESERVED_SLUGS:
-                raise forms.ValidationError(u'Ce nom de raccourci est reservé.')
+                raise forms.ValidationError(ugettext('This is a reserved keyword'))
         return slug
     
     def clean_content(self):

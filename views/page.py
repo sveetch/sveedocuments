@@ -104,8 +104,8 @@ class PageCreate(RestrictedCreateView):
     def post(self, request, *args, **kwargs):
         self.parent_page_instance = self._get_parent(**kwargs)
         # Mark to go back to the form page after save, triggered by special submit
-        if request.POST and request.POST.get('submit', False):
-            if request.POST['submit'] == u"Enregistrer et continuer":
+        if request.POST:
+            if request.POST.get('submit_and_continue', False):
                 self._redirect_to_self = True
         return super(PageCreate, self).post(request, *args, **kwargs)
         
@@ -147,8 +147,8 @@ class PageEdit(RestrictedUpdateView):
         
     def post(self, request, *args, **kwargs):
         # Mark to go back to the form page after save, triggered by special submit
-        if request.POST and request.POST.get('submit', False):
-            if request.POST['submit'] == u"Enregistrer et continuer":
+        if request.POST:
+            if request.POST.get('submit_and_continue', False):
                 self._redirect_to_self = True
         return super(PageEdit, self).post(request, *args, **kwargs)
 

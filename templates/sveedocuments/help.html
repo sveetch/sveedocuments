@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load autobreadcrumb %}
 
-{% block head_title %}{{ page_instance.title }}{% endblock %}
+{% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
 
 {% block head_more_links %}
     <link rel="Stylesheet" title="Normal" media="screen" type="text/css" href="{{ STATIC_URL }}sveedocuments/css/pygments.css"/>
@@ -8,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<h2>Aide à l'utilisation</h2>
+<h2>{% current_title_from_breadcrumbs %}</h2>
 
 <div class="restructuredtext_container">
     {{ content|safe }}

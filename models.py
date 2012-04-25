@@ -7,6 +7,7 @@ from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.cache import cache
+from django.utils.translation import ugettext_lazy as _
 
 from mptt.models import MPTTModel, TreeForeignKey
 from mptt.managers import TreeManager
@@ -20,21 +21,21 @@ from sveedocuments.utils import _get_cache_keyset
 DOCUMENTS_PAGE_TEMPLATES_CHOICES = [(k,v[1]) for k,v in DOCUMENTS_PAGE_TEMPLATES.items()]
 
 DOCUMENTS_VISIBILTY_CHOICES = (
-    (True, 'Visible'),
-    (False, 'Non visible'),
+    (True, _('Visible')),
+    (False, _('Hidden')),
 )
 
 class Insert(models.Model):
     """
     Document to insert
     """
-    created = models.DateTimeField('created', blank=True, auto_now_add=True)
-    modified = models.DateTimeField('last edit', auto_now=True)
-    author = models.ForeignKey(User, verbose_name='author')
-    title = models.CharField('title', blank=True, null=True, max_length=255)
-    slug = models.SlugField('slug', unique=True, max_length=75)
-    visible = models.BooleanField('visibility', default=True)
-    content = models.TextField('content', blank=False)
+    created = models.DateTimeField(_('created'), blank=True, auto_now_add=True)
+    modified = models.DateTimeField(_('last edit'), auto_now=True)
+    author = models.ForeignKey(User, verbose_name=_('author'))
+    title = models.CharField(_('title'), blank=True, null=True, max_length=255)
+    slug = models.SlugField(_('slug'), unique=True, max_length=75)
+    visible = models.BooleanField(_('visibility'), default=True)
+    content = models.TextField(_('content'), blank=False)
 
     def __unicode__(self):
         return self.slug
@@ -80,24 +81,24 @@ class Insert(models.Model):
         return keys
     
     class Meta:
-        verbose_name = u"document à insérer"
-        verbose_name_plural = u"documents à insérer"
+        verbose_name = _("insert document")
+        verbose_name_plural = _("insert document")
 
 class Page(MPTTModel):
     """
     Full page document
     """
-    created = models.DateTimeField('created', blank=True)
-    modified = models.DateTimeField('last edit', auto_now=True)
+    created = models.DateTimeField(_('created'), blank=True)
+    modified = models.DateTimeField(_('last edit'), auto_now=True)
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
-    author = models.ForeignKey(User, verbose_name='auteur')
-    title = models.CharField('title', blank=False, max_length=255)
-    published = models.DateTimeField('publish date', blank=True, help_text=u"Define when the document will be displayed on the site. Empty value mean an instant publish, use a coming date to program a futur publish.")
-    slug = models.SlugField('slug', unique=True, max_length=75, help_text=u"Unique slug used in URL, should be automatically filled with sluggified title.")
-    template = models.CharField('template', max_length=50, choices=DOCUMENTS_PAGE_TEMPLATES_CHOICES, default='default', help_text="This template will be used to render the page.")
-    order = models.SmallIntegerField('order', default=1, help_text=u"Display order in lists and trees.")
-    visible = models.BooleanField('visibility', choices=DOCUMENTS_VISIBILTY_CHOICES, default=True)
-    content = models.TextField('content', blank=False)
+    author = models.ForeignKey(User, verbose_name=_('author'))
+    title = models.CharField(_('title'), blank=False, max_length=255)
+    published = models.DateTimeField(_('publish date'), blank=True, help_text=_("Define when the document will be displayed on the site. Empty value mean an instant publish, use a coming date to program a futur publish."))
+    slug = models.SlugField(_('slug'), unique=True, max_length=75, help_text=_("Unique slug used in URL, should be automatically filled with sluggified title."))
+    template = models.CharField(_('template'), max_length=50, choices=DOCUMENTS_PAGE_TEMPLATES_CHOICES, default='default', help_text=_("This template will be used to render the page."))
+    order = models.SmallIntegerField(_('order'), default=1, help_text=_("Display order in lists and trees."))
+    visible = models.BooleanField(_('visibility'), choices=DOCUMENTS_VISIBILTY_CHOICES, default=True)
+    content = models.TextField(_('content'), blank=False)
 
     def __unicode__(self):
         return self.title
@@ -153,8 +154,8 @@ class Page(MPTTModel):
         return keys
     
     class Meta:
-        verbose_name = u"page"
-        verbose_name_plural = u"pages"
+        verbose_name = _("page")
+        verbose_name_plural = _("pages")
     
     class MPTTMeta:
         order_insertion_by = ['order', 'title']
