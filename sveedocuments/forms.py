@@ -7,8 +7,8 @@ from django.utils.translation import ugettext
 
 from mptt.forms import TreeNodeChoiceField
 
-from uni_form.helper import FormHelper
-from uni_form.layout import Layout, Fieldset, MultiField, Div, ButtonHolder, Submit, HTML
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset, MultiField, Div, ButtonHolder, Submit, HTML
 
 from djangocodemirror.settings_local import CODEMIRROR_SETTINGS
 from djangocodemirror.fields import CodeMirrorWidget
@@ -162,8 +162,7 @@ class InsertForm(forms.ModelForm):
         model = Insert
         exclude = ('created', 'author')
         widgets = {
-            # Necessary to change "self.fields['content'].widget" in __init__ (only with 
-            # uniform?)
+            # Necessary to change "self.fields['content'].widget" in __init__
             'content': CodeMirrorWidget(attrs={'rows': 30}), 
         }
 
