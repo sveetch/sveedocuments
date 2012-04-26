@@ -46,7 +46,7 @@ from pygments.formatters import HtmlFormatter
 from docutils import nodes
 from docutils.parsers.rst import directives
 
-from sveedocuments import PYGMENTS_CONTAINER_CLASSPREFIX, PYGMENTS_INLINESTYLES
+from sveedocuments.settings_local import PYGMENTS_CONTAINER_CLASSPREFIX, PYGMENTS_INLINESTYLES
 
 OPTS = {
     'linenos': directives.flag, # line number

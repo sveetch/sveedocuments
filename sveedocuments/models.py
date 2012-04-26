@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 from mptt.managers import TreeManager
 
-from sveedocuments import (DOCUMENTS_PARSER_FILTER_SETTINGS, 
+from sveedocuments.settings_local import (DOCUMENTS_PARSER_FILTER_SETTINGS, 
                                         DOCUMENTS_PAGE_TEMPLATES, PAGE_SLUGS_CACHE_KEY_NAME, 
                                         PAGE_RENDER_CACHE_KEY_NAME, INSERT_RENDER_CACHE_KEY_NAME,
                                         PAGE_TOC_CACHE_KEY_NAME, INSERT_TOC_CACHE_KEY_NAME)

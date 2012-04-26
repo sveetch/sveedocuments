@@ -6,7 +6,7 @@ from django import template
 from django.utils.safestring import mark_safe
 from django.core.cache import cache
 
-from sveedocuments import DOCUMENTS_PAGE_TREEMENU, DOCUMENTS_PAGE_FLATMENU
+from sveedocuments.settings_local import DOCUMENTS_PAGE_TREEMENU, DOCUMENTS_PAGE_FLATMENU
 from sveedocuments.models import Insert, Page
 from sveedocuments.templatetags import get_render_with_cache, get_toc_with_cache
 from sveedocuments.utils.templatetags import resolve_string_or_variable
@@ -427,5 +427,5 @@ def recurse_list(relations, sig=0):
         return output
     for name, object_title, followed in relations:
         children = recurse_list(followed, sig=sig+1)
-        output += "<li><p><strong>%s :</strong> %s</p>%s</li>" % (name, object_title, children)
+        output += "<li><p><strong>%s :</strong> %s</p>%s</li>" % (name.title(), object_title, children)
     return ("""<ul class="level_%s">"""%sig) + output + "</ul>"

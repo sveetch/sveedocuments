@@ -8,7 +8,7 @@ from docutils.parsers.rst import roles
 from django.core.urlresolvers import reverse
 from django.core.cache import cache
 
-from sveedocuments import DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING, PAGE_SLUGS_CACHE_KEY_NAME
+from sveedocuments.settings_local import DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING, PAGE_SLUGS_CACHE_KEY_NAME
 
 from sveedocuments.models import Page
 

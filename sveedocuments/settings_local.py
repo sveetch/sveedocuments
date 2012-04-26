@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Sveetchies-documents
+App default settings
 """
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-
-__version__ = '0.8.0'
 
 # Forbidden words for slug values in documents
 DOCUMENTS_PAGE_RESERVED_SLUGS = getattr(settings, 'DOCUMENTS_PAGE_MENU', ('board','add','preview','documents-help','inserts'))

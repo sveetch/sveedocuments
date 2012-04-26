@@ -19,7 +19,7 @@ import docutils.parsers.rst
 
 import sveedocuments.utils.rest_roles
 
-from sveedocuments import DOCUMENTS_PARSER_FILTER_SETTINGS
+from sveedocuments.settings_local import DOCUMENTS_PARSER_FILTER_SETTINGS
 
 # Loading directive with failsafe if Pygments is not installed
 try:

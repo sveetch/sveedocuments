@@ -12,7 +12,7 @@ from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 
-import sveedocuments
+from sveedocuments import settings_local
 from sveedocuments.models import Page
 from sveedocuments.parser import SourceParser
 from sveedocuments.forms import PageForm, PageQuickForm
@@ -36,7 +36,7 @@ class HelpPage(TemplateView):
     template_name = "sveedocuments/help.html"
     
     def get(self, request, *args, **kwargs):
-        path_root = os.path.abspath(os.path.dirname(sveedocuments.__file__))
+        path_root = os.path.abspath(os.path.dirname(settings_local.__file__))
         f = open(os.path.join(path_root, "HELP.rst"))
         content = f.read()
         f.close()
