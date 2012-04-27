@@ -23,13 +23,13 @@ setup(
         'Topic :: Text Processing :: Markup',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    install_requires = ['docutils>=0.7'],
-    requires=[
+    install_requires=[
+        'docutils>=0.7',
         'autobreadcrumbs',
         'djangocodemirror',
-        'django-mptt (>=0.5.2)',
-        'django-crispy-forms (>=1.1.2)',
-    ]
+        'django-mptt>=0.5.2',
+        'django-crispy-forms>=1.1.2',
+    ],
     include_package_data=True,
     zip_safe=False
 )
