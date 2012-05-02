@@ -10,7 +10,7 @@
 {% block content %}
 <h2>{% current_title_from_breadcrumbs %}</h2>
 
-<div class="module changelist">
+{% if perms.sveedocuments.add_page or perms.forum.change_page or perms.forum.delete_page %}<div class="module changelist">
     <ul class="actions flat_bulletlist">
         <li class="icon add-page"><a href="{% url documents-page-add %}">{% trans "Add a new page" %}</a></li>
     </ul>
@@ -41,10 +41,10 @@
             {% if not node.is_leaf_node %}<ul class="children">{{ children }}</ul>{% endif %}
         </li>
     {% endrecursetree %}</ul>
-</div>
+</div>{% endif %}
 
 
-<div class="module changelist">
+{% if perms.sveedocuments.add_insert or perms.forum.change_insert or perms.forum.delete_insert %}<div class="module changelist">
     <ul class="actions flat_bulletlist">
         <li class="icon add-page"><a href="{% url documents-insert-add %}">{% trans "Add a new insert document" %}</a></li>
     </ul>
@@ -74,5 +74,5 @@
     {% endfor %}
         </tbody>
     </table>
-</div>
+</div>{% endif %}
 {% endblock %}

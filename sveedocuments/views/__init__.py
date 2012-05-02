@@ -47,7 +47,7 @@ class RestrictedCreateView(generic.CreateView):
     Generic create view that checks permissions
     """
     def dispatch(self, request, *args, **kwargs):
-        @permission_required('%s.create_%s' % (self.model._meta.app_label, self.model._meta.module_name))
+        @permission_required('%s.add_%s' % (self.model._meta.app_label, self.model._meta.module_name))
         def wrapper(request, *args, **kwargs):
             return super(RestrictedCreateView, self).dispatch(request, *args, **kwargs)
         return wrapper(request, *args, **kwargs)

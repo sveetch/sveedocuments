@@ -7,7 +7,7 @@ from sveedocuments.views import RestrictedTemplateView
 
 class BoardIndex(RestrictedTemplateView):
     """
-    Documents management
+    Documents management board
     """
     template_name = "sveedocuments/board.html"
 

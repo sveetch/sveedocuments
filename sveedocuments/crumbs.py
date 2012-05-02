@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Root url's map for application
+Application Crumbs
 """
 from autobreadcrumbs import site
 from django.utils.translation import ugettext_lazy
