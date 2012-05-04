@@ -6,7 +6,7 @@ import json, os
 from datetime import datetime
 
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404
@@ -76,6 +76,22 @@ class PageDetails(DetailView):
     context_object_name = "page_instance"
     template_name = "sveedocuments/page_details.html"
     
+    def get_object(self, *args, **kwargs):
+        """
+        Memorize object to avoid multiple database access when using ``get_object()`` 
+        method
+        """
+        cache_key = "_cache_get_object"
+        if not hasattr(self, cache_key):
+            setattr(self, cache_key, super(PageDetails, self).get_object(*args, **kwargs))
+        return getattr(self, cache_key)
+    
+    def get(self, request, **kwargs):
+        # Check if the object is ``visible``
+        if not self.get_object().visible:
+            raise Http404
+        return super(PageDetails, self).get(request, **kwargs)
+    
     def get_template_names(self):
         return [self.object.get_template()]
 
@@ -84,8 +100,10 @@ class PageSource(PageDetails):
     Raw content *Page* view
     """
     def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        return HttpResponse(self.object.content, content_type="text/plain; charset=utf-8")
+        # Check if the object is ``visible``
+        if not self.get_object().visible:
+            raise Http404
+        return HttpResponse(self.get_object().content, content_type="text/plain; charset=utf-8")
 
 class PageCreate(RestrictedCreateView):
     """
