@@ -38,7 +38,7 @@
                 </div>
                 <div class="cale"></div>
             </div>
-            {% if not node.is_leaf_node %}<ul class="children">{{ children }}</ul>{% endif %}
+            {% if not node.is_leaf_node %}<ul class="children {% if not node.visible %}hidden_parent{% endif %}">{{ children }}</ul>{% endif %}
         </li>
     {% endrecursetree %}</ul>
 </div>{% endif %}

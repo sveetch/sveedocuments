@@ -35,7 +35,7 @@
 {% endblock %}
 {% block body_attr %} class="fixed_width relative_width"{% endblock %}
 
-{% block action_menu %}{% if page_instance %}
+{% block action_menu %}{% if page_instance and page_instance.visible %}
 <div class="document_action_menu">
     <ul class="flat_bulletlist">
         <li><a href="{% url documents-page-details page_instance.slug %}">{% trans "View on site" %}</a></li>
