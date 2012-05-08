@@ -5,6 +5,9 @@ App default settings
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
+# Add custom cache keys to delete with the command option ``django-admin documents --clearcache``
+DOCUMENTS_CACHE_KEYS_TO_CLEAN = getattr(settings, 'DOCUMENTS_CACHE_KEYS_TO_CLEAN', [])
+
 # Forbidden words for slug values in documents
 DOCUMENTS_PAGE_RESERVED_SLUGS = getattr(settings, 'DOCUMENTS_PAGE_MENU', ('board','add','preview','documents-help','inserts'))
 

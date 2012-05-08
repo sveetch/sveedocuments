@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='sveedocuments',
     version=__import__('sveedocuments').__version__,
-    description='Django application to manage documents in ReStructuredText ',
+    description=__import__('sveedocuments').__doc__,
     long_description=open('README.rst').read(),
     author='David Thenon',
     author_email='sveetch@gmail.com',

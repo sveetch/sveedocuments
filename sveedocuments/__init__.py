@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Sveetchies-documents
+Django application to manage documents in ReStructuredText
 """
 __version__ = '0.8.2'

@@ -196,7 +196,7 @@ class PageMenuTagRender(template.Node):
             self.template_path = DOCUMENTS_PAGE_TREEMENU
         else:
             self.template_path = DOCUMENTS_PAGE_FLATMENU
-        # Template spécifié if any
+        # Custom template if any
         if self.template_path_varname:
             self.template_path = resolve_string_or_variable(self.template_path_varname, context)
         
@@ -381,12 +381,6 @@ def do_document_page_treemenu(parser, token):
         return PageMenuTagRender(*args[1:])
 
 do_document_page_treemenu.is_safe = True
-
-#@register.tag(name="document_page_flatmenu")
-#def do_document_page_flatmenu(parser, token):
-    #pass
-
-#do_document_page_flatmenu.is_safe = True
 
 @register.tag(name="document_page_flat_adjacents")
 def do_document_page_flat_adjacents(parser, token):
