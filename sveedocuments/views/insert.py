@@ -6,14 +6,16 @@ import json
 
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.views import generic
+
+from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from sveedocuments.models import Insert
 from sveedocuments.parser import SourceParser
 from sveedocuments.forms import InsertForm, InsertQuickForm
-from sveedocuments.views import RestrictedCreateView, RestrictedUpdateView, RestrictedDeleteView
 from sveedocuments.utils.objects import get_instance_children
 
-class InsertCreate(RestrictedCreateView):
+class InsertCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
     """
     Form view to create an *Insert* document
     """
@@ -21,6 +23,8 @@ class InsertCreate(RestrictedCreateView):
     context_object_name = "insert_instance"
     template_name = "sveedocuments/insert_form.html"
     form_class = InsertForm
+    permission_required = "sveedocuments.add_insert"
+    raise_exception = True
     _redirect_to_self = False
 
     def post(self, request, *args, **kwargs):
@@ -28,7 +32,7 @@ class InsertCreate(RestrictedCreateView):
         if request.POST:
             if request.POST.get('submit_and_continue', False):
                 self._redirect_to_self = True
-        return super(InsertCreate, self).post(request, *args, **kwargs)
+        return super(InsertCreateView, self).post(request, *args, **kwargs)
 
     def get_success_url(self):
         if self._redirect_to_self:
@@ -36,13 +40,13 @@ class InsertCreate(RestrictedCreateView):
         return reverse('documents-board')
     
     def get_form_kwargs(self):
-        kwargs = super(InsertCreate, self).get_form_kwargs()
+        kwargs = super(InsertCreateView, self).get_form_kwargs()
         kwargs.update({
             'author': self.request.user,
         })
         return kwargs
 
-class InsertEdit(RestrictedUpdateView):
+class InsertEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):
     """
     Form view to edit an *Insert* document
     """
@@ -50,6 +54,8 @@ class InsertEdit(RestrictedUpdateView):
     context_object_name = "insert_instance"
     template_name = "sveedocuments/insert_form.html"
     form_class = InsertForm
+    permission_required = "sveedocuments.change_insert"
+    raise_exception = True
     _redirect_to_self = False
 
     def post(self, request, *args, **kwargs):
@@ -57,7 +63,7 @@ class InsertEdit(RestrictedUpdateView):
         if request.POST:
             if request.POST.get('submit_and_continue', False):
                 self._redirect_to_self = True
-        return super(InsertEdit, self).post(request, *args, **kwargs)
+        return super(InsertEditView, self).post(request, *args, **kwargs)
 
     def get_success_url(self):
         if self._redirect_to_self:
@@ -65,11 +71,11 @@ class InsertEdit(RestrictedUpdateView):
         return reverse('documents-board')
     
     def get_form_kwargs(self):
-        kwargs = super(InsertEdit, self).get_form_kwargs()
+        kwargs = super(InsertEditView, self).get_form_kwargs()
         kwargs.update({'author': self.request.user})
         return kwargs
 
-class InsertQuicksave(InsertEdit):
+class InsertQuicksaveView(InsertEditView):
     """
     Quicksave view for an *Insert* content
     """
@@ -78,7 +84,7 @@ class InsertQuicksave(InsertEdit):
     def get_object(self, queryset=None):
         if self.request.POST.get('slug', False):
             self.kwargs['slug'] = self.request.POST['slug']
-        return super(InsertQuicksave, self).get_object(queryset=queryset)
+        return super(InsertQuicksaveView, self).get_object(queryset=queryset)
 
     def get(self, request, *args, **kwargs):
         return HttpResponse('')
@@ -95,7 +101,7 @@ class InsertQuicksave(InsertEdit):
         })
         return HttpResponse(content, content_type='application/json')
 
-class InsertDelete(RestrictedDeleteView):
+class InsertDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     """
     Form view to delete an *Insert* document
     
@@ -104,6 +110,8 @@ class InsertDelete(RestrictedDeleteView):
     model = Insert
     context_object_name = "insert_instance"
     template_name = "sveedocuments/insert_delete.html"
+    permission_required = "sveedocuments.delete_insert"
+    raise_exception = True
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()

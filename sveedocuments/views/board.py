@@ -2,10 +2,13 @@
 """
 Board views
 """
-from sveedocuments.models import Page, Insert
-from sveedocuments.views import RestrictedTemplateView
+from django.views import generic
 
-class BoardIndex(RestrictedTemplateView):
+from sveedocuments.models import Page, Insert
+
+from braces.views import LoginRequiredMixin
+
+class BoardIndexView(LoginRequiredMixin, generic.TemplateView):
     """
     Documents management board
     """

@@ -4,7 +4,8 @@
 .. _Django internationalization system: https://docs.djangoproject.com/en/dev/topics/i18n/
 .. _djangocodemirror: http://pypi.python.org/pypi/djangocodemirror
 .. _django-crispy-forms: https://github.com/maraujop/django-crispy-forms
-.. _django-mptt: http://pypi.python.org/pypi/django-mptt/
+.. _django-mptt: http://pypi.python.org/pypi/django-mptt
+.. _django-braces: https://github.com/sveetch/django-braces
 .. _ReStructuredText: http://docutils.sourceforge.net/rst.html
 .. _Pygments: http://pygments.org/
 
@@ -46,6 +47,7 @@ Requires
 * `djangocodemirror`_;
 * `django-mptt`_ >= 0.5.2;
 * `django-crispy-forms`_ >= 1.1.x;
+* `django-braces`_;
 
 Optionnaly (but recommended) you can install Pygments to have highlighted syntax in your *sourcecode* block :
 

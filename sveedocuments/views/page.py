@@ -7,19 +7,19 @@ from datetime import datetime
 
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
-from django.views.generic.base import TemplateView
-from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
+from django.views import generic
+
+from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from sveedocuments import settings_local
 from sveedocuments.models import Page
 from sveedocuments.parser import SourceParser
 from sveedocuments.forms import PageForm, PageQuickForm
-from sveedocuments.views import RestrictedView, RestrictedCreateView, RestrictedUpdateView, RestrictedDeleteView
 from sveedocuments.utils.objects import get_instance_children
 
-class PageIndex(TemplateView):
+class PageIndexView(generic.TemplateView):
     """
     Pages index
     """
@@ -29,7 +29,7 @@ class PageIndex(TemplateView):
         context = {'page_list' : Page.objects.filter(visible=True)}
         return self.render_to_response(context)
 
-class HelpPage(TemplateView):
+class HelpPageView(generic.TemplateView):
     """
     Help document
     """
@@ -44,7 +44,7 @@ class HelpPage(TemplateView):
         context = {'content' : SourceParser(content, silent=False)}
         return self.render_to_response(context)
 
-class PagePreview(RestrictedView):
+class PagePreviewView(LoginRequiredMixin, generic.View):
     """
     Parser preview
     
@@ -68,7 +68,7 @@ class PagePreview(RestrictedView):
         content = self.parse_content(request, *args, **kwargs)
         return HttpResponse( content )
 
-class PageDetails(DetailView):
+class PageDetailsView(generic.DetailView):
     """
     *Page* view
     """
@@ -83,19 +83,19 @@ class PageDetails(DetailView):
         """
         cache_key = "_cache_get_object"
         if not hasattr(self, cache_key):
-            setattr(self, cache_key, super(PageDetails, self).get_object(*args, **kwargs))
+            setattr(self, cache_key, super(PageDetailsView, self).get_object(*args, **kwargs))
         return getattr(self, cache_key)
     
     def get(self, request, **kwargs):
         # Check if the object is ``visible``
         if not self.get_object().visible:
             raise Http404
-        return super(PageDetails, self).get(request, **kwargs)
+        return super(PageDetailsView, self).get(request, **kwargs)
     
     def get_template_names(self):
         return [self.object.get_template()]
 
-class PageSource(PageDetails):
+class PageSourceView(PageDetailsView):
     """
     Raw content *Page* view
     """
@@ -105,7 +105,7 @@ class PageSource(PageDetails):
             raise Http404
         return HttpResponse(self.get_object().content, content_type="text/plain; charset=utf-8")
 
-class PageCreate(RestrictedCreateView):
+class PageCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
     """
     Form view to create a *Page* document
     """
@@ -113,11 +113,13 @@ class PageCreate(RestrictedCreateView):
     context_object_name = "page_instance"
     template_name = "sveedocuments/page_form.html"
     form_class = PageForm
+    permission_required = "sveedocuments.add_page"
+    raise_exception = True
     _redirect_to_self = False
 
     def get(self, request, *args, **kwargs):
         self.parent_page_instance = self._get_parent(**kwargs)
-        return super(PageCreate, self).get(request, *args, **kwargs)
+        return super(PageCreateView, self).get(request, *args, **kwargs)
         
     def post(self, request, *args, **kwargs):
         self.parent_page_instance = self._get_parent(**kwargs)
@@ -125,7 +127,7 @@ class PageCreate(RestrictedCreateView):
         if request.POST:
             if request.POST.get('submit_and_continue', False):
                 self._redirect_to_self = True
-        return super(PageCreate, self).post(request, *args, **kwargs)
+        return super(PageCreateView, self).post(request, *args, **kwargs)
         
     def get_success_url(self):
         if self._redirect_to_self:
@@ -138,14 +140,14 @@ class PageCreate(RestrictedCreateView):
         return None
         
     def get_context_data(self, **kwargs):
-        context = super(PageCreate, self).get_context_data(**kwargs)
+        context = super(PageCreateView, self).get_context_data(**kwargs)
         context.update({
             'parent_page_instance': self.parent_page_instance,
         })
         return context
     
     def get_form_kwargs(self):
-        kwargs = super(PageCreate, self).get_form_kwargs()
+        kwargs = super(PageCreateView, self).get_form_kwargs()
         kwargs.update({
             'author': self.request.user,
             'parent': self.parent_page_instance,
@@ -153,7 +155,7 @@ class PageCreate(RestrictedCreateView):
         })
         return kwargs
 
-class PageEdit(RestrictedUpdateView):
+class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):
     """
     Form view to edit a *Page* document
     """
@@ -161,6 +163,8 @@ class PageEdit(RestrictedUpdateView):
     context_object_name = "page_instance"
     template_name = "sveedocuments/page_form.html"
     form_class = PageForm
+    permission_required = "sveedocuments.change_page"
+    raise_exception = True
     _redirect_to_self = False
         
     def post(self, request, *args, **kwargs):
@@ -168,7 +172,7 @@ class PageEdit(RestrictedUpdateView):
         if request.POST:
             if request.POST.get('submit_and_continue', False):
                 self._redirect_to_self = True
-        return super(PageEdit, self).post(request, *args, **kwargs)
+        return super(PageEditView, self).post(request, *args, **kwargs)
 
     def get_success_url(self):
         if self._redirect_to_self:
@@ -176,11 +180,11 @@ class PageEdit(RestrictedUpdateView):
         return reverse('documents-board')
 
     def get_form_kwargs(self):
-        kwargs = super(PageEdit, self).get_form_kwargs()
+        kwargs = super(PageEditView, self).get_form_kwargs()
         kwargs.update({'author': self.request.user})
         return kwargs
 
-class PageQuicksave(PageEdit):
+class PageQuicksaveView(PageEditView):
     """
     Quicksave view for a *Page* content
     """
@@ -189,7 +193,7 @@ class PageQuicksave(PageEdit):
     def get_object(self, queryset=None):
         if self.request.POST.get('slug', False):
             self.kwargs['slug'] = self.request.POST['slug']
-        return super(PageQuicksave, self).get_object(queryset=queryset)
+        return super(PageQuicksaveView, self).get_object(queryset=queryset)
 
     def get(self, request, *args, **kwargs):
         return HttpResponse('')
@@ -206,7 +210,7 @@ class PageQuicksave(PageEdit):
         })
         return HttpResponse(content, content_type='application/json')
 
-class PageDelete(RestrictedDeleteView):
+class PageDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     """
     Form view to delete a *Page* document
     
@@ -215,6 +219,8 @@ class PageDelete(RestrictedDeleteView):
     model = Page
     context_object_name = "page_instance"
     template_name = "sveedocuments/page_delete.html"
+    permission_required = "sveedocuments.delete_page"
+    raise_exception = True
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()

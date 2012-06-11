@@ -4,27 +4,27 @@ Url's map for documents board
 """
 from django.conf.urls.defaults import *
 
-from sveedocuments.views.board import BoardIndex
-from sveedocuments.views.page import (PagePreview, PageCreate, PageQuicksave,
-                                                    PageEdit, PageDelete, PageDelete)
-from sveedocuments.views.insert import (InsertCreate, InsertEdit, InsertDelete,
-                                                      InsertQuicksave)
+from sveedocuments.views.board import BoardIndexView
+from sveedocuments.views.page import (PagePreviewView, PageCreateView, PageQuicksaveView,
+                                      PageEditView, PageDeleteView, PageDeleteView)
+from sveedocuments.views.insert import (InsertCreateView, InsertEditView, 
+                                        InsertDeleteView, InsertQuicksaveView)
 
 urlpatterns = patterns('',
-    url(r'^$', BoardIndex.as_view(), name='documents-board'),
+    url(r'^$', BoardIndexView.as_view(), name='documents-board'),
     
-    url(r'^add/$', PageCreate.as_view(), name='documents-page-add'),
+    url(r'^add/$', PageCreateView.as_view(), name='documents-page-add'),
     
-    url(r'^preview/$', PagePreview.as_view(), name='documents-preview'),
+    url(r'^preview/$', PagePreviewView.as_view(), name='documents-preview'),
     
-    url(r'^quicksave/page/$', PageQuicksave.as_view(), name='documents-page-quicksave'),
-    url(r'^quicksave/insert/$', InsertQuicksave.as_view(), name='documents-insert-quicksave'),
+    url(r'^quicksave/page/$', PageQuicksaveView.as_view(), name='documents-page-quicksave'),
+    url(r'^quicksave/insert/$', InsertQuicksaveView.as_view(), name='documents-insert-quicksave'),
     
-    url(r'^inserts/add/$', InsertCreate.as_view(), name='documents-insert-add'),
-    url(r'^inserts/(?P<slug>[-\w]+)/delete/$', InsertDelete.as_view(), name='documents-insert-delete'),
-    url(r'^inserts/(?P<slug>[-\w]+)/edit/$', InsertEdit.as_view(), name='documents-insert-edit'),
+    url(r'^inserts/add/$', InsertCreateView.as_view(), name='documents-insert-add'),
+    url(r'^inserts/(?P<slug>[-\w]+)/delete/$', InsertDeleteView.as_view(), name='documents-insert-delete'),
+    url(r'^inserts/(?P<slug>[-\w]+)/edit/$', InsertEditView.as_view(), name='documents-insert-edit'),
     
-    url(r'^(?P<slug>[-\w]+)/add/$', PageCreate.as_view(), name='documents-page-add-child'),
-    url(r'^(?P<slug>[-\w]+)/delete/$', PageDelete.as_view(), name='documents-page-delete'),
-    url(r'^(?P<slug>[-\w]+)/edit/$', PageEdit.as_view(), name='documents-page-edit'),
+    url(r'^(?P<slug>[-\w]+)/add/$', PageCreateView.as_view(), name='documents-page-add-child'),
+    url(r'^(?P<slug>[-\w]+)/delete/$', PageDeleteView.as_view(), name='documents-page-delete'),
+    url(r'^(?P<slug>[-\w]+)/edit/$', PageEditView.as_view(), name='documents-page-edit'),
 )
