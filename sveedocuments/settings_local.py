@@ -36,6 +36,10 @@ DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING = getattr(settings, 'DOCUMENTS_PARSER_W
 # support the pattern ``xx_XX``.
 DOCUMENTS_PARSER_LANGUAGE_CODE = getattr(settings, 'LANGUAGE_CODE', "en").split('_')[0]
 
+# The docutils writer to use, can be html4 or html5, html5 writer is external code 
+# from docutils
+DOCUMENTS_PARSER_WRITER = getattr(settings, 'DOCUMENTS_PARSER_WRITER', "html5")
+
 # Disable unsafe ReSTructured directives, enable them at your own risk
 DOCUMENTS_PARSER_ENABLE_FILE_INSERTION = getattr(settings, 'DOCUMENTS_PARSER_ENABLE_FILE_INSERTION', False)
 DOCUMENTS_PARSER_ENABLE_RAW_INSERTION = getattr(settings, 'DOCUMENTS_PARSER_ENABLE_RAW_INSERTION', False)
@@ -46,7 +50,7 @@ DOCUMENTS_PARSER_ENABLE_RAW_INSERTION = getattr(settings, 'DOCUMENTS_PARSER_ENAB
 # ``html4css1``)
 DOCUMENTS_PARSER_FILTER_SETTINGS = {
     'default':{
-        'initial_header_level': 3,
+        'initial_header_level': 1,
         'file_insertion_enabled': DOCUMENTS_PARSER_ENABLE_FILE_INSERTION,
         'raw_enabled': DOCUMENTS_PARSER_ENABLE_RAW_INSERTION,
         'language_code': DOCUMENTS_PARSER_LANGUAGE_CODE,
