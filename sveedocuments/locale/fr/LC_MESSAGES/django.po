@@ -7,38 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: sveetch@gmail.com\n"
-"POT-Creation-Date: 2012-04-25 01:49+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-16 15:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: DAVID THENON <sveetch@gmail.com>\n"
 "Language-Team: FRENCH <FR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: __init__.py:20
-msgid "Elastic with an unique column"
-msgstr "Elastique avec une colonne unique"
-
-#: __init__.py:21
-msgid "Elastic with two columns"
-msgstr "Elastique avec deux colonnes"
-
-#: __init__.py:22
-msgid "Absolute fixed with an unique column"
-msgstr "Fixe absolu avec une colonne unique"
-
-#: __init__.py:23
-msgid "Absolute fixed with two columns"
-msgstr "Fixe absolu avec deux colonnes"
-
-#: __init__.py:24
-msgid "Relative fixed an unique column"
-msgstr "Fixe relatif avec une colonne unique"
-
-#: __init__.py:25
-msgid "Relative fixed with two columns"
-msgstr "Fixe relatif avec deux colonnes"
 
 #: crumbs.py:9
 msgid "Sitemap"
@@ -184,6 +160,30 @@ msgstr "page"
 msgid "pages"
 msgstr "pages"
 
+#: settings_local.py:21
+msgid "Elastic with an unique column"
+msgstr "Elastique avec une colonne unique"
+
+#: settings_local.py:22
+msgid "Elastic with two columns"
+msgstr "Elastique avec deux colonnes"
+
+#: settings_local.py:23
+msgid "Absolute fixed with an unique column"
+msgstr "Fixe absolu avec une colonne unique"
+
+#: settings_local.py:24
+msgid "Absolute fixed with two columns"
+msgstr "Fixe absolu avec deux colonnes"
+
+#: settings_local.py:25
+msgid "Relative fixed an unique column"
+msgstr "Fixe relatif avec une colonne unique"
+
+#: settings_local.py:26
+msgid "Relative fixed with two columns"
+msgstr "Fixe relatif avec deux colonnes"
+
 #: templates/sveedocuments/board.html:17
 msgid "Pages"
 msgstr "Pages"
@@ -235,7 +235,7 @@ msgstr "Dernière modification"
 msgid "Confirm delete"
 msgstr "Confirmez la suppression"
 
-#: templates/sveedocuments/page_form.html:39
+#: templates/sveedocuments/page_form.html:41
 msgid "View on site"
 msgstr "Voir sur le site"
 

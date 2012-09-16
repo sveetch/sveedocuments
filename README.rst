@@ -5,7 +5,7 @@
 .. _djangocodemirror: http://pypi.python.org/pypi/djangocodemirror
 .. _django-crispy-forms: https://github.com/maraujop/django-crispy-forms
 .. _django-mptt: http://pypi.python.org/pypi/django-mptt
-.. _django-braces: https://github.com/sveetch/django-braces
+.. _My django-braces fork: https://github.com/sveetch/django-braces
 .. _ReStructuredText: http://docutils.sourceforge.net/rst.html
 .. _Pygments: http://pygments.org/
 
@@ -37,7 +37,7 @@ Links
 
 * Download his `PyPi package <http://pypi.python.org/pypi/sveedocuments>`_;
 * Clone it on his `Github repository <https://github.com/sveetch/sveedocuments>`_;
-* Documentation and demo to come on his `DjangoSveetchies page <http://sveetchies.sveetch.net/sveedocuments/>`_.
+* Documentation and demo on `DjangoSveetchies page <http://sveetchies.sveetch.net/sveedocuments/>`_.
 
 Requires
 ========
@@ -47,7 +47,7 @@ Requires
 * `djangocodemirror`_;
 * `django-mptt`_ >= 0.5.2;
 * `django-crispy-forms`_ >= 1.1.x;
-* `django-braces`_;
+* `My django-braces fork`_;
 
 Optionnaly (but recommended) you can install Pygments to have highlighted syntax in your *sourcecode* block :
 

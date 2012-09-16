@@ -101,7 +101,7 @@ class Command(BaseCommand):
                 
             # Slugs des pages à extraire
             if self.get_pages == 'ALL':
-                page_slugs = Page.objects.root_nodes().exclude(slug__in=excluded).values_list('slug', flat=True)
+                page_slugs = Page.objects.root_nodes().exclude(visible=False, slug__in=excluded).values_list('slug', flat=True)
             else:
                 page_slugs = [s for s in self.get_pages.split(',') if s not in excluded]
             
@@ -110,7 +110,7 @@ class Command(BaseCommand):
                 # Si mode suivi intégrale des enfants, ou que le slug de la page est explicitement spécifié à suivre
                 if followed and ('ALL' in followed or slug in followed):
                     try:
-                        queryset = Page.objects.get(slug=slug).get_descendants(include_self=True).exclude(id__in=[i.id for i in instances]).exclude(slug__in=excluded)
+                        queryset = Page.objects.get(slug=slug).get_descendants(include_self=True).exclude(id__in=[i.id for i in instances]).exclude(visible=False, slug__in=excluded)
                     except Page.DoesNotExist:
                         raise CommandError("Get many: slug '{0}' does not exist".format(slug))
                     else:
@@ -118,7 +118,7 @@ class Command(BaseCommand):
                 # Pas de suivi on récupère que la page
                 else:
                     try:
-                        page = Page.objects.get(slug=slug)
+                        page = Page.objects.get(slug=slug, visible=True)
                     except Page.DoesNotExist:
                         raise CommandError("Get single: slug '{0}' does not exist".format(slug))
                     else:
@@ -155,7 +155,7 @@ class Command(BaseCommand):
                 output.write( content.encode('UTF8')+"\n" )
             else:
                 # Output the document title only
-                output.write( "*"+document.title.encode('UTF8')+"\n" )
+                output.write( "* /%s/ : %s\n" % (document.slug.encode('UTF8'), document.title.encode('UTF8')) )
         
         return output
 
