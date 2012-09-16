@@ -13,6 +13,8 @@ from django.views import generic
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
+from djangocodemirror.views import SampleQuicksaveMixin
+
 from sveedocuments import settings_local
 from sveedocuments.models import Page
 from sveedocuments.parser import SourceParser
@@ -43,30 +45,6 @@ class HelpPageView(generic.TemplateView):
         
         context = {'content' : SourceParser(content, silent=False)}
         return self.render_to_response(context)
-
-class PagePreviewView(LoginRequiredMixin, generic.View):
-    """
-    Parser preview
-    
-    Procède au rendu par le parser d'un contenu soumis par POST dans un argument "data", 
-    une requête GET renvoi toujours un document complètement vide, de même si le contenu 
-    est vide.
-    
-    Le contenu du parser est seulement un "fragment" de page et non une page complète, 
-    en clair uniquement le rendu HTML du contenu à placer quelque part dans le <body/>.
-    """
-    def parse_content(self, request, *args, **kwargs):
-        content = request.POST.get('content', None)
-        if content:
-            return SourceParser(content, silent=False)
-        return ''
-
-    def get(self, request, *args, **kwargs):
-        return HttpResponse('')
-    
-    def post(self, request, *args, **kwargs):
-        content = self.parse_content(request, *args, **kwargs)
-        return HttpResponse( content )
 
 class PageDetailsView(generic.DetailView):
     """
@@ -184,32 +162,6 @@ class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateVi
         kwargs.update({'author': self.request.user})
         return kwargs
 
-class PageQuicksaveView(PageEditView):
-    """
-    Quicksave view for a *Page* content
-    """
-    form_class = PageQuickForm
-    
-    def get_object(self, queryset=None):
-        if self.request.POST.get('slug', False):
-            self.kwargs['slug'] = self.request.POST['slug']
-        return super(PageQuicksaveView, self).get_object(queryset=queryset)
-
-    def get(self, request, *args, **kwargs):
-        return HttpResponse('')
-    
-    def form_valid(self, form):
-        content = json.dumps({'status':'form_valid'})
-        form.save()
-        return HttpResponse(content, content_type='application/json')
-
-    def form_invalid(self, form):
-        content = json.dumps({
-            'status':'form_invalid',
-            'errors': dict(form.errors.items()),
-        })
-        return HttpResponse(content, content_type='application/json')
-
 class PageDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     """
     Form view to delete a *Page* document
@@ -230,3 +182,14 @@ class PageDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.Delete
 
     def get_success_url(self):
         return reverse('documents-board')
+
+class PageQuicksaveView(SampleQuicksaveMixin, PageEditView):
+    """
+    Quicksave view for a *Page* content
+    """
+    form_class = PageQuickForm
+    
+    def get_object(self, queryset=None):
+        if self.request.POST.get('slug', False):
+            self.kwargs['slug'] = self.request.POST['slug']
+        return super(PageQuicksaveView, self).get_object(queryset=queryset)

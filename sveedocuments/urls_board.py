@@ -4,8 +4,8 @@ Url's map for documents board
 """
 from django.conf.urls.defaults import *
 
-from sveedocuments.views.board import BoardIndexView
-from sveedocuments.views.page import (PagePreviewView, PageCreateView, PageQuicksaveView,
+from sveedocuments.views.board import BoardIndexView, PreviewView, BoardEditorSettingsView
+from sveedocuments.views.page import (PageCreateView, PageQuicksaveView,
                                       PageEditView, PageDeleteView, PageDeleteView)
 from sveedocuments.views.insert import (InsertCreateView, InsertEditView, 
                                         InsertDeleteView, InsertQuicksaveView)
@@ -15,7 +15,8 @@ urlpatterns = patterns('',
     
     url(r'^add/$', PageCreateView.as_view(), name='documents-page-add'),
     
-    url(r'^preview/$', PagePreviewView.as_view(), name='documents-preview'),
+    url(r'^preview/$', PreviewView.as_view(), name='documents-preview'),
+    url(r'^editor_settings/$', BoardEditorSettingsView.as_view(), name='documents-editor-settings'),
     
     url(r'^quicksave/page/$', PageQuicksaveView.as_view(), name='documents-page-quicksave'),
     url(r'^quicksave/insert/$', InsertQuicksaveView.as_view(), name='documents-insert-quicksave'),

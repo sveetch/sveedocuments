@@ -10,6 +10,8 @@ from django.views import generic
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
+from djangocodemirror.views import SampleQuicksaveMixin
+
 from sveedocuments.models import Insert
 from sveedocuments.parser import SourceParser
 from sveedocuments.forms import InsertForm, InsertQuickForm
@@ -75,32 +77,6 @@ class InsertEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.Update
         kwargs.update({'author': self.request.user})
         return kwargs
 
-class InsertQuicksaveView(InsertEditView):
-    """
-    Quicksave view for an *Insert* content
-    """
-    form_class = InsertQuickForm
-    
-    def get_object(self, queryset=None):
-        if self.request.POST.get('slug', False):
-            self.kwargs['slug'] = self.request.POST['slug']
-        return super(InsertQuicksaveView, self).get_object(queryset=queryset)
-
-    def get(self, request, *args, **kwargs):
-        return HttpResponse('')
-    
-    def form_valid(self, form):
-        content = json.dumps({'status':'form_valid'})
-        form.save()
-        return HttpResponse(content, content_type='application/json')
-
-    def form_invalid(self, form):
-        content = json.dumps({
-            'status':'form_invalid',
-            'errors': dict(form.errors.items()),
-        })
-        return HttpResponse(content, content_type='application/json')
-
 class InsertDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     """
     Form view to delete an *Insert* document
@@ -121,3 +97,14 @@ class InsertDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.Dele
 
     def get_success_url(self):
         return reverse('documents-board')
+
+class InsertQuicksaveView(SampleQuicksaveMixin, InsertEditView):
+    """
+    Quicksave view for an *Insert* content
+    """
+    form_class = InsertQuickForm
+    
+    def get_object(self, queryset=None):
+        if self.request.POST.get('slug', False):
+            self.kwargs['slug'] = self.request.POST['slug']
+        return super(InsertQuicksaveView, self).get_object(queryset=queryset)
