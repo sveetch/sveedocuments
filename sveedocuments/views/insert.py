@@ -12,8 +12,9 @@ from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from djangocodemirror.views import SampleQuicksaveMixin
 
+from rstview.parser import SourceParser
+
 from sveedocuments.models import Insert
-from sveedocuments.parser import SourceParser
 from sveedocuments.forms import InsertForm, InsertQuickForm
 from sveedocuments.utils.objects import get_instance_children
 

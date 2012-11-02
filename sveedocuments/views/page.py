@@ -15,9 +15,10 @@ from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from djangocodemirror.views import SampleQuicksaveMixin
 
-from sveedocuments import settings_local
+from rstview.parser import SourceParser
+
+from sveedocuments import local_settings
 from sveedocuments.models import Page
-from sveedocuments.parser import SourceParser
 from sveedocuments.forms import PageForm, PageQuickForm
 from sveedocuments.utils.objects import get_instance_children
 
@@ -38,7 +39,7 @@ class HelpPageView(generic.TemplateView):
     template_name = "sveedocuments/help.html"
     
     def get(self, request, *args, **kwargs):
-        path_root = os.path.abspath(os.path.dirname(settings_local.__file__))
+        path_root = os.path.abspath(os.path.dirname(local_settings.__file__))
         f = open(os.path.join(path_root, "HELP.rst"))
         content = f.read()
         f.close()

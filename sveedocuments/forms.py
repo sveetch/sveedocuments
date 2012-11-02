@@ -13,9 +13,10 @@ from crispy_forms.layout import Layout, Fieldset, MultiField, Div, ButtonHolder,
 from djangocodemirror.settings_local import CODEMIRROR_SETTINGS
 from djangocodemirror.fields import CodeMirrorWidget
 
-from sveedocuments.settings_local import DOCUMENTS_PAGE_RESERVED_SLUGS
+from rstview.parser import SourceReporter, map_parsing_errors
+
+from sveedocuments.local_settings import DOCUMENTS_PAGE_RESERVED_SLUGS
 from sveedocuments.models import Insert, Page
-from sveedocuments.parser import SourceReporter, map_parsing_errors
 
 class PageForm(forms.ModelForm):
     """

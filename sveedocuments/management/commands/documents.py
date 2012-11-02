@@ -10,7 +10,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.management.base import CommandError, BaseCommand
 
-from sveedocuments.settings_local import DOCUMENTS_CACHE_KEYS_TO_CLEAN
+from sveedocuments.local_settings import DOCUMENTS_CACHE_KEYS_TO_CLEAN
 from sveedocuments.models import Page, Insert
 
 class Command(BaseCommand):

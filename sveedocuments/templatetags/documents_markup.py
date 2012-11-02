@@ -7,7 +7,8 @@ from django.conf import settings
 from django.utils.encoding import force_unicode
 from django.utils.safestring import mark_safe
 
-from sveedocuments.parser import SourceParser
+from rstview.parser import SourceParser
+
 from sveedocuments.templatetags import get_render_with_cache, get_toc_with_cache
 
 register = template.Library()

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.core.cache import cache
 
-from sveedocuments.parser import SourceParser, extract_toc
+from rstview.parser import SourceParser
+
+from sveedocuments.parser import extract_toc
 
 def get_render_with_cache(instance, setting_key="default", force_update_cache=False, initial_header_level=None):
     """

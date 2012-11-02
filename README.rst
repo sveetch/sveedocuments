@@ -1,3 +1,4 @@
+.. _rstview: http://pypi.python.org/pypi/rstview
 .. _autobreadcrumbs: http://pypi.python.org/pypi/autobreadcrumbs
 .. _docutils: http://docutils.sourceforge.net/
 .. _Django: https://www.djangoproject.com/
@@ -43,15 +44,12 @@ Requires
 ========
 
 * `docutils`_ >= 0.7;
+* `rstview`_;
 * `autobreadcrumbs`_;
 * `djangocodemirror`_;
 * `django-mptt`_ >= 0.5.2;
 * `django-crispy-forms`_ >= 1.1.x;
 * `My django-braces fork`_;
-
-Optionnaly (but recommended) you can install Pygments to have highlighted syntax in your *sourcecode* block :
-
-* `Pygments`_ >= 1.2.x;
 
 Internationalization and localization
 =====================================

@@ -12,8 +12,9 @@ from django.utils.translation import ugettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 from mptt.managers import TreeManager
 
-from sveedocuments.settings_local import (DOCUMENTS_PARSER_FILTER_SETTINGS, 
-                                        DOCUMENTS_PAGE_TEMPLATES, PAGE_SLUGS_CACHE_KEY_NAME, 
+from rstview.local_settings import RSTVIEW_PARSER_FILTER_SETTINGS
+
+from sveedocuments.local_settings import (DOCUMENTS_PAGE_TEMPLATES, PAGE_SLUGS_CACHE_KEY_NAME, 
                                         PAGE_RENDER_CACHE_KEY_NAME, INSERT_RENDER_CACHE_KEY_NAME,
                                         PAGE_TOC_CACHE_KEY_NAME, INSERT_TOC_CACHE_KEY_NAME)
 from sveedocuments.utils import _get_cache_keyset
@@ -69,12 +70,12 @@ class Insert(models.Model):
         """
         keys = _get_cache_keyset(INSERT_RENDER_CACHE_KEY_NAME, **{
             'id': self.id,
-            'setting': DOCUMENTS_PARSER_FILTER_SETTINGS.keys(),
+            'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
             'header_level': ['None']+range(1, 7),
         })
         keys += _get_cache_keyset(INSERT_TOC_CACHE_KEY_NAME, **{
             'id': self.id,
-            'setting': DOCUMENTS_PARSER_FILTER_SETTINGS.keys(),
+            'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
             'header_level': ['None']+range(1, 7),
         })
         cache.delete_many(keys)
@@ -144,11 +145,11 @@ class Page(MPTTModel):
         """
         keys = _get_cache_keyset(PAGE_RENDER_CACHE_KEY_NAME, **{
             'id': self.id,
-            'setting': DOCUMENTS_PARSER_FILTER_SETTINGS.keys(),
+            'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
         })
         keys += _get_cache_keyset(PAGE_TOC_CACHE_KEY_NAME, **{
             'id': self.id,
-            'setting': DOCUMENTS_PARSER_FILTER_SETTINGS.keys(),
+            'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
         })
         cache.delete_many([PAGE_SLUGS_CACHE_KEY_NAME]+keys)
         return keys

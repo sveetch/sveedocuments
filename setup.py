@@ -25,6 +25,7 @@ setup(
     ],
     install_requires=[
         'docutils>=0.7',
+        'rstview',
         'autobreadcrumbs',
         'djangocodemirror',
         'django-mptt>=0.5.2',
