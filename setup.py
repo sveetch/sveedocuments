@@ -27,9 +27,10 @@ setup(
         'docutils>=0.7',
         'rstview',
         'autobreadcrumbs',
+        'django-braces'
         'djangocodemirror',
-        'django-mptt>=0.5.2',
-        'django-crispy-forms>=1.1.2',
+        'django-mptt==0.5.2',
+        'django-crispy-forms==1.1.4',
     ],
     include_package_data=True,
     zip_safe=False
