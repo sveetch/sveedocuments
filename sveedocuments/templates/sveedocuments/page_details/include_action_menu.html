@@ -1,0 +1,12 @@
+{% load i18n %}{% spaceless %}
+<div class="document_action_menu medium radius secondary button dropdown right">
+  {% trans "Actions on this document" %}
+  <ul>
+    {% if user.is_staff %}<li><a href="{% url documents-page-edit page_instance.slug %}">{% trans "Edit" %}</a></li>
+    <li class="divider"></li>
+    <li><a href="{% url documents-page-delete page_instance.slug %}">{% trans "Delete" %}</a></li>{% endif %}
+    <li class="divider"></li>
+    <li><a href="{% url documents-page-source page_instance.slug %}">{% trans "Source" %}</a></li>
+  </ul>
+</div>
+{% endspaceless %}

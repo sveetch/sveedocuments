@@ -1,0 +1,12 @@
+{% extends "sveedocuments/page_details/subbase_single_column.html" %}
+{% load i18n documents_utils %}
+
+{% block head_title %}{{ SITE.name }}{% endblock %}
+
+{% block content %}{{ block.super }}
+
+<div id="apps">
+    <h3>{% trans "Applications" %}</h3>
+    {% show_applications_toc %}
+</div>
+{% endblock %}

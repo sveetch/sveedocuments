@@ -90,7 +90,7 @@ class PageCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Create
     """
     model = Page
     context_object_name = "page_instance"
-    template_name = "sveedocuments/page_form.html"
+    template_name = "sveedocuments/board/page_form.html"
     form_class = PageForm
     permission_required = "sveedocuments.add_page"
     raise_exception = True
@@ -140,7 +140,7 @@ class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateVi
     """
     model = Page
     context_object_name = "page_instance"
-    template_name = "sveedocuments/page_form.html"
+    template_name = "sveedocuments/board/page_form.html"
     form_class = PageForm
     permission_required = "sveedocuments.change_page"
     raise_exception = True
@@ -171,7 +171,7 @@ class PageDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.Delete
     """
     model = Page
     context_object_name = "page_instance"
-    template_name = "sveedocuments/page_delete.html"
+    template_name = "sveedocuments/board/page_delete.html"
     permission_required = "sveedocuments.delete_page"
     raise_exception = True
 

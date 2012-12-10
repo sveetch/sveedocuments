@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n mptt_tags autobreadcrumb documents_admin %}
+
+{% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
+{% block head_more_links %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/sveedocuments/board.css">
+{% endblock %}
+
+{% block content %}<div class="row row-fluid">
+    <div class="three columns context-menu">
+
+        <ul class="nav-bar vertical">
+            <li{% block board_menu_summary_active %}{% endblock %}><a href="{% url documents-board %}">{% trans "Summary" %}</a></li>
+            <li{% block board_menu_pages_active %}{% endblock %}><a href="{% url documents-page-index %}">{% trans "Pages" %}</a></li>
+            <li{% block board_menu_inserts_active %}{% endblock %}><a href="{% url documents-insert-index %}">{% trans "Inserts" %}</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nine columns">
+        {% block board_content %}{% endblock %}
+    </div>
+</div>{% endblock %}

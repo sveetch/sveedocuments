@@ -1,0 +1,33 @@
+{% extends "sveedocuments/board/subbase_inserts.html" %}
+{% load i18n mptt_tags autobreadcrumb documents_admin %}
+
+{% block board_content %}
+    {% if perms.sveedocuments.add_insert or perms.sveedocuments.change_insert or perms.sveedocuments.delete_insert %}
+        <a class="secondary button right" href="{% url documents-insert-add %}">{% trans "Add a new insert document" %}</a>
+        <h2>{% trans "Insert documents" %}</h2>
+        
+        <table class="clearfix">
+            <thead>
+                <tr>
+                    <th class="title-cell col-odd">{% trans "Title" %}</th>
+                    <th class="slug-cell col-even">{% trans "Slug" %}</th>
+                    <th class="visible-cell col-odd">{% trans "Visibility" %}</th>
+                    <th class="modified-cell col-even">{% trans "Last modified" %}</th>
+                    <th class="actions-cell col-odd">#</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for item in insert_list %}
+                <tr id="insert-row-{{ item.id }}">
+                    <th class="title-cell col-odd"><a href="{% url documents-insert-edit item.slug %}">{{ item.title }}</a></th>
+                    <td class="slug-cell col-even">{{ item.slug }}</td>
+                    <td class="visible-cell col-odd">{{ item.visible }}</td>
+                    <td class="modified-cell col-even">{{ item.modified|date:"l d F Y à H:i"|title }}</td>
+                    <td class="actions-cell col-odd"><a href="{% url documents-insert-delete item.slug %}">{% trans "Delete" %}</a></td>
+                </tr>
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

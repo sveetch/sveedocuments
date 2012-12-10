@@ -4,24 +4,16 @@
 {% block head_title %}{{ page_instance.title }}{% endblock %}
 
 {% block head_more_links %}
-    <link rel="Stylesheet" title="Normal" media="screen" type="text/css" href="{{ STATIC_URL }}sveedocuments/css/pygments.css"/>
-    <link rel="stylesheet" href="{{ STATIC_URL }}sveedocuments/css/restructuredtext.css" type="text/css" />
+    <link rel="Stylesheet" title="Normal" media="screen" type="text/css" href="{{ STATIC_URL }}sveedocuments/css/pygments.css">
+    {% comment %}<link rel="stylesheet" href="{{ STATIC_URL }}sveedocuments/css/restructuredtext.css" type="text/css">{% endcomment %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/restructuredtext.css" type="text/css">
 {% endblock %}
 
 {% block breadcrumbs %}{{ block.super }}
 {% for item in page_instance.get_ancestors %}
-    <a href="{% url documents-page-details item.slug %}">{{ item.title }}</a> &gt; 
+    <li><a href="{% url documents-page-details item.slug %}">{{ item.title }}</a></li>
 {% endfor %}
-    <a href="{% url documents-page-details page_instance.slug %}">{{ page_instance.title }}</a>
+    <li><a href="{% url documents-page-details page_instance.slug %}">{{ page_instance.title }}</a></li>
 {% endblock %}
 
-{% block action_menu %}
-<div class="document_action_menu">
-    <h2>{% trans "Actions on this document" %}</h2>
-    <ul class="flat_bulletlist">
-        {% if user.is_staff %}<li><a href="{% url documents-page-edit page_instance.slug %}">{% trans "Edit" %}</a></li>
-        <li><a href="{% url documents-page-delete page_instance.slug %}">{% trans "Delete" %}</a></li>{% endif %}
-        <li><a href="{% url documents-page-source page_instance.slug %}">{% trans "Source" %}</a></li>
-    </ul>
-    <div class="cale"></div>
-</div>{% endblock %}
+{% block body_id %}doc-id-{{ page_instance.id }}{% endblock %}

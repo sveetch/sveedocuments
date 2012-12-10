@@ -8,9 +8,11 @@ from django.utils.translation import ugettext_lazy
 site.update({
     'documents-index': ugettext_lazy('Sitemap'),
     'documents-board': ugettext_lazy('Document management'),
+    'documents-insert-index': ugettext_lazy('Insert documents'),
     'documents-insert-add': ugettext_lazy('Add a new insert document'),
     'documents-insert-delete': ugettext_lazy('Delete insert document #{{ insert_instance.slug }}'),
     'documents-insert-edit': ugettext_lazy('Edit insert document #{{ insert_instance.slug }}'),
+    'documents-page-index': ugettext_lazy('Pages'),
     'documents-page-add': ugettext_lazy('Add a new page'),
     'documents-page-delete': ugettext_lazy('Delete page #{{ page_instance.slug }}'),
     'documents-help': ugettext_lazy('Usage help'),

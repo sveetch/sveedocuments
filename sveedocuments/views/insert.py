@@ -24,7 +24,7 @@ class InsertCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Crea
     """
     model = Insert
     context_object_name = "insert_instance"
-    template_name = "sveedocuments/insert_form.html"
+    template_name = "sveedocuments/board/insert_form.html"
     form_class = InsertForm
     permission_required = "sveedocuments.add_insert"
     raise_exception = True
@@ -55,7 +55,7 @@ class InsertEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.Update
     """
     model = Insert
     context_object_name = "insert_instance"
-    template_name = "sveedocuments/insert_form.html"
+    template_name = "sveedocuments/board/insert_form.html"
     form_class = InsertForm
     permission_required = "sveedocuments.change_insert"
     raise_exception = True
@@ -86,7 +86,7 @@ class InsertDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.Dele
     """
     model = Insert
     context_object_name = "insert_instance"
-    template_name = "sveedocuments/insert_delete.html"
+    template_name = "sveedocuments/board/insert_delete.html"
     permission_required = "sveedocuments.delete_insert"
     raise_exception = True
 

@@ -1,0 +1,23 @@
+{% extends "sveedocuments/board/subbase.html" %}
+{% load i18n %}
+
+{% block board_menu_summary_active %} class="active"{% endblock %}
+
+{% block board_content %}
+    <div class="row">
+        <div class="six columns">
+            <div class="panel radius">
+            <h3>Pages</h3>
+                <p><span class="round label">{{ page_count }}</span> saved</p>
+                <p><span class="round label">{{ page_hidden_count }}</span> hidden</p>
+            </div>
+        </div>
+        <div class="six columns">
+            <div class="panel radius">
+            <h3>Inserts</h3>
+                <p><span class="round label">{{ insert_count }}</span> saved</p>
+                <p><span class="round label">{{ insert_hidden_count }}</span> hidden</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

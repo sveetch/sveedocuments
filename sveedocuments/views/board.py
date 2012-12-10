@@ -14,11 +14,37 @@ class BoardIndexView(LoginRequiredMixin, generic.TemplateView):
     """
     Documents management board
     """
-    template_name = "sveedocuments/board.html"
+    template_name = "sveedocuments/board/index.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'page_count' : Page.objects.count(),
+            'page_hidden_count' : Page.objects.filter(visible=False).count(),
+            'insert_count' : Insert.objects.count(),
+            'insert_hidden_count' : Page.objects.filter(visible=False).count(),
+        }
+        return self.render_to_response(context)
+
+class BoardPagesIndexView(LoginRequiredMixin, generic.TemplateView):
+    """
+    Board pages index
+    """
+    template_name = "sveedocuments/board/page_index.html"
 
     def get(self, request, *args, **kwargs):
         context = {
             'page_list' : Page.objects.filter(),
+        }
+        return self.render_to_response(context)
+
+class BoardInsertsIndexView(LoginRequiredMixin, generic.TemplateView):
+    """
+    Board inserts index
+    """
+    template_name = "sveedocuments/board/insert_index.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {
             'insert_list' : Insert.objects.filter().order_by('slug'),
         }
         return self.render_to_response(context)
