@@ -4,12 +4,9 @@
 {% block head_more_links %}{{ block.super }}
     <link rel="stylesheet" href="{{ STATIC_URL }}sveedocuments/css/pygments.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/restructuredtext.css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}jquery/ui/themes/smoothness/jquery-ui-1.8.17.custom.css">
 {% endblock %}
 {% block head_more_js %}
     {% get_current_language as LANGUAGE_CODE %}
-    <script src="{{ STATIC_URL }}jquery/ui/jquery-ui-1.8.17.custom.min.js"></script>
-    <script src="{{ STATIC_URL }}jquery/ui/jquery.ui.datepicker-fr.js"></script>
     <script src="{{ STATIC_URL }}jquery/plugins/jquery.slugify.js"></script>
     {{ form.media }}
     <script language="JavaScript" type="text/javascript">

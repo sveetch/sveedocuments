@@ -4,20 +4,33 @@
 {% block head_more_links %}{{ block.super }}
     <link rel="stylesheet" href="{{ STATIC_URL }}sveedocuments/css/pygments.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/restructuredtext.css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}jquery/ui/themes/smoothness/jquery-ui-1.8.17.custom.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/sveedocuments/pikaday.css">
 {% endblock %}
 {% block head_more_js %}
     {% get_current_language as LANGUAGE_CODE %}
-    <script src="{{ STATIC_URL }}jquery/ui/jquery-ui-1.8.17.custom.min.js"></script>
-    <script src="{{ STATIC_URL }}jquery/ui/jquery.ui.datepicker-fr.js"></script>
     <script src="{{ STATIC_URL }}jquery/plugins/jquery.slugify.js"></script>
+    <script src="{{ STATIC_URL }}jquery/plugins/moment.min.js"></script>
+    <script src="{{ STATIC_URL }}jquery/plugins/pikaday.min.js"></script>
     {{ form.media }}
     <script language="JavaScript">
     //<![CDATA[
     DCM_lang = "{{ LANGUAGE_CODE }}";
     $(document).ready(function() {
-        $("#id_published_0").datepicker($.datepicker.regional['fr']);
+        //$("#id_published_0").datepicker($.datepicker.regional['fr']);
+        console.log($('#id_published_0').val());
+        var picker = new Pikaday({
+            field: $('#id_published_0')[0],
+            //format: 'YYYY-MM-DD',
+            format: 'DD/MM/YYYY',
+            i18n: {
+                months        : ['{% trans "January" %}','{% trans "February" %}','{% trans "March" %}','{% trans "April" %}','{% trans "May" %}','{% trans "June" %}','{% trans "July" %}','{% trans "August" %}','{% trans "September" %}','{% trans "October" %}','{% trans "November" %}','{% trans "December" %}'],
+                weekdays      : ['{% trans "Sunday" %}','{% trans "Monday" %}','{% trans "Tuesday" %}','{% trans "Wednesday" %}','{% trans "Thursday" %}','{% trans "Friday" %}','{% trans "Saturday" %}'],
+                weekdaysShort : ['{% trans "Sun" %}','{% trans "Mon" %}','{% trans "Tue" %}','{% trans "Wed" %}','{% trans "Thu" %}','{% trans "Fri" %}','{% trans "Sat" %}']
+            }
+        });
+        
         $("#id_slug").slugify("#id_title");
+        
         {% if page_instance %}DJANGOCODEMIRROR_OBJECT = {
             'id': {{ page_instance.id }},
             'slug': '{{ page_instance.slug }}'

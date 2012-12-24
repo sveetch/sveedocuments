@@ -124,7 +124,6 @@ class Page(MPTTModel):
         return PAGE_TOC_CACHE_KEY_NAME.format(id=self.id, **kwargs)
     
     def save(self, *args, **kwargs):
-        # TODO: update all children to reflect visibility
         # Fill in the published date with the create date if empty
         self.created = datetime.now()
         if not self.published:
