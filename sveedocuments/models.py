@@ -35,7 +35,7 @@ class Insert(models.Model):
     author = models.ForeignKey(User, verbose_name=_('author'))
     title = models.CharField(_('title'), blank=True, null=True, max_length=255)
     slug = models.SlugField(_('slug'), unique=True, max_length=75)
-    visible = models.BooleanField(_('visibility'), default=True)
+    visible = models.BooleanField(_('visibility'), choices=DOCUMENTS_VISIBILTY_CHOICES, default=True)
     content = models.TextField(_('content'), blank=False)
 
     def __unicode__(self):

@@ -5,10 +5,12 @@
 .. _Django internationalization system: https://docs.djangoproject.com/en/dev/topics/i18n/
 .. _djangocodemirror: http://pypi.python.org/pypi/djangocodemirror
 .. _django-crispy-forms: https://github.com/maraujop/django-crispy-forms
+.. _crispy-forms-foundation: https://github.com/sveetch/crispy-forms-foundation
 .. _django-mptt: http://pypi.python.org/pypi/django-mptt
 .. _My django-braces fork: https://github.com/sveetch/django-braces
 .. _ReStructuredText: http://docutils.sourceforge.net/rst.html
 .. _Pygments: http://pygments.org/
+.. _Foundation: http://github.com/zurb/foundation
 
 Introduction
 ============
@@ -20,11 +22,12 @@ Features
 ********
 
 * Usage of the `ReStructuredText`_ docutils parser;
+* Templates builded with `Foundation`_;
 * Rich editor `djangocodemirror`_;
 * Ergonomic form with `django-crispy-forms`_;
 * Usage of `autobreadcrumbs`_ in *Pages* templates;
 * Usage of the Django cache system for the parser rendering;
-* Management board ready to use;
+* A management board ready to use in frontend;
 * Two kind of documents :
 
   * Page : For full page documents with children pages in a sitemap tree;
@@ -49,6 +52,7 @@ Requires
 * `djangocodemirror`_;
 * `django-mptt`_ >= 0.5.2;
 * `django-crispy-forms`_ >= 1.1.x;
+* `crispy-forms-foundation`;
 * `My django-braces fork`_;
 
 Internationalization and localization

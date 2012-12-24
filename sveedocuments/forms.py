@@ -8,7 +8,7 @@ from django.utils.translation import ugettext
 from mptt.forms import TreeNodeChoiceField
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, MultiField, Div, ButtonHolder, Submit, HTML
+from crispy_forms_foundation.layout import Layout, Fieldset, SplitDateTimeField, RowFluid, Column, ButtonHolder, Submit
 
 from djangocodemirror.settings_local import CODEMIRROR_SETTINGS
 from djangocodemirror.fields import CodeMirrorWidget
@@ -20,30 +20,41 @@ from sveedocuments.models import Insert, Page
 
 class PageForm(forms.ModelForm):
     """
-    *Page* form
+    Page form
     """
     def __init__(self, author=None, parent=None, *args, **kwargs):
         self.author = author
         self.parent = parent
         
-        empty_label = u"-- {0} --".format(ugettext("Root"))
-        layout_parameters_fields = ['order', 'visible', 'published', 'template', 'slug']
+        # Put "parent" field in the layout if it is not forced in kwargs
+        layout_fields_publish = [
+            RowFluid(
+                Column(SplitDateTimeField('published'), css_class='six'),
+                Column('slug', css_class='six'),
+            )
+        ]
         if not self.parent:
-            layout_parameters_fields = ['parent']+layout_parameters_fields
+            layout_fields_publish = ['parent']+layout_fields_publish
         
         self.helper = FormHelper()
         self.helper.form_action = '.'
-        self.helper.form_style = 'inline'
         self.helper.layout = Layout(
-            Div(
-                Fieldset(
-                    ugettext('Content'),
-                    'title',
-                    'content',
+            Fieldset(
+                ugettext('Content'),
+                'title',
+                'content',
+            ),
+            Fieldset(
+                ugettext('Display settings'),
+                RowFluid(
+                    Column('template', css_class='six'),
+                    Column('order', css_class='three'),
+                    Column('visible', css_class='three'),
                 ),
-                Fieldset(
-                    ugettext('Settings'), *layout_parameters_fields),
-                css_class = 'combined-multiple-fieldsets'
+            ),
+            Fieldset(
+                ugettext('Publish settings'),
+                *layout_fields_publish
             ),
             ButtonHolder(
                 Submit('submit_and_continue', ugettext('Save and continue')),
@@ -111,15 +122,30 @@ class PageForm(forms.ModelForm):
 
 class InsertForm(forms.ModelForm):
     """
-    *Insert* form
+    Insert form
     """
     def __init__(self, author=None, *args, **kwargs):
         self.author = author
         self.helper = FormHelper()
         self.helper.form_action = '.'
-        self.helper.form_style = 'inline'
-        self.helper.add_input(Submit('submit_and_continue', ugettext('Save and continue')))
-        self.helper.add_input(Submit('submit', ugettext('Save')))
+        self.helper.layout = Layout(
+            Fieldset(
+                ugettext('Content'),
+                'title',
+                'content',
+            ),
+            Fieldset(
+                ugettext('Display settings'),
+                RowFluid(
+                    Column('slug', css_class='nine'),
+                    Column('visible', css_class='three'),
+                ),
+            ),
+            ButtonHolder(
+                Submit('submit_and_continue', ugettext('Save and continue')),
+                Submit('submit', ugettext('Save')),
+            ),
+        )
         
         super(InsertForm, self).__init__(*args, **kwargs)
         

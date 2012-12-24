@@ -16,7 +16,7 @@
                     <a href="{% url documents-page-edit node.slug %}">
                         {{ node.title }}
                     </a>
-                    <span></span>
+                    <span></span>{% comment %}Needed for the Foundation dropdown button{% endcomment %}
                     <ul>
                         <li><a href="{% url documents-page-add-child node.slug %}" title="{% blocktrans %}Add a new child page to this one{% endblocktrans %}">{% trans "New child page" %}</a></li>
                         <li><a href="{% url documents-page-delete node.slug %}" title="{% blocktrans %}Recursively delete this page and his children{% endblocktrans %}">{% trans "Delete" %}</a></li>

@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}<div class="row row-fluid">
-    <div class="three columns context-menu">
+    <div class="three columns context-menu">{% spaceless %}
 
         <ul class="nav-bar vertical">
             <li{% block board_menu_summary_active %}{% endblock %}><a href="{% url documents-board %}">{% trans "Summary" %}</a></li>
@@ -15,7 +15,7 @@
             <li{% block board_menu_inserts_active %}{% endblock %}><a href="{% url documents-insert-index %}">{% trans "Inserts" %}</a></li>
         </ul>
 
-    </div>
+    {% endspaceless %}</div>
     
     <div class="nine columns">
         {% block board_content %}{% endblock %}

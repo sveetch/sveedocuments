@@ -21,7 +21,7 @@ class BoardIndexView(LoginRequiredMixin, generic.TemplateView):
             'page_count' : Page.objects.count(),
             'page_hidden_count' : Page.objects.filter(visible=False).count(),
             'insert_count' : Insert.objects.count(),
-            'insert_hidden_count' : Page.objects.filter(visible=False).count(),
+            'insert_hidden_count' : Insert.objects.filter(visible=False).count(),
         }
         return self.render_to_response(context)
 
