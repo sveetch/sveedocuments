@@ -347,7 +347,7 @@ msgstr "Supprimer la page et tout ses enfants"
 
 #: templates/sveedocuments/board/subbase.html:16
 msgid "Summary"
-msgstr ""
+msgstr "Sommaire"
 
 #: templates/sveedocuments/board/subbase.html:18
 msgid "Inserts"
