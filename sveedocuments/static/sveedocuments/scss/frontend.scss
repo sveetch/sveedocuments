@@ -1,0 +1,53 @@
+//
+// SCSS sources for sveedocument frontend pages
+//
+// Require Compass (0.12) to compile
+//
+
+@import "pygments";
+@import "restructuredtext";
+
+// Import LigatureSymbols font stylesheet as icons
+@import "icons/LigatureSymbols";
+// Preserve normal font style for icons, because Foundation force them to italic
+i {
+    font-style: normal;
+}
+
+// Simple tree list, should only contain simple text not too long (avoid multilines)
+ul.list-tree, ul.list-tree ul, ul.list-tree li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ul.list-tree{
+    margin: 0 0 0 1.5em;
+    
+    li{
+        padding-left: 1em;
+        padding-bottom: .8em;
+        background: image-url('list-tree/list-tree-bold-vline.png') repeat-y 0 0;
+        font-size: 1em;
+        line-height: 1em;
+        
+        div.tree-node-pointer{
+            position:relative;
+            left:-1em;
+            padding-left:1em;
+            background: image-url('list-tree/list-tree-bold-node.png') no-repeat 0 0;
+        }
+        
+        &:last-child{
+            padding-bottom: 0;
+            background: none;
+        }
+        
+        &:last-child div.tree-node-pointer{
+            background: image-url('list-tree/list-tree-bold-lastnode.png') no-repeat 0 0;
+        }
+    }
+    
+    ul{
+        padding-top: .8em;
+    }
+}

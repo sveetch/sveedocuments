@@ -1,0 +1,99 @@
+//
+// SCSS sources for sveedocument board
+//
+// Require Compass (0.12.x) + Foundation (3.2.x) to compile
+//
+@import "foundation/settings";
+//@import "modular-scale";
+@import "compass/css3/border-radius";
+
+// The pikaday plugin stylesheet
+@import "pikaday";
+
+// "Fluid" tree list
+ul.list-tree-fluid, ul.list-tree-fluid ul {
+    margin: 0 1.4em 1.4em 1.4em;
+    padding: 0;
+    list-style-type: none;
+    background-image: image-url('list-tree/list-tree-alt-vline.png');
+    background-repeat:repeat-y;
+}
+ul.list-tree-fluid{
+    ul{
+        margin: 0 0 0 .5em;
+        margin-left: 1.3em;
+        padding-top: .6em;
+    }
+    
+    li {
+        margin: 0;
+        padding: 0 0 0 .6em;
+        background-image: image-url('list-tree/list-tree-alt-node.png');
+        background-repeat:no-repeat;
+        background-position:0 1.2em;
+        color: #369;
+        
+        &.last,
+        &:last-child {
+            background-image: image-url('list-tree/list-tree-alt-lastnode.png');
+            background-color: #ffffff; 
+            background-position:0 -1em; 
+        }
+        
+        .indicator{
+            padding: 1.4px 5px;
+            float: left;
+            text-align: center;
+            border: 1px solid black;
+            border-right: 0;
+            @include border-radius($buttonRadius);
+            
+            span{
+                display: block;
+                border: 0;
+            }
+            
+            i{
+                font-size: 18px;
+                line-height: 0;
+            }
+        }
+    }
+    
+    .button-group, .button.split{
+        li{
+            background-image: none;
+        }
+    }
+    
+    li + li{
+        padding-top: .6em;
+    }
+    
+    &.hidden{
+        opacity: 0.5;
+        &:hover,
+        &.hover_highlight{
+            opacity: 1.0;
+        }
+    }
+    
+    // Redefine some attributes for the hidden element
+    // TODO: seems buggy, first hidden elements are not really hidden but there 
+    // children are well hidden
+    .children{
+        &.hidden_parent{
+            opacity: 0.5;
+            
+            li.last,
+            li:last-child {
+                background-position: 0 -2.4em; 
+            }
+        }
+    }
+}
+
+// Force DjangoCodeMirror widget to take full width from his container
+.DjangoCodeMirror{
+    width: 100% !important;
+}

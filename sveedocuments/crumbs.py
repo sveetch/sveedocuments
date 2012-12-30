@@ -6,7 +6,7 @@ from autobreadcrumbs import site
 from django.utils.translation import ugettext_lazy
 
 site.update({
-    'documents-index': ugettext_lazy('Sitemap'),
+    'documents-index': ugettext_lazy('Document sitemap'),
     'documents-board': ugettext_lazy('Document management'),
     'documents-insert-index': ugettext_lazy('Insert documents'),
     'documents-insert-add': ugettext_lazy('Add a new insert document'),

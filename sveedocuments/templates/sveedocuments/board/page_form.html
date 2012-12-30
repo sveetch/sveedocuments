@@ -1,23 +1,13 @@
 {% extends "sveedocuments/board/subbase_pages.html" %}
 {% load i18n djangocodemirror_inputs crispy_forms_tags autobreadcrumb %}
 
-{% block head_more_links %}{{ block.super }}
-    <link rel="stylesheet" href="{{ STATIC_URL }}sveedocuments/css/pygments.css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/restructuredtext.css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/sveedocuments/pikaday.css">
-{% endblock %}
-{% block head_more_js %}
+{% block head_more_js %}{{ block.super }}
     {% get_current_language as LANGUAGE_CODE %}
-    <script src="{{ STATIC_URL }}jquery/plugins/jquery.slugify.js"></script>
-    <script src="{{ STATIC_URL }}jquery/plugins/moment.min.js"></script>
-    <script src="{{ STATIC_URL }}jquery/plugins/pikaday.min.js"></script>
     {{ form.media }}
     <script language="JavaScript">
     //<![CDATA[
     DCM_lang = "{{ LANGUAGE_CODE }}";
     $(document).ready(function() {
-        //$("#id_published_0").datepicker($.datepicker.regional['fr']);
-        console.log($('#id_published_0').val());
         var picker = new Pikaday({
             field: $('#id_published_0')[0],
             //format: 'YYYY-MM-DD',
@@ -35,10 +25,11 @@
             'id': {{ page_instance.id }},
             'slug': '{{ page_instance.slug }}'
         };{% endif %}
+        
+        var content_codemirror_instance = $('#{{ form.content.auto_id }}').djangocodemirror({{ form.content|djangocodemirror_init_input }});
     });
     //]]>
     </script>
-    {{ form.content|djangocodemirror_init_input }}
 {% endblock %}
 
 {% block board_content %}
