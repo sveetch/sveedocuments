@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-30 16:26+0100\n"
+"POT-Creation-Date: 2012-12-30 18:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: DAVID THENON <sveetch@gmail.com>\n"
 "Language-Team: FRENCH <FR@li.org>\n"
@@ -353,10 +353,6 @@ msgstr "Sommaire"
 msgid "Inserts"
 msgstr "Documents insérables"
 
-#: templates/sveedocuments/page_details/homepage_with_flat_menu.html:9
-msgid "Applications"
-msgstr "Applications"
-
 #: templates/sveedocuments/page_details/include_action_menu.html:3
 msgid "Actions on this document"
 msgstr "Actions sur ce document"
@@ -376,6 +372,3 @@ msgstr "Sommaire"
 #: templates/sveedocuments/page_details/subbase_double_column.html:14
 msgid "Navigation"
 msgstr "Navigation"
-
-#~ msgid "Root"
-#~ msgstr "Racine"
