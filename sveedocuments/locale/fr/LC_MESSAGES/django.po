@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-16 15:23+0200\n"
+"POT-Creation-Date: 2012-12-30 16:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: DAVID THENON <sveetch@gmail.com>\n"
 "Language-Team: FRENCH <FR@li.org>\n"
@@ -17,138 +17,171 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: crumbs.py:9
-msgid "Sitemap"
-msgstr "Plan du site"
+msgid "Document sitemap"
+msgstr "Plan des documents"
 
 #: crumbs.py:10
 msgid "Document management"
 msgstr "Gestion des documents"
 
-#: crumbs.py:11 templates/sveedocuments/board.html:49
+#: crumbs.py:11 templates/sveedocuments/board/insert_index.html:7
+msgid "Insert documents"
+msgstr "Documents insérables"
+
+#: crumbs.py:12 templates/sveedocuments/board/insert_index.html:6
 msgid "Add a new insert document"
 msgstr "Ajouter un nouveau document insérable"
 
-#: crumbs.py:12
+#: crumbs.py:13
 msgid "Delete insert document #{{ insert_instance.slug }}"
 msgstr "Supprimer le document insérable #{{ insert_instance.slug }}"
 
-#: crumbs.py:13
+#: crumbs.py:14
 msgid "Edit insert document #{{ insert_instance.slug }}"
 msgstr "Editer le document insérable #{{ insert_instance.slug }}"
 
-#: crumbs.py:14 templates/sveedocuments/board.html:15
+#: crumbs.py:15 templates/sveedocuments/board/page_index.html:7
+#: templates/sveedocuments/board/subbase.html:17
+msgid "Pages"
+msgstr "Pages"
+
+#: crumbs.py:16 templates/sveedocuments/board/page_index.html:6
 msgid "Add a new page"
 msgstr "Ajouter une nouvelle page"
 
-#: crumbs.py:15
+#: crumbs.py:17
 msgid "Delete page #{{ page_instance.slug }}"
 msgstr "Supprimer la page #{{ page_instance.slug }}"
 
-#: crumbs.py:16
+#: crumbs.py:18
 msgid "Usage help"
 msgstr "Aide à l'utilisation"
 
-#: crumbs.py:17
+#: crumbs.py:19
 msgid "Edit page #{{ page_instance.slug }}"
 msgstr "Editer la page #{{ page_instance.slug }}"
 
-#: crumbs.py:18
+#: crumbs.py:20
 msgid "Add a new child page to #{{ parent_page_instance.slug }}"
 msgstr "Ajouter une nouvelle sous-page à #{{ parent_page_instance.slug }}"
 
-#: forms.py:28
-msgid "Root"
-msgstr "Racine"
-
-#: forms.py:39
+#: forms.py:43 forms.py:133
 msgid "Content"
 msgstr "Contenu"
 
-#: forms.py:44
-msgid "Settings"
-msgstr "Paramètres"
+#: forms.py:48 forms.py:138
+msgid "Display settings"
+msgstr "Paramètres d'affichage"
 
-#: forms.py:48 forms.py:120
+#: forms.py:56
+msgid "Publish settings"
+msgstr "Paramètres de publication"
+
+#: forms.py:60 forms.py:145
 msgid "Save and continue"
 msgstr "Sauvegarder et continuer"
 
-#: forms.py:49 forms.py:121
+#: forms.py:61 forms.py:146
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: forms.py:62
+#: forms.py:74
 msgid "-- Root --"
 msgstr "-- Racine --"
 
-#: forms.py:81 forms.py:140
+#: forms.py:93 forms.py:167
 msgid "This is a reserved keyword"
 msgstr "Ce mot clé est réservé"
 
-#: models.py:24
+#: local_settings.py:21
+msgid "Elastic with an unique column"
+msgstr "Elastique avec une colonne unique"
+
+#: local_settings.py:22
+msgid "Elastic with two columns"
+msgstr "Elastique avec deux colonnes"
+
+#: local_settings.py:23
+msgid "Absolute fixed with an unique column"
+msgstr "Fixe absolu avec une colonne unique"
+
+#: local_settings.py:24
+msgid "Absolute fixed with two columns"
+msgstr "Fixe absolu avec deux colonnes"
+
+#: local_settings.py:25
+msgid "Relative fixed an unique column"
+msgstr "Fixe relatif avec une colonne unique"
+
+#: local_settings.py:26
+msgid "Relative fixed with two columns"
+msgstr "Fixe relatif avec deux colonnes"
+
+#: models.py:25
 msgid "Visible"
 msgstr "Visible"
 
-#: models.py:25
+#: models.py:26
 msgid "Hidden"
 msgstr "Caché"
 
-#: models.py:32 models.py:91
+#: models.py:33 models.py:92
 msgid "created"
 msgstr "créé"
 
-#: models.py:33 models.py:92
+#: models.py:34 models.py:93
 msgid "last edit"
 msgstr "dernière modification"
 
-#: models.py:34 models.py:94
+#: models.py:35 models.py:95
 msgid "author"
 msgstr "auteur"
 
-#: models.py:35 models.py:95
+#: models.py:36 models.py:96
 msgid "title"
 msgstr "titre"
 
-#: models.py:36 models.py:97
+#: models.py:37 models.py:98
 msgid "slug"
 msgstr "nom de raccourci"
 
-#: models.py:37 models.py:100
+#: models.py:38 models.py:101
 msgid "visibility"
 msgstr "visibilité"
 
-#: models.py:38 models.py:101
+#: models.py:39 models.py:102
 msgid "content"
 msgstr "contenu"
 
-#: models.py:84 models.py:85
+#: models.py:85 models.py:86
 msgid "insert document"
 msgstr "document insérable"
 
-#: models.py:96
+#: models.py:97
 msgid "publish date"
 msgstr "date de publication"
 
-#: models.py:96
+#: models.py:97
 msgid "Define when the document will be displayed on the site. Empty value mean an instant publish, use a coming date to program a futur publish."
 msgstr "Définit quand le document sera affiché sur le site. Si non rempli la publication sera instantanée, utilisez une date future pour programmer une publication."
 
-#: models.py:97
+#: models.py:98
 msgid "Unique slug used in URL, should be automatically filled with sluggified title."
 msgstr "Nom de raccourci unique utilisé dans les URL, rempli automatiquement à la création par une version modifiée du titre."
 
-#: models.py:98
+#: models.py:99
 msgid "template"
 msgstr "gabarit"
 
-#: models.py:98
+#: models.py:99
 msgid "This template will be used to render the page."
 msgstr "Ce gabarit sera utilisé pour afficher la page."
 
-#: models.py:99
+#: models.py:100
 msgid "order"
 msgstr "ordre"
 
-#: models.py:99
+#: models.py:100
 msgid "Display order in lists and trees."
 msgstr "Ordre d'affichage dans les listes et arborescences."
 
@@ -160,101 +193,189 @@ msgstr "page"
 msgid "pages"
 msgstr "pages"
 
-#: settings_local.py:21
-msgid "Elastic with an unique column"
-msgstr "Elastique avec une colonne unique"
-
-#: settings_local.py:22
-msgid "Elastic with two columns"
-msgstr "Elastique avec deux colonnes"
-
-#: settings_local.py:23
-msgid "Absolute fixed with an unique column"
-msgstr "Fixe absolu avec une colonne unique"
-
-#: settings_local.py:24
-msgid "Absolute fixed with two columns"
-msgstr "Fixe absolu avec deux colonnes"
-
-#: settings_local.py:25
-msgid "Relative fixed an unique column"
-msgstr "Fixe relatif avec une colonne unique"
-
-#: settings_local.py:26
-msgid "Relative fixed with two columns"
-msgstr "Fixe relatif avec deux colonnes"
-
-#: templates/sveedocuments/board.html:17
-msgid "Pages"
-msgstr "Pages"
-
-#: templates/sveedocuments/board.html:27
-#, python-format
-msgid "Published on %(modified)s"
-msgstr "Publié le %(modified)s"
-
-#: templates/sveedocuments/board.html:33
-msgid "Add a new child page to this one"
-msgstr "Ajouter une nouvelle page à celle-ci"
-
-#: templates/sveedocuments/board.html:33
-msgid "New child page"
-msgstr "Nouvelle sous-page"
-
-#: templates/sveedocuments/board.html:36
-msgid "Recursively delete this page and his children"
-msgstr "Supprimer la page et tout ses enfants"
-
-#: templates/sveedocuments/board.html:36 templates/sveedocuments/board.html:71
-#: templates/sveedocuments/page_details/subbase.html:23
-msgid "Delete"
-msgstr "Supprimer"
-
-#: templates/sveedocuments/board.html:51
-msgid "Insert documents"
-msgstr "Documents insérables"
-
-#: templates/sveedocuments/board.html:57
-msgid "Title"
-msgstr "Titre"
-
-#: templates/sveedocuments/board.html:58
-msgid "Slug"
-msgstr "Nom de raccourci"
-
-#: templates/sveedocuments/board.html:59
-msgid "Visibility"
-msgstr "Visibilité"
-
-#: templates/sveedocuments/board.html:60
-msgid "Last modified"
-msgstr "Dernière modification"
-
-#: templates/sveedocuments/insert_delete.html:22
-#: templates/sveedocuments/page_delete.html:22
+#: templates/sveedocuments/board/insert_delete.html:14
+#: templates/sveedocuments/board/page_delete.html:14
 msgid "Confirm delete"
 msgstr "Confirmez la suppression"
 
-#: templates/sveedocuments/page_form.html:41
+#: templates/sveedocuments/board/insert_index.html:12
+msgid "Title"
+msgstr "Titre"
+
+#: templates/sveedocuments/board/insert_index.html:13
+msgid "Slug"
+msgstr "Nom de raccourci"
+
+#: templates/sveedocuments/board/insert_index.html:14
+msgid "Visibility"
+msgstr "Visibilité"
+
+#: templates/sveedocuments/board/insert_index.html:15
+msgid "Last modified"
+msgstr "Dernière modification"
+
+#: templates/sveedocuments/board/insert_index.html:26
+#: templates/sveedocuments/board/page_index.html:23
+#: templates/sveedocuments/page_details/include_action_menu.html:7
+msgid "Delete"
+msgstr "Supprimer"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "January"
+msgstr "Janvier"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "February"
+msgstr "Février"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "March"
+msgstr "Mars"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "April"
+msgstr "Avril"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "May"
+msgstr "Mai"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "June"
+msgstr "Juin"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "July"
+msgstr "Juillet"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "August"
+msgstr "Aout"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "September"
+msgstr "Septembre"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "October"
+msgstr "Octobre"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "November"
+msgstr "Novembre"
+
+#: templates/sveedocuments/board/page_form.html:16
+msgid "December"
+msgstr "Décembre"
+
+#: templates/sveedocuments/board/page_form.html:17
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: templates/sveedocuments/board/page_form.html:17
+msgid "Monday"
+msgstr "Lundi"
+
+#: templates/sveedocuments/board/page_form.html:17
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: templates/sveedocuments/board/page_form.html:17
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: templates/sveedocuments/board/page_form.html:17
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: templates/sveedocuments/board/page_form.html:17
+msgid "Friday"
+msgstr "Vendredi"
+
+#: templates/sveedocuments/board/page_form.html:17
+msgid "Saturday"
+msgstr "Samedi"
+
+#: templates/sveedocuments/board/page_form.html:18
+msgid "Sun"
+msgstr "Dim"
+
+#: templates/sveedocuments/board/page_form.html:18
+msgid "Mon"
+msgstr "Lun"
+
+#: templates/sveedocuments/board/page_form.html:18
+msgid "Tue"
+msgstr "Mar"
+
+#: templates/sveedocuments/board/page_form.html:18
+msgid "Wed"
+msgstr "Mer"
+
+#: templates/sveedocuments/board/page_form.html:18
+msgid "Thu"
+msgstr "Jeu"
+
+#: templates/sveedocuments/board/page_form.html:18
+msgid "Fri"
+msgstr "Ven"
+
+#: templates/sveedocuments/board/page_form.html:18
+msgid "Sat"
+msgstr "Sam"
+
+#: templates/sveedocuments/board/page_form.html:36
 msgid "View on site"
 msgstr "Voir sur le site"
 
-#: templates/sveedocuments/page_details/subbase.html:20
+#: templates/sveedocuments/board/page_index.html:13
+#, python-format
+msgid "Published on %(published)s"
+msgstr "Publié le %(published)s"
+
+#: templates/sveedocuments/board/page_index.html:22
+msgid "Add a new child page to this one"
+msgstr "Ajouter une nouvelle page à celle-ci"
+
+#: templates/sveedocuments/board/page_index.html:22
+msgid "New child page"
+msgstr "Nouvelle sous-page"
+
+#: templates/sveedocuments/board/page_index.html:23
+msgid "Recursively delete this page and his children"
+msgstr "Supprimer la page et tout ses enfants"
+
+#: templates/sveedocuments/board/subbase.html:16
+msgid "Summary"
+msgstr ""
+
+#: templates/sveedocuments/board/subbase.html:18
+msgid "Inserts"
+msgstr "Documents insérables"
+
+#: templates/sveedocuments/page_details/homepage_with_flat_menu.html:9
+msgid "Applications"
+msgstr "Applications"
+
+#: templates/sveedocuments/page_details/include_action_menu.html:3
 msgid "Actions on this document"
 msgstr "Actions sur ce document"
 
-#: templates/sveedocuments/page_details/subbase.html:22
+#: templates/sveedocuments/page_details/include_action_menu.html:5
 msgid "Edit"
 msgstr "Editer"
 
-#: templates/sveedocuments/page_details/subbase.html:24
+#: templates/sveedocuments/page_details/include_action_menu.html:9
 msgid "Source"
 msgstr "Voir la source"
 
-#: templates/sveedocuments/page_details/subbase_double_column.html:23
+#: templates/sveedocuments/page_details/subbase_double_column.html:8
 msgid "Table of content"
 msgstr "Sommaire"
 
-#: templates/sveedocuments/page_details/subbase_double_column.html:29
+#: templates/sveedocuments/page_details/subbase_double_column.html:14
 msgid "Navigation"
 msgstr "Navigation"
+
+#~ msgid "Root"
+#~ msgstr "Racine"
