@@ -2,14 +2,14 @@ from django_assets import Bundle, register
 
 AVALAIBLE_BUNDLES = {
     'sveedocuments_frontend_css': Bundle(
-        "sveedocuments/css/frontend.css",
+        "css/sveedocuments/frontend.css",
         filters='yui_css',
-        output='css/sveedocuments_frontend.min.css'
+        output='css/sveedocuments/frontend.min.css'
     ),
     'sveedocuments_board_css': Bundle(
-        "sveedocuments/css/board.css",
+        "css/sveedocuments/board.css",
         filters='yui_css',
-        output='css/sveedocuments_board.min.css'
+        output='css/sveedocuments/board.min.css'
     ),
     'sveedocuments_board_js': Bundle(
         "js/jquery/jquery.slugify.js",

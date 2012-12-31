@@ -2,10 +2,10 @@
 require 'zurb-foundation'
 
 # Set this to the root of your project when deployed:
-http_path = "/static/sveedocuments/"
-sass_dir = "static/sveedocuments/scss"
-css_dir = "static/sveedocuments/css"
-images_dir = "static/sveedocuments/images"
+http_path = "/static/"
+sass_dir = "static/scss"
+css_dir = "static/css"
+images_dir = "static/images"
 javascripts_dir = "static/js"
 
 # You can select your preferred output style here (can be overridden via the command line):

@@ -8,7 +8,7 @@
 @import "restructuredtext";
 
 // Import LigatureSymbols font stylesheet as icons
-@import "icons/LigatureSymbols";
+@import "../icons/LigatureSymbols";
 // Preserve normal font style for icons, because Foundation force them to italic
 i {
     font-style: normal;
