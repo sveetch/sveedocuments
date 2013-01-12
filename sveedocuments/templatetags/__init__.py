@@ -9,7 +9,7 @@ def get_render_with_cache(instance, setting_key="default", force_update_cache=Fa
     """
     Get an instance content render by the parser
     
-    Use the cache system, content will not be rendered again if it exists in the cache
+    Use the cache system, content will not be rendered again if it allready exists in the cache
     """
     cache_key = instance.get_render_cache_key(setting=setting_key, header_level=initial_header_level)
     if force_update_cache or not cache.get(cache_key):
@@ -24,7 +24,7 @@ def get_toc_with_cache(instance, setting_key="default", force_update_cache=False
     """
     Extract the TOC from the rendered content of an instance and return it
     
-    Use the cache system, content will not be rendered again if it exists in the cache
+    Use the cache system, content will not be rendered again if it allready exists in the cache
     """
     cache_key = instance.get_toc_cache_key(setting=setting_key, header_level=initial_header_level)
     if force_update_cache or not cache.get(cache_key):

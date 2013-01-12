@@ -16,6 +16,9 @@ DOCUMENTS_PAGE_TREEMENU = getattr(settings, 'DOCUMENTS_PAGE_TREEMENU', "sveedocu
 # Default template to generate flat menu
 DOCUMENTS_PAGE_FLATMENU = getattr(settings, 'DOCUMENTS_PAGE_FLATMENU', "sveedocuments/page_flatmenu.html")
 
+# Enable or disable Pages archiving
+DOCUMENTS_PAGE_ARCHIVED = True
+
 # Available templates for Pages
 DOCUMENTS_PAGE_TEMPLATES = {
     'elastic': ('sveedocuments/page_details/elastic.html', _('Elastic with an unique column')),
@@ -67,12 +70,14 @@ CODEMIRROR_SETTINGS = {
 }
 
 """
-Internal settings only, can't be modified from your webapp settings
+Internal settings only, can't be overriden from your webapp settings
 """
 
 # Cache keys for document elements
 PAGE_RENDER_CACHE_KEY_NAME = 'documents-render-page_{id}-setting_{setting}'
+PAGEREV_RENDER_CACHE_KEY_NAME = 'documents-render-page-revision_{id}-setting_{setting}'
 INSERT_RENDER_CACHE_KEY_NAME = 'documents-render-insert_{id}-setting_{setting}-hlv_{header_level}'
 PAGE_TOC_CACHE_KEY_NAME = 'documents-toc-page_{id}-setting_{setting}'
+PAGEREV_TOC_CACHE_KEY_NAME = 'documents-toc-page-revision_{id}-setting_{setting}'
 INSERT_TOC_CACHE_KEY_NAME = 'documents-toc-insert_{id}-setting_{setting}-hlv_{header_level}'
 PAGE_SLUGS_CACHE_KEY_NAME = 'documents-page_slugs'

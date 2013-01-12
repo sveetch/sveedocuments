@@ -45,5 +45,25 @@ class PageAdmin(admin.ModelAdmin):
 
         return instance
 
+class PageRevisionAdmin(admin.ModelAdmin):
+    list_display = ('title', 'revision', 'author', 'visible' )
+    list_filter = ('created', 'published', 'visible')
+    ordering = ('order', 'revision')
+    search_fields = ('title','content',)
+    readonly_fields = ('author', 'revision')
+    list_display_links = ('title',)
+    
+    def save_model(self, request, obj, form, change):
+        """
+        Automatically add/update the author field with the ``request.user``
+        """
+        instance = form.save(commit=False)
+        instance.author = request.user
+        instance.save()
+        form.save_m2m()
+
+        return instance
+
 admin.site.register(Insert, InsertAdmin)
 admin.site.register(Page, PageAdmin)
+admin.site.register(PageRevision, PageRevisionAdmin)

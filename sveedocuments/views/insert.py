@@ -40,7 +40,7 @@ class InsertCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Crea
     def get_success_url(self):
         if self._redirect_to_self:
             return reverse('documents-insert-edit', args=[self.object.slug])
-        return reverse('documents-board')
+        return reverse('documents-insert-index')
     
     def get_form_kwargs(self):
         kwargs = super(InsertCreateView, self).get_form_kwargs()
@@ -71,7 +71,7 @@ class InsertEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.Update
     def get_success_url(self):
         if self._redirect_to_self:
             return reverse('documents-insert-edit', args=[self.object.slug])
-        return reverse('documents-board')
+        return reverse('documents-insert-index')
     
     def get_form_kwargs(self):
         kwargs = super(InsertEditView, self).get_form_kwargs()
@@ -97,7 +97,7 @@ class InsertDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.Dele
         return self.render_to_response(context)
 
     def get_success_url(self):
-        return reverse('documents-board')
+        return reverse('documents-insert-index')
 
 class InsertQuicksaveView(SampleQuicksaveMixin, InsertEditView):
     """

@@ -111,7 +111,7 @@ class PageCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Create
     def get_success_url(self):
         if self._redirect_to_self:
             return reverse('documents-page-edit', args=[self.object.slug])
-        return reverse('documents-board')
+        return reverse('documents-page-index')
 
     def _get_parent(self, **kwargs):
         if 'slug' in kwargs:
@@ -156,7 +156,7 @@ class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateVi
     def get_success_url(self):
         if self._redirect_to_self:
             return reverse('documents-page-edit', args=[self.object.slug])
-        return reverse('documents-board')
+        return reverse('documents-page-index')
 
     def get_form_kwargs(self):
         kwargs = super(PageEditView, self).get_form_kwargs()
@@ -182,7 +182,7 @@ class PageDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.Delete
         return self.render_to_response(context)
 
     def get_success_url(self):
-        return reverse('documents-board')
+        return reverse('documents-page-index')
 
 class PageQuicksaveView(SampleQuicksaveMixin, PageEditView):
     """
