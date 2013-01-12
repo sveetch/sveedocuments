@@ -67,24 +67,21 @@ class PageForm(forms.ModelForm):
         # En cas d'édition, limite les choix de parenté à tout ceux qui ne sont pas 
         # descendant de l'instance pour empêcher une exception 
         # sur une erreur de déplacement
+        extra_settings = {}
         if self.instance.id:
             parent_queryset = Page.objects.all()
             children = self.instance.get_descendants(include_self=True).values_list('id', flat=True)
             parent_queryset = parent_queryset.exclude(id__in=children)
             self.fields['parent'] = TreeNodeChoiceField(queryset=parent_queryset, empty_label=ugettext(u"-- Root --"), required=False)
-            # Options par défaut pour le widget d'édition
-            content_widget_settings = CODEMIRROR_SETTINGS['sveetchies-documents-page']
         # En cas de création, mode pour ajouter une page directement sous un "parent"
         else:
             if self.parent:
                 del self.fields['parent']
-            # Options par défaut pour le widget d'édition moins l'option de sauvegarde 
-            # rapide
-            content_widget_settings = CODEMIRROR_SETTINGS['sveetchies-documents-page'].copy()
-            del content_widget_settings['quicksave_url']
+            # Désactive l'option de sauvegarde rapide
+            extra_settings = {'quicksave_url': None}
             
         # Widget d'édition du contenu
-        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, codemirror_attrs=content_widget_settings)
+        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, codemirror_settings_name='sveetchies-documents-page', codemirror_settings_extra=extra_settings)
     
     def clean_slug(self):
         slug = self.cleaned_data.get("slug")
@@ -149,16 +146,12 @@ class InsertForm(forms.ModelForm):
         
         super(InsertForm, self).__init__(*args, **kwargs)
         
-        if self.instance.id:
-            # Options par défaut pour le widget d'édition
-            content_widget_settings = CODEMIRROR_SETTINGS['sveetchies-documents-insert']
-        else:
-            # Options par défaut pour le widget d'édition moins l'option de sauvegarde 
-            # rapide
-            content_widget_settings = CODEMIRROR_SETTINGS['sveetchies-documents-insert'].copy()
-            del content_widget_settings['quicksave_url']
+        extra_settings = {}
+        if not self.instance.id:
+            # Désactive l'option de sauvegarde rapide
+            extra_settings = {'quicksave_url': None}
             
-        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, codemirror_attrs=content_widget_settings)
+        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, codemirror_settings_name='sveetchies-documents-insert', codemirror_settings_extra=extra_settings)
     
     def clean_slug(self):
         slug = self.cleaned_data.get("slug")

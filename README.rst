@@ -5,6 +5,7 @@
 .. _Django internationalization system: https://docs.djangoproject.com/en/dev/topics/i18n/
 .. _djangocodemirror: http://pypi.python.org/pypi/djangocodemirror
 .. _django-crispy-forms: https://github.com/maraujop/django-crispy-forms
+.. _django-assets: http://pypi.python.org/pypi/django-assets
 .. _crispy-forms-foundation: https://github.com/sveetch/crispy-forms-foundation
 .. _django-mptt: http://pypi.python.org/pypi/django-mptt
 .. _My django-braces fork: https://github.com/sveetch/django-braces
@@ -27,6 +28,7 @@ Features
 * Ergonomic form with `django-crispy-forms`_;
 * Usage of `autobreadcrumbs`_ in *Pages* templates;
 * Usage of the Django cache system for the parser rendering;
+* Optional usage of Assets bundles with `django-assets`_;
 * A management board ready to use in frontend;
 * Two kind of documents :
 
@@ -54,6 +56,8 @@ Requires
 * `django-crispy-forms`_ >= 1.1.x;
 * `crispy-forms-foundation`;
 * `My django-braces fork`_;
+
+Optionnally, to use Assets bundles instead of plain assets, you can install `django-assets`_.
 
 Internationalization and localization
 =====================================

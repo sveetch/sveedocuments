@@ -1,22 +1,24 @@
 {% extends "sveedocuments/board/subbase_inserts.html" %}
-{% load i18n djangocodemirror_inputs crispy_forms_tags autobreadcrumb %}
+{% load i18n djangocodemirror_inputs djangocodemirror_assets crispy_forms_tags autobreadcrumb %}
 
 {% block head_more_js %}{{ block.super }}
     {% get_current_language as LANGUAGE_CODE %}
-    {{ form.media }}
+    {% include "sveedocuments/board/includes/djangocodemirror_content_assets.html" %}
     <script language="JavaScript" type="text/javascript">
     //<![CDATA[
     DCM_lang = "{{ LANGUAGE_CODE }}";
     $(document).ready(function() {
         $("#id_slug").slugify("#id_title");
+        
         {% if insert_instance %}DJANGOCODEMIRROR_OBJECT = {
             'id': {{ insert_instance.id }},
             'slug': '{{ insert_instance.slug }}'
         };{% endif %}
+        
+        var content_codemirror_instance = $('#{{ form.content.auto_id }}').djangocodemirror({{ form.content|djangocodemirror_init_input }});
     });
     //]]>
     </script>
-    {{ form.content|djangocodemirror_init_input }}
 {% endblock %}
 
 {% block board_content %}

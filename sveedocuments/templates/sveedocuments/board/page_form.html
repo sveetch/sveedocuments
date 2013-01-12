@@ -3,7 +3,7 @@
 
 {% block head_more_js %}{{ block.super }}
     {% get_current_language as LANGUAGE_CODE %}
-    {{ form.media }}
+    {% include "sveedocuments/board/includes/djangocodemirror_content_assets.html" %}
     <script language="JavaScript">
     //<![CDATA[
     DCM_lang = "{{ LANGUAGE_CODE }}";
