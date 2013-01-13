@@ -56,6 +56,10 @@ class PageForm(forms.ModelForm):
                 ugettext('Publish settings'),
                 *layout_fields_publish
             ),
+            Fieldset(
+                ugettext('History'),
+                'comment',
+            ),
             ButtonHolder(
                 Submit('submit_and_continue', ugettext('Save and continue')),
                 Submit('submit', ugettext('Save')),
@@ -191,6 +195,10 @@ class PageQuickForm(forms.ModelForm):
     *Page* quicksave form
     
     This is only about the instance *content* field
+    
+    TODO: This should also accepts the associated 'comment' field, but in first the 
+          editor must implement to send the "comment" content with the "content" 
+          content.
     """
     def __init__(self, author=None, *args, **kwargs):
         self.author = author

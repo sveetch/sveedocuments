@@ -98,6 +98,7 @@ class PageModelBase(models.Model):
     order = models.SmallIntegerField(_('order'), default=1, help_text=_("Display order in lists and trees."))
     visible = models.BooleanField(_('visibility'), choices=DOCUMENTS_VISIBILTY_CHOICES, default=True)
     content = models.TextField(_('content'), blank=False)
+    comment = models.CharField(_('comment'), blank=True, null=True, max_length=255)
 
     def __unicode__(self):
         return self.title
@@ -169,6 +170,7 @@ class Page(PageModelBase):
                 visible=old.visible,
                 content=old.content,
                 revision=rev_no+1,
+                comment=old.comment,
             ).save()
         
         # Fill in the published date with the created date if empty

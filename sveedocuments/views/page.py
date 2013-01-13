@@ -152,6 +152,14 @@ class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateVi
             if request.POST.get('submit_and_continue', False):
                 self._redirect_to_self = True
         return super(PageEditView, self).post(request, *args, **kwargs)
+    
+    def get_object(self, *args, **kwargs):
+        """
+        Allways empty the "comment" field for edit
+        """
+        obj = super(PageEditView, self).get_object(*args, **kwargs)
+        obj.comment = ''
+        return obj
 
     def get_success_url(self):
         if self._redirect_to_self:
