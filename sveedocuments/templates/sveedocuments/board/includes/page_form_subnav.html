@@ -1,0 +1,10 @@
+{% load i18n %}
+{% load url from future %}{% spaceless %}
+    <dl class="tabs">
+        <dd{% if active_tab == 'edit' %} class="active"{% endif %}>
+            <a href="{% url 'documents-page-edit' page_instance.slug %}">{% trans "Edit" %}</a>
+        </dd>
+        <dd{% if active_tab == 'history' %} class="active"{% endif %}>
+            <a href="{% url 'documents-page-history' page_instance.slug %}">{% trans "History" %}</a>
+        </dd>
+    </dl>{% endspaceless %}

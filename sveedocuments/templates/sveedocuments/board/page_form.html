@@ -1,5 +1,6 @@
 {% extends "sveedocuments/board/subbase_pages.html" %}
 {% load i18n djangocodemirror_inputs crispy_forms_tags autobreadcrumb %}
+{% load url from future %}
 
 {% block head_more_js %}{{ block.super }}
     {% get_current_language as LANGUAGE_CODE %}
@@ -33,8 +34,10 @@
 {% endblock %}
 
 {% block board_content %}
-    {% if page_instance and page_instance.visible %}<a class="secondary button right" href="{% url documents-page-details page_instance.slug %}">{% trans "View on site" %}</a>{% endif %}
+    {% if page_instance and page_instance.visible %}<a class="secondary button right" href="{% url 'documents-page-details' page_instance.slug %}">{% trans "View on site" %}</a>{% endif %}
     <h2>{% current_title_from_breadcrumbs %}</h2>
-
-{% crispy form %}
+    
+    {% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="edit" %}
+    
+    {% crispy form %}
 {% endblock %}

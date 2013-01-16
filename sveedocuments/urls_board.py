@@ -5,7 +5,8 @@ Url's map for documents board
 from django.conf.urls.defaults import *
 
 from sveedocuments.views.board import (BoardIndexView, PreviewView, BoardEditorSettingsView,
-                                        BoardPagesIndexView, BoardInsertsIndexView)
+                                        BoardPagesIndexView, BoardInsertsIndexView, 
+                                        BoardPagesHistoryView)
 from sveedocuments.views.page import (PageCreateView, PageQuicksaveView,
                                       PageEditView, PageDeleteView, PageDeleteView)
 from sveedocuments.views.insert import (InsertCreateView, InsertEditView, 
@@ -25,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^pages/(?P<slug>[-\w]+)/add/$', PageCreateView.as_view(), name='documents-page-add-child'),
     url(r'^pages/(?P<slug>[-\w]+)/delete/$', PageDeleteView.as_view(), name='documents-page-delete'),
     url(r'^pages/(?P<slug>[-\w]+)/edit/$', PageEditView.as_view(), name='documents-page-edit'),
+    url(r'^pages/(?P<slug>[-\w]+)/history/$', BoardPagesHistoryView.as_view(), name='documents-page-history'),
     
     url(r'^inserts/$', BoardInsertsIndexView.as_view(), name='documents-insert-index'),
     url(r'^inserts/add/$', InsertCreateView.as_view(), name='documents-insert-add'),

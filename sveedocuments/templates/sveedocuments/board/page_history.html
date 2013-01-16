@@ -1,0 +1,22 @@
+{% extends "sveedocuments/board/subbase_pages.html" %}
+{% load i18n autobreadcrumb %}
+{% load url from future %}
+
+{% block board_content %}
+    {% if page_instance and page_instance.visible %}<a class="secondary button right" href="{% url 'documents-page-details' page_instance.slug %}">{% trans "View on site" %}</a>{% endif %}
+    <h2>{% current_title_from_breadcrumbs %}</h2>
+    
+    {% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="history" %}
+    
+    <h3>Current revision</h3>
+    <p><em>{% if page_instance.comment %}{{ page_instance.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
+    <p>On {{ page_instance.modified }} by {{ page_instance.author.get_full_name }}</p>
+
+    {% for revision in last_revisions %}
+    <hr>
+    <h3>Revision n°{{ revision.revision }}</h3>
+    <p><em>{% if revision.comment %}{{ revision.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
+    <p>On {{ revision.created }} by {{ revision.author.get_full_name }}</p>
+    {% endfor %}
+
+{% endblock %}
