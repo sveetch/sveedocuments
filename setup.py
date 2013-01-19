@@ -31,6 +31,7 @@ setup(
         'django-mptt>=0.5.2',
         'crispy-forms-foundation',
         'django-crispy-forms>=1.1.2',
+        'django-braces>=0.2.1',
     ],
     include_package_data=True,
     zip_safe=False
