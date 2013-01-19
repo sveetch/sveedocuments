@@ -18,9 +18,10 @@ from djangocodemirror.views import SampleQuicksaveMixin
 from rstview.parser import SourceParser
 
 from sveedocuments import local_settings
-from sveedocuments.models import Page
-from sveedocuments.forms import PageForm, PageQuickForm
+from sveedocuments.models import Page, Attachment
+from sveedocuments.forms import PageForm, PageQuickForm, AttachmentForm
 from sveedocuments.utils.objects import get_instance_children
+from sveedocuments.utils.braces_addons import DetailListAppendView
 
 class PageIndexView(generic.TemplateView):
     """
@@ -134,7 +135,22 @@ class PageCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Create
         })
         return kwargs
 
-class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):
+class PageTabsContentMixin(object):
+    def get_context_data(self, **kwargs):
+        context = super(PageTabsContentMixin, self).get_context_data(**kwargs)
+        # Little trick to work with SingleObjectMixin and DetailListAppendView
+        if hasattr(self, 'parent_object'):
+            obj = self.parent_object
+        else:
+            obj = self.object
+        
+        context.update({
+            'revisions_count': obj.revision.all().count()+1,
+            'files_count': obj.attachment.all().count(),
+        })
+        return context
+
+class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentMixin, generic.UpdateView):
     """
     Form view to edit a *Page* document
     """
@@ -155,7 +171,7 @@ class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateVi
     
     def get_object(self, *args, **kwargs):
         """
-        Allways empty the "comment" field for edit
+        Forcing a new empty comment field in edit mode
         """
         obj = super(PageEditView, self).get_object(*args, **kwargs)
         obj.comment = ''
@@ -170,6 +186,33 @@ class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateVi
         kwargs = super(PageEditView, self).get_form_kwargs()
         kwargs.update({'author': self.request.user})
         return kwargs
+
+
+class PageAttachmentsView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentMixin, DetailListAppendView):
+    """
+    Form view to add file attachments to a Page
+    """
+    model = Attachment
+    form_class = AttachmentForm
+    template_name = "sveedocuments/board/page_attachments.html"
+    permission_required = "sveedocuments.change_page"
+    raise_exception = True
+    context_parent_object_name = 'page_instance'
+    
+    def get_parent_object(self):
+        return get_object_or_404(Page, slug=self.kwargs['slug'])
+    
+    def get_queryset(self):
+        return self.parent_object.attachment.all()
+
+    def get_success_url(self):
+        return reverse('documents-page-attachments', args=[self.parent_object.slug])
+
+    def get_form_kwargs(self):
+        kwargs = super(PageAttachmentsView, self).get_form_kwargs()
+        kwargs.update({'author': self.request.user})
+        return kwargs
+
 
 class PageDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     """

@@ -67,3 +67,4 @@ class PageRevisionAdmin(admin.ModelAdmin):
 admin.site.register(Insert, InsertAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(PageRevision, PageRevisionAdmin)
+admin.site.register(Attachment)

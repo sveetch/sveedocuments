@@ -8,7 +8,7 @@
         <h2>{% trans "Pages" %}</h2>
         
         <ul class="list-tree-fluid clearfix">{% recursetree page_list %}
-            <li>
+            <li{% if not node.visible %} class="hidden"{% endif %}>
                 <div class="indicator">
                     <span class="has-tip" data-width="90" title="{{ node.get_visible_display }}"><i class="lsf">{% if node.visible %}view{% else %}ban{% endif %}</i></span>
                     <span class="has-tip" data-width="210" title="{% blocktrans with published=node.published|date:"d/m/Y H:i" %}Published on {{ published }}{% endblocktrans %}"><i class="lsf">{% trans "calendar" %}</i></span>

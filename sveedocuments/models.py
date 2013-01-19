@@ -19,6 +19,7 @@ from sveedocuments.local_settings import (DOCUMENTS_PAGE_TEMPLATES, PAGE_SLUGS_C
                                         PAGE_TOC_CACHE_KEY_NAME, INSERT_TOC_CACHE_KEY_NAME,
                                         DOCUMENTS_PAGE_ARCHIVED)
 from sveedocuments.utils import _get_cache_keyset
+from sveedocuments.utils.filefield import content_file_name
 
 DOCUMENTS_PAGE_TEMPLATES_CHOICES = [(k,v[1]) for k,v in DOCUMENTS_PAGE_TEMPLATES.items()]
 
@@ -26,6 +27,17 @@ DOCUMENTS_VISIBILTY_CHOICES = (
     (True, _('Visible')),
     (False, _('Hidden')),
 )
+
+IMAGE_MIMETYPES = (
+    'image/gif',
+    'image/jpeg',
+    'image/png',
+    #'image/tiff',
+    'image/svg+xml',
+)
+
+ATTACH_FILE_UPLOADTO = lambda x,y: content_file_name('pages/attachments/%Y/%m/%d', x, y)
+#ATTACH_FILE_UPLOADTO = 'pages/attachments/%Y/%m/%d'
 
 class Insert(models.Model):
     """
@@ -86,6 +98,8 @@ class Insert(models.Model):
         verbose_name = _("insert document")
         verbose_name_plural = _("insert document")
 
+        
+        
 class PageModelBase(models.Model):
     """
     Full page document
@@ -195,15 +209,52 @@ TreeForeignKey(Page, blank=True, null=True, related_name="%(app_label)s_%(class)
 mptt.register(Page, order_insertion_by=['order', 'title'])
 
 
+
 class PageRevision(PageModelBase):
     """
     History revision for a Page document
     """
     slug = models.SlugField(_('slug'), max_length=75)
-    page = models.ForeignKey(Page, verbose_name=_('page source'), related_name='revision')
+    page = models.ForeignKey(Page, verbose_name=_('page'), related_name='revision')
     parent = models.ForeignKey(Page, null=True, blank=True, related_name="revision_parent")
     revision = models.IntegerField(_('revision number'), blank=False, default=0, editable=False)
     
     class Meta:
         verbose_name = _("page revision")
         verbose_name_plural = _("pages revisions")
+
+
+
+class Attachment(models.Model):
+    """
+    Attachment file for a Page document
+    
+    TODO: Remove attachment map cache on update/delete and also when Page is removed, and updated ?
+    """
+    page = models.ForeignKey(Page, verbose_name=_('page'), related_name='attachment')
+    author = models.ForeignKey(User, verbose_name=_('author'))
+    title = models.CharField(_('title'), max_length=75, blank=True)
+    slug = models.CharField(_('slug'), max_length=75, blank=True, help_text=_("Used as the key to put the attachment in your documents. This does not really use the slug syntax, you can use more special characters. If empty, will be filled with the original file name."))
+    created = models.DateTimeField(_('created'), auto_now_add=True)
+    file = models.FileField(_('file'), upload_to=ATTACH_FILE_UPLOADTO, max_length=255, blank=False)
+    size = models.IntegerField(_('size'), blank=False, default=0, editable=False)
+    content_type = models.CharField(_('content_type'), max_length=120, blank=False, null=True, editable=False)
+    
+    def __unicode__(self):
+        return self.slug
+    
+    def is_image(self):
+        return (self.content_type and self.content_type in IMAGE_MIMETYPES)
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            # TODO: slugify
+            self.slug = self.file.name.strip()
+        if not self.title:
+            self.title = self.slug
+        super(Attachment, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _("attachment file")
+        verbose_name_plural = _("attachment files")
+

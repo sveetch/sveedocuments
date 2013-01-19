@@ -16,7 +16,7 @@ from djangocodemirror.fields import CodeMirrorWidget
 from rstview.parser import SourceReporter, map_parsing_errors
 
 from sveedocuments.local_settings import DOCUMENTS_PAGE_RESERVED_SLUGS
-from sveedocuments.models import Insert, Page
+from sveedocuments.models import Insert, Page, Attachment
 
 class PageForm(forms.ModelForm):
     """
@@ -230,3 +230,48 @@ class InsertQuickForm(PageQuickForm):
     class Meta:
         model = Insert
         fields = ('content',)
+
+
+class AttachmentForm(forms.ModelForm):
+    """
+    Attachment form
+    """
+    def __init__(self, *args, **kwargs):
+        self.page = kwargs.pop('page_instance')
+        self.author = kwargs.pop('author')
+        
+        self.helper = FormHelper()
+        self.helper.form_action = '.'
+        self.helper.layout = Layout(
+            RowFluid(
+                Column('title', css_class='four'),
+                Column('slug', css_class='four'),
+                Column('file', css_class='four'),
+            ),
+            ButtonHolder(
+                Submit('submit', ugettext('Save')),
+            ),
+        )
+        super(AttachmentForm, self).__init__(*args, **kwargs)
+    
+    def clean_file(self):
+        file = self.cleaned_data['file']
+        if file:
+            self.size = file._size
+            self.content_type = file.content_type
+
+        return file
+    
+    def save(self, *args, **kwargs):
+        instance = super(AttachmentForm, self).save(commit=False, *args, **kwargs)
+        instance.page = self.page
+        instance.author = self.author
+        instance.size = self.size
+        instance.content_type = self.content_type
+        instance.save()
+        
+        return instance
+    
+    class Meta:
+        model = Attachment
+        fields = ('title', 'slug', 'file')

@@ -37,7 +37,7 @@
     {% if page_instance and page_instance.visible %}<a class="secondary button right" href="{% url 'documents-page-details' page_instance.slug %}">{% trans "View on site" %}</a>{% endif %}
     <h2>{% current_title_from_breadcrumbs %}</h2>
     
-    {% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="edit" %}
+    {% if page_instance and page_instance.visible %}{% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="edit" %}{% endif %}
     
     {% crispy form %}
 {% endblock %}

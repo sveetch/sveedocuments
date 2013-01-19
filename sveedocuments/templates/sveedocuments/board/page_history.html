@@ -8,15 +8,19 @@
     
     {% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="history" %}
     
-    <h3>Current revision</h3>
-    <p><em>{% if page_instance.comment %}{{ page_instance.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
-    <p>On {{ page_instance.modified }} by {{ page_instance.author.get_full_name }}</p>
+    <div class="revision-item revision-current">
+        <p class="ago">{{ page_instance.modified|timesince }} ago</p>
+        <p class="details"><strong>Current : </strong> by {{ page_instance.author.get_full_name }}</p>
+        <p class="comment"><em>{% if page_instance.comment %}{{ page_instance.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
+    </div>
 
     {% for revision in last_revisions %}
     <hr>
-    <h3>Revision n°{{ revision.revision }}</h3>
-    <p><em>{% if revision.comment %}{{ revision.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
-    <p>On {{ revision.created }} by {{ revision.author.get_full_name }}</p>
+    <div class="revision-item revision-current">
+        <p class="ago">{{ page_instance.created|timesince }} ago</p>
+        <p class="details"><strong>N°{{ revision.revision }} : </strong> by {{ revision.author.get_full_name }}</p>
+        <p class="comment{% if not revision.comment %} empty{% endif %}"><em>{% if revision.comment %}{{ revision.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
+    </div>
     {% endfor %}
 
 {% endblock %}

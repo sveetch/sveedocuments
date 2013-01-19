@@ -5,6 +5,9 @@
             <a href="{% url 'documents-page-edit' page_instance.slug %}">{% trans "Edit" %}</a>
         </dd>
         <dd{% if active_tab == 'history' %} class="active"{% endif %}>
-            <a href="{% url 'documents-page-history' page_instance.slug %}">{% trans "History" %}</a>
+            <a href="{% url 'documents-page-history' page_instance.slug %}">{% trans "History" %} <em>({% if revisions_count %}{{ revisions_count }}{% else %}0{% endif %})</em></a>
+        </dd>
+        <dd{% if active_tab == 'attachments' %} class="active"{% endif %}>
+            <a href="{% url 'documents-page-attachments' page_instance.slug %}">{% trans "Attachments" %} <em>({% if files_count %}{{ files_count }}{% else %}0{% endif %})</em></a>
         </dd>
     </dl>{% endspaceless %}

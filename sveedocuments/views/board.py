@@ -7,6 +7,7 @@ from django.views import generic
 from djangocodemirror.views import SamplePreviewView, EditorSettingsView
 
 from sveedocuments.models import Page, Insert
+from sveedocuments.views.page import PageTabsContentMixin
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -38,7 +39,7 @@ class BoardPagesIndexView(LoginRequiredMixin, generic.TemplateView):
         }
         return self.render_to_response(context)
 
-class BoardPagesHistoryView(LoginRequiredMixin, PermissionRequiredMixin, generic.DetailView):
+class BoardPageHistoryView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentMixin, generic.DetailView):
     """
     *Page* view
     """
@@ -55,13 +56,13 @@ class BoardPagesHistoryView(LoginRequiredMixin, PermissionRequiredMixin, generic
         """
         cache_key = "_cache_get_object"
         if not hasattr(self, cache_key):
-            setattr(self, cache_key, super(BoardPagesHistoryView, self).get_object(*args, **kwargs))
+            setattr(self, cache_key, super(BoardPageHistoryView, self).get_object(*args, **kwargs))
         return getattr(self, cache_key)
         
     def get_context_data(self, **kwargs):
-        context = super(BoardPagesHistoryView, self).get_context_data(**kwargs)
+        context = super(BoardPageHistoryView, self).get_context_data(**kwargs)
         context.update({
-            'last_revisions': self.get_object().revision.all().order_by('-created'),
+            'last_revisions': self.object.revision.all().order_by('-created'),
         })
         return context
 

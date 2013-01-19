@@ -58,6 +58,14 @@ ul.list-tree-fluid{
                 line-height: 0;
             }
         }
+    
+        &.hidden{
+            opacity: 0.5;
+            &:hover,
+            &.hover_highlight{
+                opacity: 1.0;
+            }
+        }
     }
     
     .button-group, .button.split{
@@ -70,20 +78,12 @@ ul.list-tree-fluid{
         padding-top: .6em;
     }
     
-    &.hidden{
-        opacity: 0.5;
-        &:hover,
-        &.hover_highlight{
-            opacity: 1.0;
-        }
-    }
-    
     // Redefine some attributes for the hidden element
     // TODO: seems buggy, first hidden elements are not really hidden but there 
     // children are well hidden
     .children{
         &.hidden_parent{
-            opacity: 0.5;
+            //opacity: 0.5;
             
             li.last,
             li:last-child {

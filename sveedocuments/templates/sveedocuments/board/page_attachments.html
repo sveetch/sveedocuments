@@ -1,0 +1,34 @@
+{% extends "sveedocuments/board/subbase_pages.html" %}
+{% load i18n autobreadcrumb crispy_forms_tags %}
+{% load url from future %}
+
+{% block head_more_js %}{{ block.super }}
+    <script language="JavaScript">
+    //<![CDATA[
+    $(document).ready(function() {
+        $("#id_slug").slugify("#id_title");
+    });
+    //]]>
+    </script>
+{% endblock %}
+
+{% block board_content %}
+    {% if page_instance and page_instance.visible %}<a class="secondary button right" href="{% url 'documents-page-details' page_instance.slug %}">{% trans "View on site" %}</a>{% endif %}
+    <h2>{% current_title_from_breadcrumbs %}</h2>
+    
+    {% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="attachments" %}
+    
+    <ul class="square">{% for item in object_list %}
+        <li>
+            <p>
+                <span class="label{% if not item.is_image %} secondary{% endif %}">{{ item.content_type }}</span>
+                <a href="{{ item.file.url }}" class="ui-open_blank">{{ item.slug }}</a> <small>{{ item.created|timesince }}</small> by <em>{{ item.author.get_full_name }}</em>
+            </p>
+        </li>
+    {% endfor %}</ul>
+    
+    <hr>
+    
+    <h3>Add a new attachment</h3>
+    {% crispy form %}
+{% endblock %}

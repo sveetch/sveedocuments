@@ -6,9 +6,9 @@ from django.conf.urls.defaults import *
 
 from sveedocuments.views.board import (BoardIndexView, PreviewView, BoardEditorSettingsView,
                                         BoardPagesIndexView, BoardInsertsIndexView, 
-                                        BoardPagesHistoryView)
+                                        BoardPageHistoryView)
 from sveedocuments.views.page import (PageCreateView, PageQuicksaveView,
-                                      PageEditView, PageDeleteView, PageDeleteView)
+                                      PageEditView, PageDeleteView, PageDeleteView, PageAttachmentsView)
 from sveedocuments.views.insert import (InsertCreateView, InsertEditView, 
                                         InsertDeleteView, InsertQuicksaveView)
 
@@ -26,7 +26,8 @@ urlpatterns = patterns('',
     url(r'^pages/(?P<slug>[-\w]+)/add/$', PageCreateView.as_view(), name='documents-page-add-child'),
     url(r'^pages/(?P<slug>[-\w]+)/delete/$', PageDeleteView.as_view(), name='documents-page-delete'),
     url(r'^pages/(?P<slug>[-\w]+)/edit/$', PageEditView.as_view(), name='documents-page-edit'),
-    url(r'^pages/(?P<slug>[-\w]+)/history/$', BoardPagesHistoryView.as_view(), name='documents-page-history'),
+    url(r'^pages/(?P<slug>[-\w]+)/edit/history/$', BoardPageHistoryView.as_view(), name='documents-page-history'),
+    url(r'^pages/(?P<slug>[-\w]+)/edit/attachments/$', PageAttachmentsView.as_view(), name='documents-page-attachments'),
     
     url(r'^inserts/$', BoardInsertsIndexView.as_view(), name='documents-insert-index'),
     url(r'^inserts/add/$', InsertCreateView.as_view(), name='documents-insert-add'),

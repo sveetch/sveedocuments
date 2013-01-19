@@ -184,7 +184,7 @@ ul.list-tree-fluid, ul.list-tree-fluid ul {
   margin: 0 1.4em 1.4em 1.4em;
   padding: 0;
   list-style-type: none;
-  background-image: url('../../images/list-tree/list-tree-alt-vline.png?1356825720');
+  background-image: url('../../images/list-tree/list-tree-alt-vline.png?1357992714');
   background-repeat: repeat-y;
 }
 
@@ -198,14 +198,14 @@ ul.list-tree-fluid ul {
 ul.list-tree-fluid li {
   margin: 0;
   padding: 0 0 0 .6em;
-  background-image: url('../../images/list-tree/list-tree-alt-node.png?1356825720');
+  background-image: url('../../images/list-tree/list-tree-alt-node.png?1357992714');
   background-repeat: no-repeat;
   background-position: 0 1.2em;
   color: #369;
 }
 /* line 37, ../../scss/sveedocuments/board.scss */
 ul.list-tree-fluid li.last, ul.list-tree-fluid li:last-child {
-  background-image: url('../../images/list-tree/list-tree-alt-lastnode.png?1356825720');
+  background-image: url('../../images/list-tree/list-tree-alt-lastnode.png?1357992714');
   background-color: #ffffff;
   background-position: 0 -1em;
 }
@@ -232,25 +232,21 @@ ul.list-tree-fluid li .indicator i {
   font-size: 18px;
   line-height: 0;
 }
-/* line 64, ../../scss/sveedocuments/board.scss */
+/* line 62, ../../scss/sveedocuments/board.scss */
+ul.list-tree-fluid li.hidden {
+  opacity: 0.5;
+}
+/* line 65, ../../scss/sveedocuments/board.scss */
+ul.list-tree-fluid li.hidden:hover, ul.list-tree-fluid li.hidden.hover_highlight {
+  opacity: 1.0;
+}
+/* line 72, ../../scss/sveedocuments/board.scss */
 ul.list-tree-fluid .button-group li, ul.list-tree-fluid .button.split li {
   background-image: none;
 }
-/* line 69, ../../scss/sveedocuments/board.scss */
+/* line 77, ../../scss/sveedocuments/board.scss */
 ul.list-tree-fluid li + li {
   padding-top: .6em;
-}
-/* line 73, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid.hidden {
-  opacity: 0.5;
-}
-/* line 76, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid.hidden:hover, ul.list-tree-fluid.hidden.hover_highlight {
-  opacity: 1.0;
-}
-/* line 85, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid .children.hidden_parent {
-  opacity: 0.5;
 }
 /* line 89, ../../scss/sveedocuments/board.scss */
 ul.list-tree-fluid .children.hidden_parent li.last,
