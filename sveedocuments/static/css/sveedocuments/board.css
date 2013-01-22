@@ -254,7 +254,36 @@ ul.list-tree-fluid .children.hidden_parent li:last-child {
   background-position: 0 -2.4em;
 }
 
-/* line 97, ../../scss/sveedocuments/board.scss */
+/* line 98, ../../scss/sveedocuments/board.scss */
 .DjangoCodeMirror {
   width: 100% !important;
+}
+
+/* line 102, ../../scss/sveedocuments/board.scss */
+.empty {
+  color: #BBBBBB;
+  font-style: italic;
+}
+
+/* line 107, ../../scss/sveedocuments/board.scss */
+ul.feed {
+  list-style-type: none;
+  margin-bottom: 5px;
+}
+/* line 111, ../../scss/sveedocuments/board.scss */
+ul.feed li {
+  padding: 15px;
+}
+/* line 114, ../../scss/sveedocuments/board.scss */
+ul.feed li p {
+  margin-bottom: 5px;
+}
+/* line 117, ../../scss/sveedocuments/board.scss */
+ul.feed li .ago {
+  font-size: 12px;
+  color: #BBBBBB;
+}
+/* line 122, ../../scss/sveedocuments/board.scss */
+ul.feed li + li {
+  border-top: 1px solid #DDDDDD;
 }

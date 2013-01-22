@@ -115,8 +115,19 @@ class DirectDeleteView(BaseDeleteView):
     
     "get_success_url" or "success_url" should be correctly filled
     """
+    memoize_old_object = False
+    _memoized_attr = ['id', 'slug', 'title'] # memoized attributes if exists
+    old_object = {} # where the attributes will be putted
+    
     def get(self, *args, **kwargs):
+        if self.memoize_old_object:
+            self.memoize_object()
         return self.delete(*args, **kwargs)
+    
+    def memoize_object(self, *args, **kwargs):
+        old = self.get_object()
+        for item in self._memoized_attr:
+            self.old_object[item] = getattr(old, item, None)
 
 
 class ListAppendView(SimpleListView, FormMixin):

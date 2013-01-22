@@ -93,7 +93,33 @@ ul.list-tree-fluid{
     }
 }
 
+
 // Force DjangoCodeMirror widget to take full width from his container
 .DjangoCodeMirror{
     width: 100% !important;
+}
+
+.empty{
+    color: #BBBBBB;
+    font-style: italic;
+}
+//
+ul.feed{
+    list-style-type: none;
+    margin-bottom: 5px;
+    
+    li{
+        padding: ($columnGutter/2);
+        
+        p{
+            margin-bottom: 5px;
+        }
+        .ago{
+            font-size: 12px;
+            color: #BBBBBB;
+        }
+    }
+    li + li{
+        border-top: 1px solid #DDDDDD;
+    }
 }

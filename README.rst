@@ -8,16 +8,16 @@
 .. _django-assets: http://pypi.python.org/pypi/django-assets
 .. _crispy-forms-foundation: https://github.com/sveetch/crispy-forms-foundation
 .. _django-mptt: http://pypi.python.org/pypi/django-mptt
-.. _My django-braces fork: https://github.com/sveetch/django-braces
+.. _django-braces: https://github.com/brack3t/django-braces
 .. _ReStructuredText: http://docutils.sourceforge.net/rst.html
 .. _Pygments: http://pygments.org/
 .. _Foundation: http://github.com/zurb/foundation
+.. _rst2pdf: http://code.google.com/p/rst2pdf/
 
 Introduction
 ============
 
-**Sveetchies-documents** is a Django application to manage text documents. It work almost like a Wiki 
-except the collaborative way.
+**Sveetchies-documents** is a Django application to manage text documents. It work almost like a Wiki.
 
 Features
 ********
@@ -35,6 +35,8 @@ Features
   * Page : For full page documents with children pages in a sitemap tree;
   * Insert : For documents to insert as fragment in your templates;
 
+* Simple collaborative way (History, authoring) for Pages;
+* Optional PDF export for Pages if `rst2pdf`_ is installed;
 * Templatetags to use documents in your templates;
 * Fully internationalized;
 
@@ -55,7 +57,7 @@ Requires
 * `django-mptt`_ >= 0.5.2;
 * `django-crispy-forms`_ >= 1.1.x;
 * `crispy-forms-foundation`;
-* `My django-braces fork`_;
+* `django-braces`_;
 
 Optionnally, to use Assets bundles instead of plain assets, you can install `django-assets`_.
 

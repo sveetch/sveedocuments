@@ -7,7 +7,6 @@ from django.views import generic
 from djangocodemirror.views import SamplePreviewView, EditorSettingsView
 
 from sveedocuments.models import Page, Insert
-from sveedocuments.views.page import PageTabsContentMixin
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -38,33 +37,6 @@ class BoardPagesIndexView(LoginRequiredMixin, generic.TemplateView):
             'page_list' : Page.objects.filter(),
         }
         return self.render_to_response(context)
-
-class BoardPageHistoryView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentMixin, generic.DetailView):
-    """
-    *Page* view
-    """
-    model = Page
-    context_object_name = "page_instance"
-    template_name = "sveedocuments/board/page_history.html"
-    permission_required = "sveedocuments.change_page"
-    raise_exception = True
-    
-    def get_object(self, *args, **kwargs):
-        """
-        Memorize object to avoid multiple database access when using ``get_object()`` 
-        method
-        """
-        cache_key = "_cache_get_object"
-        if not hasattr(self, cache_key):
-            setattr(self, cache_key, super(BoardPageHistoryView, self).get_object(*args, **kwargs))
-        return getattr(self, cache_key)
-        
-    def get_context_data(self, **kwargs):
-        context = super(BoardPageHistoryView, self).get_context_data(**kwargs)
-        context.update({
-            'last_revisions': self.object.revision.all().order_by('-created'),
-        })
-        return context
 
 class BoardInsertsIndexView(LoginRequiredMixin, generic.TemplateView):
     """

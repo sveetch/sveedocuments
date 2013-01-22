@@ -5,10 +5,10 @@ Url's map for documents board
 from django.conf.urls.defaults import *
 
 from sveedocuments.views.board import (BoardIndexView, PreviewView, BoardEditorSettingsView,
-                                        BoardPagesIndexView, BoardInsertsIndexView, 
-                                        BoardPageHistoryView)
+                                        BoardPagesIndexView, BoardInsertsIndexView)
 from sveedocuments.views.page import (PageCreateView, PageQuicksaveView,
-                                      PageEditView, PageDeleteView, PageDeleteView, PageAttachmentsView)
+                                      PageEditView, PageDeleteView, PageDeleteView, PageHistoryView, 
+                                      PageAttachmentsView, PageAttachmentDeleteView)
 from sveedocuments.views.insert import (InsertCreateView, InsertEditView, 
                                         InsertDeleteView, InsertQuicksaveView)
 
@@ -26,8 +26,9 @@ urlpatterns = patterns('',
     url(r'^pages/(?P<slug>[-\w]+)/add/$', PageCreateView.as_view(), name='documents-page-add-child'),
     url(r'^pages/(?P<slug>[-\w]+)/delete/$', PageDeleteView.as_view(), name='documents-page-delete'),
     url(r'^pages/(?P<slug>[-\w]+)/edit/$', PageEditView.as_view(), name='documents-page-edit'),
-    url(r'^pages/(?P<slug>[-\w]+)/edit/history/$', BoardPageHistoryView.as_view(), name='documents-page-history'),
+    url(r'^pages/(?P<slug>[-\w]+)/edit/history/$', PageHistoryView.as_view(), name='documents-page-history'),
     url(r'^pages/(?P<slug>[-\w]+)/edit/attachments/$', PageAttachmentsView.as_view(), name='documents-page-attachments'),
+    url(r'^pages/(?P<slug>[-\w]+)/edit/attachments/(?P<pk>\d+)/delete/$', PageAttachmentDeleteView.as_view(), name='documents-page-attachments-delete'),
     
     url(r'^inserts/$', BoardInsertsIndexView.as_view(), name='documents-insert-index'),
     url(r'^inserts/add/$', InsertCreateView.as_view(), name='documents-insert-add'),

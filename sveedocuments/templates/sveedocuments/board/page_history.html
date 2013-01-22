@@ -8,19 +8,20 @@
     
     {% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="history" %}
     
-    <div class="revision-item revision-current">
-        <p class="ago">{{ page_instance.modified|timesince }} ago</p>
-        <p class="details"><strong>Current : </strong> by {{ page_instance.author.get_full_name }}</p>
-        <p class="comment"><em>{% if page_instance.comment %}{{ page_instance.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
-    </div>
+    <ul class="feed">
+        <li class="revision-current">
+            <p class="ago">{{ page_instance.modified|timesince }} ago</p>
+            <p class="details"><strong>Current : </strong> by {{ page_instance.author.get_full_name }}</p>
+            <p class="comment"><em>{% if page_instance.comment %}{{ page_instance.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
+        </li>
 
-    {% for revision in last_revisions %}
-    <hr>
-    <div class="revision-item revision-current">
-        <p class="ago">{{ page_instance.created|timesince }} ago</p>
-        <p class="details"><strong>N°{{ revision.revision }} : </strong> by {{ revision.author.get_full_name }}</p>
-        <p class="comment{% if not revision.comment %} empty{% endif %}"><em>{% if revision.comment %}{{ revision.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
-    </div>
-    {% endfor %}
+        {% for revision in last_revisions %}
+        <li>
+            <p class="ago">{{ page_instance.created|timesince }} ago</p>
+            <p class="details"><strong>N°{{ revision.revision }} : </strong> by {{ revision.author.get_full_name }}</p>
+            <p class="comment{% if not revision.comment %} empty{% endif %}"><em>{% if revision.comment %}{{ revision.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
+        </li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}

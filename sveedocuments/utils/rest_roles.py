@@ -10,6 +10,7 @@ from docutils.parsers.rst import roles
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.core.cache import cache
+from django.contrib.sites.models import Site
 
 from sveedocuments.local_settings import (DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING, 
                                             PAGE_SLUGS_CACHE_KEY_NAME, 
@@ -55,7 +56,9 @@ def page_link(role, rawtext, text, lineno, inliner, options={}, content=[]):
     options.update({'classes': ['documents_page_link']})
     roles.set_classes(options)
     # Return the node as reference to display the link for the given page's slug
-    node = nodes.reference(rawtext, utils.unescape(slugs[text]), refuri=reverse('documents-page-details', args=[text]), **options)
+    site_current = Site.objects.get_current()
+    url = "http://{0}{1}".format(site_current.domain, reverse('documents-page-details', args=[text]))
+    node = nodes.reference(rawtext, utils.unescape(slugs[text]), refuri=url, **options)
     return [node], []
 
 roles.register_local_role('page', page_link)
@@ -85,7 +88,8 @@ def page_attachment(role, rawtext, text, lineno, inliner, options={}, content=[]
         
     Where X is the page id and slug his slugname
     
-    NOTE: the page id is needed because i don't find a way to give some page context to the parser
+    The page id is needed because i can't find a clean way to give some page context to 
+    the docutils parser.
     """
     matched = _ATTACHMENT_ROLE_REGEX.match(text)
     if not matched or len(matched.groups())<2:

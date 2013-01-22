@@ -1,61 +1,61 @@
-/* line 1, ../../scss/sveedocuments/_pygments.scss */
+/* line 1, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .hll {
   background-color: #ffffcc;
 }
 
-/* line 2, ../../scss/sveedocuments/_pygments.scss */
+/* line 2, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments {
   background: #ffffff;
 }
 
-/* line 3, ../../scss/sveedocuments/_pygments.scss */
+/* line 3, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_c {
   color: #999988;
   font-style: italic;
 }
 
 /* Comment */
-/* line 4, ../../scss/sveedocuments/_pygments.scss */
+/* line 4, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_err {
   color: #a61717;
   background-color: #e3d2d2;
 }
 
 /* Error */
-/* line 5, ../../scss/sveedocuments/_pygments.scss */
+/* line 5, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_k {
   font-weight: bold;
 }
 
 /* Keyword */
-/* line 6, ../../scss/sveedocuments/_pygments.scss */
+/* line 6, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_o {
   font-weight: bold;
 }
 
 /* Operator */
-/* line 7, ../../scss/sveedocuments/_pygments.scss */
+/* line 7, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_cm {
   color: #999988;
   font-style: italic;
 }
 
 /* Comment.Multiline */
-/* line 8, ../../scss/sveedocuments/_pygments.scss */
+/* line 8, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_cp {
   color: #999999;
   font-weight: bold;
 }
 
 /* Comment.Preproc */
-/* line 9, ../../scss/sveedocuments/_pygments.scss */
+/* line 9, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_c1 {
   color: #999988;
   font-style: italic;
 }
 
 /* Comment.Single */
-/* line 10, ../../scss/sveedocuments/_pygments.scss */
+/* line 10, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_cs {
   color: #999999;
   font-weight: bold;
@@ -63,320 +63,320 @@
 }
 
 /* Comment.Special */
-/* line 11, ../../scss/sveedocuments/_pygments.scss */
+/* line 11, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_gd {
   color: #000000;
   background-color: #ffdddd;
 }
 
 /* Generic.Deleted */
-/* line 12, ../../scss/sveedocuments/_pygments.scss */
+/* line 12, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_ge {
   font-style: italic;
 }
 
 /* Generic.Emph */
-/* line 13, ../../scss/sveedocuments/_pygments.scss */
+/* line 13, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_gr {
   color: #aa0000;
 }
 
 /* Generic.Error */
-/* line 14, ../../scss/sveedocuments/_pygments.scss */
+/* line 14, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_gh {
   color: #999999;
 }
 
 /* Generic.Heading */
-/* line 15, ../../scss/sveedocuments/_pygments.scss */
+/* line 15, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_gi {
   color: #000000;
   background-color: #ddffdd;
 }
 
 /* Generic.Inserted */
-/* line 16, ../../scss/sveedocuments/_pygments.scss */
+/* line 16, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_go {
   color: #888888;
 }
 
 /* Generic.Output */
-/* line 17, ../../scss/sveedocuments/_pygments.scss */
+/* line 17, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_gp {
   color: #555555;
 }
 
 /* Generic.Prompt */
-/* line 18, ../../scss/sveedocuments/_pygments.scss */
+/* line 18, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_gs {
   font-weight: bold;
 }
 
 /* Generic.Strong */
-/* line 19, ../../scss/sveedocuments/_pygments.scss */
+/* line 19, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_gu {
   color: #aaaaaa;
 }
 
 /* Generic.Subheading */
-/* line 20, ../../scss/sveedocuments/_pygments.scss */
+/* line 20, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_gt {
   color: #aa0000;
 }
 
 /* Generic.Traceback */
-/* line 21, ../../scss/sveedocuments/_pygments.scss */
+/* line 21, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_kc {
   font-weight: bold;
 }
 
 /* Keyword.Constant */
-/* line 22, ../../scss/sveedocuments/_pygments.scss */
+/* line 22, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_kd {
   font-weight: bold;
 }
 
 /* Keyword.Declaration */
-/* line 23, ../../scss/sveedocuments/_pygments.scss */
+/* line 23, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_kn {
   font-weight: bold;
 }
 
 /* Keyword.Namespace */
-/* line 24, ../../scss/sveedocuments/_pygments.scss */
+/* line 24, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_kp {
   font-weight: bold;
 }
 
 /* Keyword.Pseudo */
-/* line 25, ../../scss/sveedocuments/_pygments.scss */
+/* line 25, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_kr {
   font-weight: bold;
 }
 
 /* Keyword.Reserved */
-/* line 26, ../../scss/sveedocuments/_pygments.scss */
+/* line 26, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_kt {
   color: #445588;
   font-weight: bold;
 }
 
 /* Keyword.Type */
-/* line 27, ../../scss/sveedocuments/_pygments.scss */
+/* line 27, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_m {
   color: #009999;
 }
 
 /* Literal.Number */
-/* line 28, ../../scss/sveedocuments/_pygments.scss */
+/* line 28, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_s {
   color: #bb8844;
 }
 
 /* Literal.String */
-/* line 29, ../../scss/sveedocuments/_pygments.scss */
+/* line 29, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_na {
   color: #008080;
 }
 
 /* Name.Attribute */
-/* line 30, ../../scss/sveedocuments/_pygments.scss */
+/* line 30, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_nb {
   color: #999999;
 }
 
 /* Name.Builtin */
-/* line 31, ../../scss/sveedocuments/_pygments.scss */
+/* line 31, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_nc {
   color: #445588;
   font-weight: bold;
 }
 
 /* Name.Class */
-/* line 32, ../../scss/sveedocuments/_pygments.scss */
+/* line 32, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_no {
   color: #008080;
 }
 
 /* Name.Constant */
-/* line 33, ../../scss/sveedocuments/_pygments.scss */
+/* line 33, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_ni {
   color: #800080;
 }
 
 /* Name.Entity */
-/* line 34, ../../scss/sveedocuments/_pygments.scss */
+/* line 34, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_ne {
   color: #990000;
   font-weight: bold;
 }
 
 /* Name.Exception */
-/* line 35, ../../scss/sveedocuments/_pygments.scss */
+/* line 35, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_nf {
   color: #990000;
   font-weight: bold;
 }
 
 /* Name.Function */
-/* line 36, ../../scss/sveedocuments/_pygments.scss */
+/* line 36, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_nn {
   color: #555555;
 }
 
 /* Name.Namespace */
-/* line 37, ../../scss/sveedocuments/_pygments.scss */
+/* line 37, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_nt {
   color: #000080;
 }
 
 /* Name.Tag */
-/* line 38, ../../scss/sveedocuments/_pygments.scss */
+/* line 38, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_nv {
   color: #008080;
 }
 
 /* Name.Variable */
-/* line 39, ../../scss/sveedocuments/_pygments.scss */
+/* line 39, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_ow {
   font-weight: bold;
 }
 
 /* Operator.Word */
-/* line 40, ../../scss/sveedocuments/_pygments.scss */
+/* line 40, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_w {
   color: #bbbbbb;
 }
 
 /* Text.Whitespace */
-/* line 41, ../../scss/sveedocuments/_pygments.scss */
+/* line 41, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_mf {
   color: #009999;
 }
 
 /* Literal.Number.Float */
-/* line 42, ../../scss/sveedocuments/_pygments.scss */
+/* line 42, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_mh {
   color: #009999;
 }
 
 /* Literal.Number.Hex */
-/* line 43, ../../scss/sveedocuments/_pygments.scss */
+/* line 43, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_mi {
   color: #009999;
 }
 
 /* Literal.Number.Integer */
-/* line 44, ../../scss/sveedocuments/_pygments.scss */
+/* line 44, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_mo {
   color: #009999;
 }
 
 /* Literal.Number.Oct */
-/* line 45, ../../scss/sveedocuments/_pygments.scss */
+/* line 45, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_sb {
   color: #bb8844;
 }
 
 /* Literal.String.Backtick */
-/* line 46, ../../scss/sveedocuments/_pygments.scss */
+/* line 46, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_sc {
   color: #bb8844;
 }
 
 /* Literal.String.Char */
-/* line 47, ../../scss/sveedocuments/_pygments.scss */
+/* line 47, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_sd {
   color: #bb8844;
 }
 
 /* Literal.String.Doc */
-/* line 48, ../../scss/sveedocuments/_pygments.scss */
+/* line 48, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_s2 {
   color: #bb8844;
 }
 
 /* Literal.String.Double */
-/* line 49, ../../scss/sveedocuments/_pygments.scss */
+/* line 49, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_se {
   color: #bb8844;
 }
 
 /* Literal.String.Escape */
-/* line 50, ../../scss/sveedocuments/_pygments.scss */
+/* line 50, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_sh {
   color: #bb8844;
 }
 
 /* Literal.String.Heredoc */
-/* line 51, ../../scss/sveedocuments/_pygments.scss */
+/* line 51, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_si {
   color: #bb8844;
 }
 
 /* Literal.String.Interpol */
-/* line 52, ../../scss/sveedocuments/_pygments.scss */
+/* line 52, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_sx {
   color: #bb8844;
 }
 
 /* Literal.String.Other */
-/* line 53, ../../scss/sveedocuments/_pygments.scss */
+/* line 53, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_sr {
   color: #808000;
 }
 
 /* Literal.String.Regex */
-/* line 54, ../../scss/sveedocuments/_pygments.scss */
+/* line 54, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_s1 {
   color: #bb8844;
 }
 
 /* Literal.String.Single */
-/* line 55, ../../scss/sveedocuments/_pygments.scss */
+/* line 55, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_ss {
   color: #bb8844;
 }
 
 /* Literal.String.Symbol */
-/* line 56, ../../scss/sveedocuments/_pygments.scss */
+/* line 56, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_bp {
   color: #999999;
 }
 
 /* Name.Builtin.Pseudo */
-/* line 57, ../../scss/sveedocuments/_pygments.scss */
+/* line 57, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_vc {
   color: #008080;
 }
 
 /* Name.Variable.Class */
-/* line 58, ../../scss/sveedocuments/_pygments.scss */
+/* line 58, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_vg {
   color: #008080;
 }
 
 /* Name.Variable.Global */
-/* line 59, ../../scss/sveedocuments/_pygments.scss */
+/* line 59, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_vi {
   color: #008080;
 }
 
 /* Name.Variable.Instance */
-/* line 60, ../../scss/sveedocuments/_pygments.scss */
+/* line 60, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_pygments.scss */
 .pygments .pygments_il {
   color: #009999;
 }
 
 /* Literal.Number.Integer.Long */
-/* line 11, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 11, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container h3 a,
 .restructuredtext_container h4 a,
 .restructuredtext_container h5 a,
 .restructuredtext_container h6 a {
   text-decoration: none;
 }
-/* line 17, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 17, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .topic {
   padding: .5em 1em .5em 1em;
   border: 1px solid #cdcdcd;
@@ -385,17 +385,17 @@
   color: #384976;
   text-shadow: none;
 }
-/* line 25, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 25, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .topic-title {
   font-size: 1.1em;
   color: #365578;
   font-weight: bold;
 }
-/* line 32, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 32, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .admonition-title {
   font-weight: bold;
 }
-/* line 43, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 43, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .attention,
 .restructuredtext_container .caution,
 .restructuredtext_container .danger,
@@ -414,7 +414,7 @@
   background-repeat: no-repeat;
   background-position: .7em .7em;
 }
-/* line 53, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 53, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .attention p + p,
 .restructuredtext_container .caution p + p,
 .restructuredtext_container .danger p + p,
@@ -426,11 +426,11 @@
 .restructuredtext_container .warning p + p {
   padding-top: .2em;
 }
-/* line 57, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 57, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .note {
-  background-image: url('../../images/notices/about.png?1356825721');
+  background-image: url('notices/about.png?1357992714');
 }
-/* line 64, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 64, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .attention,
 .restructuredtext_container .important,
 .restructuredtext_container .warning,
@@ -439,14 +439,14 @@
   color: #763848;
   border: 1px solid #f7cdd7;
   background-color: #ffe8ed;
-  background-image: url('../../images/notices/alert.png?1356825721');
+  background-image: url('notices/alert.png?1357992714');
 }
-/* line 71, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 71, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .danger,
 .restructuredtext_container .error {
-  background-image: url('../../images/notices/stop.png?1356825721');
+  background-image: url('notices/stop.png?1357992714');
 }
-/* line 76, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 76, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container blockquote {
   width: 96%;
   margin-left: 1%;
@@ -456,7 +456,7 @@
   background-color: #ffffff;
   text-shadow: none;
 }
-/* line 85, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 85, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container pre {
   width: 98%;
   padding-left: 1%;
@@ -466,39 +466,39 @@
   overflow: auto;
   text-shadow: none;
 }
-/* line 94, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 94, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container code {
   width: 100%;
   background-color: #e8efff;
   border-bottom: 1px solid #d3d3d3;
   overflow: auto;
 }
-/* line 101, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 101, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container tt.literal {
   background-color: #e8efff;
   border-bottom: 1px solid #B0B0B0;
   text-shadow: none;
 }
-/* line 107, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 107, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container ul, .restructuredtext_container ol {
   margin-left: 26px;
 }
-/* line 110, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 110, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container dt {
   margin-top: 16px;
   font-weight: bold;
 }
-/* line 114, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 114, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container dt:first-child {
   margin-top: 0;
 }
-/* line 119, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 119, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygments-container {
   width: 100%;
   max-width: 100%;
   overflow: auto;
 }
-/* line 126, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 126, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable,
 .restructuredtext_container .pygments {
   width: 98%;
@@ -506,14 +506,14 @@
   border-top: 1px solid #aaaaaa;
   border-bottom: 1px solid #aaaaaa;
 }
-/* line 132, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 132, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable .pygments {
   width: auto;
   margin-left: 0;
   margin-right: 0;
   border: 0;
 }
-/* line 138, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 138, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable td.linenos {
   width: 1%;
   padding-left: .4em;
@@ -522,12 +522,12 @@
   text-align: right;
   background-color: #f0f0f0;
 }
-/* line 146, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 146, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable td.code {
   padding-left: .4em;
   background-color: #ffffff;
 }
-/* line 151, ../../scss/sveedocuments/_restructuredtext.scss */
+/* line 151, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable pre,
 .restructuredtext_container .pygments pre {
   width: auto;
@@ -550,7 +550,7 @@
   font-style: normal;
 }
 
-/* line 16, ../../scss/icons/_LigatureSymbols.scss */
+/* line 16, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/../icons/_LigatureSymbols.scss */
 .lsf {
   font-family: 'LigatureSymbols';
   -webkit-text-rendering: optimizeLegibility;
@@ -570,7 +570,7 @@
   font-feature-settings: "liga" 1, "dlig" 1;
 }
 
-/* line 34, ../../scss/icons/_LigatureSymbols.scss */
+/* line 34, /home/django/gits/djsveetchies/src/sveedocuments/sveedocuments/static/scss/sveedocuments/../icons/_LigatureSymbols.scss */
 .lsf-icon:before {
   content: attr(title);
   margin-right: 0.3em;
@@ -613,7 +613,7 @@ ul.list-tree {
 ul.list-tree li {
   padding-left: 1em;
   padding-bottom: .8em;
-  background: url('../../images/list-tree/list-tree-bold-vline.png?1356825720') repeat-y 0 0;
+  background: url('../../images/list-tree/list-tree-bold-vline.png?1357992714') repeat-y 0 0;
   font-size: 1em;
   line-height: 1em;
 }
@@ -622,7 +622,7 @@ ul.list-tree li div.tree-node-pointer {
   position: relative;
   left: -1em;
   padding-left: 1em;
-  background: url('../../images/list-tree/list-tree-bold-node.png?1356825720') no-repeat 0 0;
+  background: url('../../images/list-tree/list-tree-bold-node.png?1357992714') no-repeat 0 0;
 }
 /* line 40, ../../scss/sveedocuments/frontend.scss */
 ul.list-tree li:last-child {
@@ -631,7 +631,7 @@ ul.list-tree li:last-child {
 }
 /* line 45, ../../scss/sveedocuments/frontend.scss */
 ul.list-tree li:last-child div.tree-node-pointer {
-  background: url('../../images/list-tree/list-tree-bold-lastnode.png?1356825720') no-repeat 0 0;
+  background: url('../../images/list-tree/list-tree-bold-lastnode.png?1357992714') no-repeat 0 0;
 }
 /* line 50, ../../scss/sveedocuments/frontend.scss */
 ul.list-tree ul {

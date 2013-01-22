@@ -4,12 +4,15 @@ Page document views
 """
 import json, os
 from datetime import datetime
+from cStringIO import StringIO
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.views import generic
+from django.views.generic.detail import SingleObjectMixin
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -21,7 +24,7 @@ from sveedocuments import local_settings
 from sveedocuments.models import Page, Attachment
 from sveedocuments.forms import PageForm, PageQuickForm, AttachmentForm
 from sveedocuments.utils.objects import get_instance_children
-from sveedocuments.utils.braces_addons import DetailListAppendView
+from sveedocuments.utils.braces_addons import DetailListAppendView, DirectDeleteView, DownloadMixin
 
 class PageIndexView(generic.TemplateView):
     """
@@ -188,6 +191,34 @@ class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentM
         return kwargs
 
 
+class PageHistoryView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentMixin, generic.DetailView):
+    """
+    *Page* history
+    """
+    model = Page
+    context_object_name = "page_instance"
+    template_name = "sveedocuments/board/page_history.html"
+    permission_required = "sveedocuments.change_page"
+    raise_exception = True
+    
+    def get_object(self, *args, **kwargs):
+        """
+        Memorize object to avoid multiple database access when using ``get_object()`` 
+        method
+        """
+        cache_key = "_cache_get_object"
+        if not hasattr(self, cache_key):
+            setattr(self, cache_key, super(PageHistoryView, self).get_object(*args, **kwargs))
+        return getattr(self, cache_key)
+        
+    def get_context_data(self, **kwargs):
+        context = super(PageHistoryView, self).get_context_data(**kwargs)
+        context.update({
+            'last_revisions': self.object.revision.all().order_by('-created'),
+        })
+        return context
+
+
 class PageAttachmentsView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentMixin, DetailListAppendView):
     """
     Form view to add file attachments to a Page
@@ -213,6 +244,19 @@ class PageAttachmentsView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsC
         kwargs.update({'author': self.request.user})
         return kwargs
 
+
+class PageAttachmentDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DirectDeleteView):
+    """
+    View to delete a *Page* document
+    """
+    model = Attachment
+    permission_required = "sveedocuments.delete_attachment"
+    raise_exception = True
+    memoize_old_object = True
+    _memoized_attr = ['id', 'slug', 'title', 'page']
+
+    def get_success_url(self):
+        return reverse('documents-page-attachments', args=[self.old_object['page'].slug])
 
 class PageDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     """
@@ -245,3 +289,54 @@ class PageQuicksaveView(SampleQuicksaveMixin, PageEditView):
         if self.request.POST.get('slug', False):
             self.kwargs['slug'] = self.request.POST['slug']
         return super(PageQuicksaveView, self).get_object(queryset=queryset)
+
+# Optional view for PDF export need RstToPdf
+try:
+    from rst2pdf.createpdf import RstToPdf
+except ImportError:
+    class PagePDFView(object):
+        """Dummy object"""
+        is_dummy = True
+else:
+    class PagePDFView(SingleObjectMixin, DownloadMixin, generic.View):
+        """
+        Export a Page as a PDF file
+        """
+        model = Page
+        content_type = 'application/pdf'
+        filename_format = "{slug}_{timestamp}.pdf"
+        
+        def get_context_data(self, **kwargs):
+            context = super(PagePDFView, self).get_context_data(**kwargs)
+            context.update({
+                'slug': self.object.slug,
+                'timestamp': self.get_filename_timestamp(),
+            })
+            return context
+        
+        def get_filename(self, context):
+            return self.filename_format.format(**context)
+        
+        def get_content(self, context):
+            """
+            Build the PDF from the page content with RstToPdf
+            """
+            # Add the optional preface and then the page content
+            content = ''
+            if getattr(local_settings, 'DOCUMENTS_EXPORT_PDF_PREFACE', None) is not None:
+                content += local_settings.DOCUMENTS_EXPORT_PDF_PREFACE.format(page=self.object)
+            content += self.object.content
+            
+            buffer_response = StringIO()
+            # TODO: Can't we simply pass a dict kwargs to "RstToPdf" so all available 
+            #       options could be setted from the settings ?
+            RstToPdf(language=settings.LANGUAGE_CODE, breakside='any', header=local_settings.DOCUMENTS_EXPORT_PDF_HEADER, footer=local_settings.DOCUMENTS_EXPORT_PDF_FOOTER).createPdf(text=content, output=buffer_response)
+            pdf = buffer_response.getvalue()
+            buffer_response.close()
+            
+            return pdf
+
+        def get(self, request, *args, **kwargs):
+            self.object = self.get_object()
+            context = self.get_context_data(**kwargs)
+            return super(PagePDFView, self).render_to_response(context)

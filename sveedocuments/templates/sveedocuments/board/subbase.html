@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n mptt_tags autobreadcrumb documents_admin %}
+{% load url from future %}
 
 {% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
 {% block head_more_links %}
@@ -13,9 +14,9 @@
     <div class="three columns context-menu">{% spaceless %}
 
         <ul class="nav-bar vertical">
-            <li{% block board_menu_summary_active %}{% endblock %}><a href="{% url documents-board %}">{% trans "Summary" %}</a></li>
-            <li{% block board_menu_pages_active %}{% endblock %}><a href="{% url documents-page-index %}">{% trans "Pages" %}</a></li>
-            <li{% block board_menu_inserts_active %}{% endblock %}><a href="{% url documents-insert-index %}">{% trans "Inserts" %}</a></li>
+            <li{% block board_menu_summary_active %}{% endblock %}><a href="{% url 'documents-board' %}">{% trans "Summary" %}</a></li>
+            <li{% block board_menu_pages_active %}{% endblock %}><a href="{% url 'documents-page-index' %}">{% trans "Pages" %}</a></li>
+            <li{% block board_menu_inserts_active %}{% endblock %}><a href="{% url 'documents-insert-index' %}">{% trans "Inserts" %}</a></li>
         </ul>
 
     {% endspaceless %}</div>
