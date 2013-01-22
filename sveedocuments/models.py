@@ -163,6 +163,10 @@ class Page(PageModelBase):
         cache.delete_many([PAGE_SLUGS_CACHE_KEY_NAME]+keys)
         return keys
     
+    def _get_current_revision(self):
+        return (self.revision.all().aggregate(models.Max('revision')).get('revision__max') or 0)+1
+    current_revision = property(_get_current_revision)
+    
     def save(self, *args, **kwargs):
         # First create
         if not self.created:
@@ -170,7 +174,6 @@ class Page(PageModelBase):
         # Creating a new revision archive
         elif DOCUMENTS_PAGE_ARCHIVED:
             old = Page.objects.get(pk=self.id)
-            rev_no = self.revision.all().aggregate(models.Max('revision')).get('revision__max') or 0
             PageRevision(
                 page=self,
                 created=self.modified,
@@ -183,7 +186,7 @@ class Page(PageModelBase):
                 order=old.order,
                 visible=old.visible,
                 content=old.content,
-                revision=rev_no+1,
+                revision=self.current_revision,
                 comment=old.comment,
             ).save()
         

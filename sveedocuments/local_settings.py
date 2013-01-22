@@ -78,8 +78,8 @@ _PDF_PREFACE = u"""==================
 ==================
 
 :author: {page.author.first_name} {page.author.last_name} <{page.author.email}>
-:date: $LastChangedRevision: {page.modified} $
-:revision: $LastChangedRevision: {page.slug} $
+:date: {page.modified}
+:revision: $LastChangedRevision: {page.current_revision} $
 
 .. class:: alert alert-info pull-right
 
