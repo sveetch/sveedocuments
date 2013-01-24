@@ -8,7 +8,6 @@ except ImportError:
 else:
     DJANGO_ASSETS_INSTALLED = True
 
-if DJANGO_ASSETS_INSTALLED:
     AVALAIBLE_BUNDLES = {
         'sveedocuments_frontend_css': Bundle(
             "css/sveedocuments/frontend.css",
