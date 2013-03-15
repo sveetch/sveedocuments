@@ -16,6 +16,7 @@ from sveedocuments.models import Page, Insert
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option("--clearcache", dest="clearcache", action="store_true", default=False, help="Clear all documents (Page and Insert) cache."),
+        make_option("--treefix", dest="treefix", action="store_true", default=False, help="Rebuild the Pages tree. This is currently used to fix a bug when deleting some item. This should be a temporary trick that will be deleted when a correct fix will be finded."),
     )
     help = "General command for Sveetchies-documents"
 
@@ -24,10 +25,20 @@ class Command(BaseCommand):
             raise CommandError("Command doesn't accept any arguments")
         
         self.clearcache = options.get('clearcache')
+        self.treefix = options.get('treefix')
         self.verbosity = int(options.get('verbosity'))
         
         if self.clearcache:
             self.do_clearcache()
+        
+        if self.treefix:
+            self.do_treefix()
+
+    def do_treefix(self):
+        """
+        Rebuild Pages tree info
+        """
+        Page.tree.rebuild()
 
     def do_clearcache(self):
         """

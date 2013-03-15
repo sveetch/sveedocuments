@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 Command line tool to export
+
+DEPRECATED
 """
 import re, StringIO
 
@@ -22,7 +24,7 @@ class Command(BaseCommand):
         make_option("--to_file", dest="export_to_file", default=None, help="Export selected documents in a file.", metavar="FILEPATH"),
         make_option("--to_github", dest="export_to_github", default=None, help="Export selected documents in a file but with some changes to be suitable with the Github ReSructuredText parser.", metavar="FILEPATH"),
     )
-    help = "Command for export documents from Sveetchies-documents"
+    help = "[DEPRECATED] Command to export documents from Sveetchies-documents"
 
     def handle(self, *args, **options):
         if len(args) != 0:

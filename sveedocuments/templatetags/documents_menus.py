@@ -4,11 +4,9 @@ Templates tags divers pour les documents
 """
 from django import template
 from django.utils.safestring import mark_safe
-from django.core.cache import cache
 
 from sveedocuments.local_settings import DOCUMENTS_PAGE_TREEMENU, DOCUMENTS_PAGE_FLATMENU
 from sveedocuments.models import Insert, Page
-from sveedocuments.templatetags import get_render_with_cache, get_toc_with_cache
 from sveedocuments.utils.templatetags import resolve_string_or_variable
 
 register = template.Library()

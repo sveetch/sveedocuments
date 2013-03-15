@@ -30,6 +30,8 @@ DOCUMENTS_PAGE_TEMPLATES = {
 }
 DOCUMENTS_PAGE_TEMPLATES.update(getattr(settings, 'DOCUMENTS_PAGE_TEMPLATES', {}))
 
+DOCUMENTS_PAGE_TEMPLATE_DEFAULT = getattr(settings, 'DOCUMENTS_PAGE_TEMPLATE_DEFAULT', 'elastic')
+
 # Active a silent reporter to avoid warnings about missing page on role ``:page:xxx``
 # If ``True`` the role will be transformed to link despite the page does not exist, 
 # if ``False`` the warning will be inserted in the render

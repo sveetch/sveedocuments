@@ -17,7 +17,7 @@ from rstview.local_settings import RSTVIEW_PARSER_FILTER_SETTINGS
 from sveedocuments.local_settings import (DOCUMENTS_PAGE_TEMPLATES, PAGE_SLUGS_CACHE_KEY_NAME, 
                                         PAGE_RENDER_CACHE_KEY_NAME, INSERT_RENDER_CACHE_KEY_NAME,
                                         PAGE_TOC_CACHE_KEY_NAME, INSERT_TOC_CACHE_KEY_NAME,
-                                        DOCUMENTS_PAGE_ARCHIVED)
+                                        DOCUMENTS_PAGE_ARCHIVED, DOCUMENTS_PAGE_TEMPLATE_DEFAULT)
 from sveedocuments.utils import _get_cache_keyset
 from sveedocuments.utils.filefield import content_file_name
 
@@ -102,13 +102,13 @@ class Insert(models.Model):
         
 class PageModelBase(models.Model):
     """
-    Full page document
+    Model base for Pages
     """
     created = models.DateTimeField(_('created'), blank=True)
     author = models.ForeignKey(User, verbose_name=_('author'))
     title = models.CharField(_('title'), blank=False, max_length=255)
     published = models.DateTimeField(_('publish date'), blank=True, help_text=_("Define when the document will be displayed on the site. Empty value mean an instant publish, use a coming date to program a futur publish."))
-    template = models.CharField(_('template'), max_length=50, choices=DOCUMENTS_PAGE_TEMPLATES_CHOICES, default='default', help_text=_("This template will be used to render the page."))
+    template = models.CharField(_('template'), max_length=50, choices=DOCUMENTS_PAGE_TEMPLATES_CHOICES, default=DOCUMENTS_PAGE_TEMPLATE_DEFAULT, help_text=_("This template will be used to render the page."))
     order = models.SmallIntegerField(_('order'), default=1, help_text=_("Display order in lists and trees."))
     visible = models.BooleanField(_('visibility'), choices=DOCUMENTS_VISIBILTY_CHOICES, default=True)
     content = models.TextField(_('content'), blank=False)
@@ -122,6 +122,7 @@ class PageModelBase(models.Model):
     
     class Meta:
         abstract = True    
+
 
 
 class Page(PageModelBase):
@@ -193,7 +194,7 @@ class Page(PageModelBase):
         # Fill in the published date with the created date if empty
         if not self.published:
             self.published = self.created
-        # Invalidate all caches at edit
+        # Invalidate all caches on edit
         if self.modified:
             self.clear_cache()
         
