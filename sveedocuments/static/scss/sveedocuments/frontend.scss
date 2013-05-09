@@ -8,6 +8,7 @@
 @import "restructuredtext";
 
 // Import LigatureSymbols font stylesheet as icons
+// TODO: Drop this for Awesome fonts (allready used in DjangoSveetchies)
 @import "../icons/LigatureSymbols";
 // Preserve normal font style for icons, because Foundation force them to italic
 i {

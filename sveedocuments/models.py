@@ -104,7 +104,7 @@ class PageModelBase(models.Model):
     """
     Model base for Pages
     """
-    created = models.DateTimeField(_('created'), blank=True)
+    created = models.DateTimeField(_('created'), blank=True, editable=False)
     author = models.ForeignKey(User, verbose_name=_('author'))
     title = models.CharField(_('title'), blank=False, max_length=255)
     published = models.DateTimeField(_('publish date'), blank=True, help_text=_("Define when the document will be displayed on the site. Empty value mean an instant publish, use a coming date to program a futur publish."))
