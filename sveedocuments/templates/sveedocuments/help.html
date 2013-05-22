@@ -3,7 +3,7 @@
 
 {% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
 
-{% block head_more_links %}
+{% block html_more_links %}{{ block.super }}
     {% include "sveedocuments/include_css.html" %}
 {% endblock %}
 

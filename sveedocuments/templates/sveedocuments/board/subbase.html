@@ -3,10 +3,10 @@
 {% load url from future %}
 
 {% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
-{% block head_more_links %}
+{% block html_more_links %}{{ block.super }}
     {% include "sveedocuments/board/includes/base_css.html" %}
 {% endblock %}
-{% block head_more_js %}
+{% block html_more_js %}{{ block.super }}
     {% include "sveedocuments/board/includes/base_js.html" %}
 {% endblock %}
 

@@ -1,7 +1,7 @@
 {% extends "sveedocuments/board/subbase_inserts.html" %}
 {% load i18n djangocodemirror_inputs djangocodemirror_assets crispy_forms_tags autobreadcrumb %}
 
-{% block head_more_js %}{{ block.super }}
+{% block html_more_js %}{{ block.super }}
     {% get_current_language as LANGUAGE_CODE %}
     {% include "sveedocuments/board/includes/djangocodemirror_content_assets.html" %}
     <script language="JavaScript" type="text/javascript">

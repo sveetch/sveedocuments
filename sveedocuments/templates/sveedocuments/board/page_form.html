@@ -2,7 +2,7 @@
 {% load i18n djangocodemirror_inputs crispy_forms_tags autobreadcrumb %}
 {% load url from future %}
 
-{% block head_more_js %}{{ block.super }}
+{% block html_more_js %}{{ block.super }}
     {% get_current_language as LANGUAGE_CODE %}
     {% include "sveedocuments/board/includes/djangocodemirror_content_assets.html" %}
     <script language="JavaScript">
