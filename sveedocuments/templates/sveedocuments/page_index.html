@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load mptt_tags autobreadcrumb %}
+{% load url from future %}
 
 {% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
 {% block html_more_links %}{{ block.super }}
@@ -14,7 +15,7 @@
         {% recursetree page_list %}{% spaceless %}
             <li>
                 <div class="tree-node-pointer">
-                    <a href="{% url documents-page-details node.slug %}">{{ node.title }}</a>
+                    <a href="{% url 'documents-page-details' node.slug %}">{{ node.title }}</a>
                 </div>
                 {% if not node.is_leaf_node %}
                     <ul class="list-tree">{{ children }}</ul>
