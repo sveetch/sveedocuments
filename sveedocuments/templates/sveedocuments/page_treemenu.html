@@ -1,4 +1,4 @@
-{% load mptt_tags %}{% load url from future %}
+{% load mptt_tags %}
 <ul class="tree_bulletlist">
     {% recursetree page_list %}
         <li{% if active_page_instance and active_page_instance.slug == node.slug %} class="active"{% endif %}>

@@ -1,16 +1,7 @@
-{% extends "base.html" %}
+{% extends "sveedocuments/base.html" %}
 {% load mptt_tags autobreadcrumb %}
-{% load url from future %}
 
-{% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
-{% block html_more_links %}{{ block.super }}
-    {% include "sveedocuments/include_css.html" %}
-{% endblock %}
-
-{% block content %}
-<div class="row">
-    <h2>{% current_title_from_breadcrumbs %}</h2>
-
+{% block sveedocuments_content %}
     <ul class="list-tree">
         {% recursetree page_list %}{% spaceless %}
             <li>
@@ -23,5 +14,4 @@
             </li>
         {% endspaceless %}{% endrecursetree %}
     </ul>
-</div>
 {% endblock %}

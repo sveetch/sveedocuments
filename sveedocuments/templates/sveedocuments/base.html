@@ -1,0 +1,18 @@
+{% extends "skeleton.html" %}
+{% load autobreadcrumb %}
+
+{% block menu_active_link_documents %} class="active"{% endblock %}
+
+{% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
+
+{% block head_base_links %}{{ block.super }}
+    {% include "sveedocuments/assets_css.html" %}
+{% endblock %}
+
+{% block base_content %}<div class="row documents">
+    <div class="small-12 columns">
+        {% autobreadcrumbs_tag %}
+        <h2>{% current_title_from_breadcrumbs %}</h2>
+        {% block sveedocuments_content %}{% endblock %}
+    </div>
+</div>{% endblock %}

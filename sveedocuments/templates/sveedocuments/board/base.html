@@ -1,19 +1,20 @@
-{% extends "base.html" %}
+{% extends "skeleton.html" %}
 {% load i18n mptt_tags autobreadcrumb documents_admin %}
-{% load url from future %}
+
+{% block menu_active_link_documents %} class="active"{% endblock %}
 
 {% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
-{% block html_more_links %}{{ block.super }}
-    {% include "sveedocuments/board/includes/base_css.html" %}
+{% block head_base_links %}{{ block.super }}
+    {% include "sveedocuments/assets_css.html" %}
 {% endblock %}
-{% block html_more_js %}{{ block.super }}
-    {% include "sveedocuments/board/includes/base_js.html" %}
+{% block head_base_js %}{{ block.super }}
+    {% include "sveedocuments/assets_js.html" %}
 {% endblock %}
 
-{% block content %}<div class="row row-fluid">
-    <div class="three columns context-menu">{% spaceless %}
+{% block base_content %}<div class="row row-fluid documents">
+    <div class="small-12 medium-3 columns context-menu">{% spaceless %}
 
-        <ul class="nav-bar vertical">
+        <ul class="side-nav">
             <li{% block board_menu_summary_active %}{% endblock %}><a href="{% url 'documents-board' %}">{% trans "Summary" %}</a></li>
             <li{% block board_menu_pages_active %}{% endblock %}><a href="{% url 'documents-page-index' %}">{% trans "Pages" %}</a></li>
             <li{% block board_menu_inserts_active %}{% endblock %}><a href="{% url 'documents-insert-index' %}">{% trans "Inserts" %}</a></li>
@@ -21,7 +22,7 @@
 
     {% endspaceless %}</div>
     
-    <div class="nine columns">
+    <div class="small-12 medium-9 columns">
         {% block board_content %}{% endblock %}
     </div>
 </div>{% endblock %}

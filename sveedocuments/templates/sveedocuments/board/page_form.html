@@ -1,11 +1,10 @@
 {% extends "sveedocuments/board/subbase_pages.html" %}
 {% load i18n djangocodemirror_inputs crispy_forms_tags autobreadcrumb %}
-{% load url from future %}
 
-{% block html_more_js %}{{ block.super }}
+{% block head_base_js %}{{ block.super }}
     {% get_current_language as LANGUAGE_CODE %}
     {% include "sveedocuments/board/includes/djangocodemirror_content_assets.html" %}
-    <script language="JavaScript">
+    <script type="text/javascript">
     //<![CDATA[
     DCM_lang = "{{ LANGUAGE_CODE }}";
     $(document).ready(function() {

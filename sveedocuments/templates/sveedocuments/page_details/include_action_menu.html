@@ -2,13 +2,13 @@
 <div class="document_action_menu medium radius secondary button dropdown right">
   {% trans "Actions on this document" %}
   <ul>
-    {% if user.is_staff %}<li><a href="{% url documents-page-edit page_instance.slug %}">{% trans "Edit" %}</a></li>
+    {% if user.is_staff %}<li><a href="{% url 'documents-page-edit' page_instance.slug %}">{% trans "Edit" %}</a></li>
     <li class="divider"></li>
-    <li><a href="{% url documents-page-delete page_instance.slug %}">{% trans "Delete" %}</a></li>{% endif %}
+    <li><a href="{% url 'documents-page-delete' page_instance.slug %}">{% trans "Delete" %}</a></li>{% endif %}
     <li class="divider"></li>
-    <li><a href="{% url documents-page-source page_instance.slug %}">{% trans "Plain text version" %}</a></li>
+    <li><a href="{% url 'documents-page-source' page_instance.slug %}">{% trans "Plain text version" %}</a></li>
     {% if pdf_export_enabled %}<li class="divider"></li>
-    <li><a href="{% url documents-page-pdf page_instance.slug %}">{% trans "PDF version" %}</a></li>{% endif %}
+    <li><a href="{% url 'documents-page-pdf' page_instance.slug %}">{% trans "PDF version" %}</a></li>{% endif %}
   </ul>
 </div>
 {% endspaceless %}

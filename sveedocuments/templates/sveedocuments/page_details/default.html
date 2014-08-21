@@ -1,7 +1,7 @@
 {% extends "sveedocuments/page_details/subbase.html" %}
 {% load documents_markup documents_utils %}
 
-{% block content %}<div class="row row-fluid{% if page_instance.level == 0 %} doc_root_page{% endif %}">
+{% block sveedocuments_content %}<div{% if page_instance.level == 0 %} class="doc_root_page"{% endif %}>
     {% include "sveedocuments/page_details/include_action_menu.html" %}
     {% document_context page_instance %}
     <h2>{{ page_instance.title }}</h2>

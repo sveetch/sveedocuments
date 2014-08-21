@@ -9,15 +9,11 @@ else:
     DJANGO_ASSETS_INSTALLED = True
 
     AVALAIBLE_BUNDLES = {
-        'sveedocuments_frontend_css': Bundle(
+        'sveedocuments_css': Bundle(
             "css/sveedocuments/frontend.css",
-            filters='yui_css',
-            output='css/sveedocuments/frontend.min.css'
-        ),
-        'sveedocuments_board_css': Bundle(
             "css/sveedocuments/board.css",
             filters='yui_css',
-            output='css/sveedocuments/board.min.css'
+            output='css/sveedocuments/sveedocuments.min.css'
         ),
         'sveedocuments_board_js': Bundle(
             "js/jquery/jquery.slugify.js",
@@ -29,8 +25,7 @@ else:
     }
 
     ENABLED_BUNDLES = (
-        'sveedocuments_frontend_css',
-        'sveedocuments_board_css',
+        'sveedocuments_css',
         'sveedocuments_board_js',
     )
 

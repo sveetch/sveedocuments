@@ -21,12 +21,8 @@ DOCUMENTS_PAGE_ARCHIVED = True
 
 # Available templates for Pages
 DOCUMENTS_PAGE_TEMPLATES = {
-    'elastic': ('sveedocuments/page_details/elastic.html', _('Elastic with an unique column')),
-    'elastic_with_columns': ('sveedocuments/page_details/elastic_with_columns.html', _('Elastic with two columns')),
-    'fixed_absolute': ('sveedocuments/page_details/fixed_absolute.html', _('Absolute fixed with an unique column')),
-    'fixed_absolute_with_columns': ('sveedocuments/page_details/fixed_absolute_with_columns.html', _('Absolute fixed with two columns')),
-    'fixed_relative': ('sveedocuments/page_details/fixed_relative.html', _('Relative fixed an unique column')),
-    'fixed_relative_with_columns': ('sveedocuments/page_details/fixed_relative_with_columns.html', _('Relative fixed with two columns')),
+    'default': ('sveedocuments/page_details/default.html', _('Default template with document content only')),
+    'with_toc': ('sveedocuments/page_details/with_toc.html', _('Template with a Table Of Content and the document content')),
 }
 DOCUMENTS_PAGE_TEMPLATES.update(getattr(settings, 'DOCUMENTS_PAGE_TEMPLATES', {}))
 
@@ -47,8 +43,9 @@ CODEMIRROR_SETTINGS = {
         'mode': 'rst',
         'csrf': 'CSRFpass',
         'preview_url': ('documents-preview',),
-        'quicksave_url': ('documents-page-quicksave',),
-        'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
+        #'quicksave_url': ('documents-page-quicksave',),
+        #'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
+        'quicksave_url': None,
         'lineWrapping': False,
         'lineNumbers': True,
         'search_enabled': True,
@@ -60,8 +57,9 @@ CODEMIRROR_SETTINGS = {
         'mode': 'rst',
         'csrf': 'CSRFpass',
         'preview_url': ('documents-preview',),
-        'quicksave_url': ('documents-insert-quicksave',),
-        'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
+        #'quicksave_url': ('documents-insert-quicksave',),
+        #'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
+        'quicksave_url': None,
         'lineWrapping': False,
         'lineNumbers': True,
         'search_enabled': True,

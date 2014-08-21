@@ -1,17 +1,13 @@
-{% extends "base.html" %}
+{% extends "sveedocuments/base.html" %}
 {% load i18n %}
 
 {% block head_title %}{{ page_instance.title }}{% endblock %}
 
-{% block head_more_links %}
-    {% include "sveedocuments/include_css.html" %}
-{% endblock %}
-
 {% block breadcrumbs %}{{ block.super }}
 {% for item in page_instance.get_ancestors %}
-    <li><a href="{% url documents-page-details item.slug %}">{{ item.title }}</a></li>
+    <a href="{% url 'documents-page-details' item.slug %}">{{ item.title }}</a>
 {% endfor %}
-    <li><a href="{% url documents-page-details page_instance.slug %}">{{ page_instance.title }}</a></li>
+    <a href="{% url 'documents-page-details' page_instance.slug %}">{{ page_instance.title }}</a>
 {% endblock %}
 
 {% block body_id %}doc-id-{{ page_instance.id }}{% endblock %}

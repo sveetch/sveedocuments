@@ -1,9 +1,8 @@
 {% extends "sveedocuments/board/subbase_pages.html" %}
 {% load i18n autobreadcrumb crispy_forms_tags %}
-{% load url from future %}
 
-{% block html_more_js %}{{ block.super }}
-    <script language="JavaScript">
+{% block head_base_js %}{{ block.super }}
+    <script type="text/javascript">
     //<![CDATA[
     $(document).ready(function() {
         $("#id_slug").slugify("#id_title");

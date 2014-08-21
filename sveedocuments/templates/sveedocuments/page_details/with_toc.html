@@ -1,9 +1,9 @@
 {% extends "sveedocuments/page_details/subbase.html" %}
 {% load i18n mptt_tags documents_markup documents_utils %}
 
-{% block content %}<div class="row row-fluid{% if page_instance.level == 0 %} doc_root_page{% endif %}">
+{% block sveedocuments_content %}<div{% if page_instance.level == 0 %} class="doc_root_page"{% endif %}>
     {% document_context page_instance %}
-    <div class="three columns context-menu">
+    <div class="small-12 medium-3 columns context-menu">
         {% if document_toc %}<div class="panel">
             <h2>{% trans "Table of content" %}</h2>
             {{ document_toc }}
@@ -15,7 +15,7 @@
             <ul class="tree_bulletlist">
                 {% recursetree tree_descendants %}
                     <li{% if active_page_instance and active_page_instance.slug == node.slug %} class="active"{% endif %}>
-                        <a href="{% url documents-page-details node.slug %}">{{ node.title }}</a>
+                        <a href="{% url 'documents-page-details' node.slug %}">{{ node.title }}</a>
                         {% if not node.is_leaf_node %}
                             <ul class="children">
                                 {{ children }}
@@ -27,7 +27,7 @@
         </div>{% endif %}
         {% endwith %}
     </div>
-    <div class="nine columns">
+    <div class="small-12 medium-9 columns">
         {% include "sveedocuments/page_details/include_action_menu.html" %}
         <h2>{{ page_instance.title }}</h2>
 

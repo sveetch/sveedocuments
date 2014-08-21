@@ -2,7 +2,7 @@
 """
 Url's map for documents board
 """
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from sveedocuments.views.board import (BoardIndexView, PreviewView, BoardEditorSettingsView,
                                         BoardPagesIndexView, BoardInsertsIndexView)

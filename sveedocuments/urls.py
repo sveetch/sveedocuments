@@ -2,7 +2,7 @@
 """
 Root url's map for application
 """
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from sveedocuments.views.page import (HelpPageView, PageIndexView, PageDetailsView, 
                                         PageSourceView, PagePDFView)

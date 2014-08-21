@@ -1,6 +1,5 @@
 {% extends "sveedocuments/board/subbase_inserts.html" %}
 {% load i18n mptt_tags autobreadcrumb documents_admin %}
-{% load url from future %}
 
 {% block board_content %}
     {% if perms.sveedocuments.add_insert or perms.sveedocuments.change_insert or perms.sveedocuments.delete_insert %}

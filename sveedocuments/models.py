@@ -37,7 +37,6 @@ IMAGE_MIMETYPES = (
 )
 
 ATTACH_FILE_UPLOADTO = lambda x,y: content_file_name('pages/attachments/%Y/%m/%d', x, y)
-#ATTACH_FILE_UPLOADTO = 'pages/attachments/%Y/%m/%d'
 
 class Insert(models.Model):
     """

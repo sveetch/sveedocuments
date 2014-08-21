@@ -47,9 +47,20 @@ Links
 * Clone it on his `Github repository <https://github.com/sveetch/sveedocuments>`_;
 * Documentation and demo on `DjangoSveetchies page <http://sveetchies.sveetch.net/sveedocuments/>`_.
 
+Cleaning TODO
+*************
+
+I'm making some cleaning to use it in recent Django projects :
+
+* Clean templates with new structures (autobreadcrumbs usage is broken);
+* Migrate HTML from Foundation3 to Foundation5;
+* Use URL namespaces;
+* Use django-guardian;
+
 Requires
 ========
 
+* Django >= 1.5;
 * `docutils`_ >= 0.7;
 * `rstview`_;
 * `autobreadcrumbs`_;

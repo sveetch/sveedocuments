@@ -1,15 +1,7 @@
-{% extends "base.html" %}
+{% extends "sveedocuments/base.html" %}
 {% load autobreadcrumb %}
 
-{% block head_title %}{% current_title_from_breadcrumbs %}{% endblock %}
-
-{% block html_more_links %}{{ block.super }}
-    {% include "sveedocuments/include_css.html" %}
-{% endblock %}
-
-{% block content %}
-<h2>{% current_title_from_breadcrumbs %}</h2>
-
+{% block sveedocuments_content %}
 <div class="restructuredtext_container">
     {{ content|safe }}
 </div>

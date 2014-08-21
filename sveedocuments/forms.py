@@ -10,7 +10,6 @@ from mptt.forms import TreeNodeChoiceField
 from crispy_forms.helper import FormHelper
 from crispy_forms_foundation.layout import Layout, Fieldset, SplitDateTimeField, RowFluid, Column, ButtonHolder, Submit
 
-from djangocodemirror.settings_local import CODEMIRROR_SETTINGS
 from djangocodemirror.fields import CodeMirrorWidget
 
 from rstview.parser import SourceReporter, map_parsing_errors
@@ -85,7 +84,7 @@ class PageForm(forms.ModelForm):
             extra_settings = {'quicksave_url': None}
             
         # Widget d'édition du contenu
-        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, codemirror_settings_name='sveetchies-documents-page', codemirror_settings_extra=extra_settings)
+        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, config_name='sveetchies-documents-page')
     
     def clean_slug(self):
         slug = self.cleaned_data.get("slug")
@@ -155,7 +154,7 @@ class InsertForm(forms.ModelForm):
             # Désactive l'option de sauvegarde rapide
             extra_settings = {'quicksave_url': None}
             
-        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, codemirror_settings_name='sveetchies-documents-insert', codemirror_settings_extra=extra_settings)
+        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, config_name='sveetchies-documents-insert')
     
     def clean_slug(self):
         slug = self.cleaned_data.get("slug")
