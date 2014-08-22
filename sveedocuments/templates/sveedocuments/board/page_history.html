@@ -2,8 +2,10 @@
 {% load i18n autobreadcrumb %}
 
 {% block board_content %}
-    {% if page_instance and page_instance.visible %}<a class="secondary button right" href="{% url 'documents-page-details' page_instance.slug %}">{% trans "View on site" %}</a>{% endif %}
-    <h2>{% current_title_from_breadcrumbs %}</h2>
+    <div class="clearfix">
+        {% if page_instance and page_instance.visible %}<a class="secondary button right" href="{% url 'documents-page-details' page_instance.slug %}">{% trans "View on site" %}</a>{% endif %}
+        <h2>{% current_title_from_breadcrumbs %}</h2>
+    </div>
     
     {% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="history" %}
     

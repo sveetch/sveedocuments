@@ -3,8 +3,10 @@
 
 {% block board_content %}
     {% if perms.sveedocuments.add_page or perms.sveedocuments.change_page or perms.sveedocuments.delete_page %}
-        <a class="secondary button right" href="{% url 'documents-page-add' %}">{% trans "Add a new page" %}</a>
-        <h2>{% trans "Pages" %}</h2>
+        <div class="clearfix">
+            <a class="secondary button right" href="{% url 'documents-page-add' %}">{% trans "Add a new page" %}</a>
+            <h2>{% trans "Pages" %}</h2>
+        </div>
         
         <ul class="list-tree-fluid">{% recursetree page_list %}
             <li{% if not node.visible %} class="hidden"{% endif %}>
@@ -12,12 +14,9 @@
                     <span class="has-tip" data-width="90" title="{{ node.get_visible_display }}"><i class="lsf">{% if node.visible %}view{% else %}ban{% endif %}</i></span>
                     <span class="has-tip" data-width="210" title="{% blocktrans with published=node.published|date:"d/m/Y H:i" %}Published on {{ published }}{% endblocktrans %}"><i class="lsf">{% trans "calendar" %}</i></span>
                 </div>
-                <div href="#" class="large radius button split dropdown force-clearfix">
-                    <a href="{% url 'documents-page-edit' node.slug %}">
-                        {{ node.title }}
-                    </a>
-                    <span></span>{% comment %}Needed for the Foundation dropdown button{% endcomment %}
-                    <ul>
+                <div class="clearfix">
+                    <a href="{% url 'documents-page-edit' node.slug %}" class="button split">{{ node.title }} <span data-dropdown="page-drop-{{ node.id }}"></span></a><br>
+                    <ul id="page-drop-{{ node.id }}" class="f-dropdown" data-dropdown-content>
                         <li><a href="{% url 'documents-page-add-child' node.slug %}" title="{% blocktrans %}Add a new child page to this one{% endblocktrans %}">{% trans "New child page" %}</a></li>
                         <li><a href="{% url 'documents-page-delete' node.slug %}" title="{% blocktrans %}Recursively delete this page and his children{% endblocktrans %}">{% trans "Delete" %}</a></li>
                     </ul>

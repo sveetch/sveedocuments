@@ -30,7 +30,7 @@ class PageIndexView(generic.TemplateView):
     """
     Pages index
     """
-    template_name = "sveedocuments/page_index.html"
+    template_name = "sveedocuments/index.html"
     
     def get(self, request, *args, **kwargs):
         context = {'page_list' : Page.objects.filter(visible=True)}
@@ -57,7 +57,7 @@ class PageDetailsView(generic.DetailView):
     """
     model = Page
     context_object_name = "page_instance"
-    template_name = "sveedocuments/page_details.html"
+    template_name = "sveedocuments/page_details/page_default.html"
     
     def get_object(self, *args, **kwargs):
         """

@@ -12,6 +12,10 @@
 {% endblock %}
 
 {% block base_content %}<div class="row row-fluid documents">
+    <div class="small-12 columns">
+        {% autobreadcrumbs_tag %}
+    </div>
+    
     <div class="small-12 medium-3 columns context-menu">{% spaceless %}
 
         <ul class="side-nav">

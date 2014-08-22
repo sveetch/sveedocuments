@@ -14,6 +14,7 @@ site.update({
     'documents-insert-edit': ugettext_lazy('Edit #{{ insert_instance.slug }}'),
     'documents-page-index': ugettext_lazy('Pages'),
     'documents-page-add': ugettext_lazy('Add a new page'),
+    'documents-page-details': ugettext_lazy('{{ page_instance.title }}'),
     'documents-page-delete': ugettext_lazy('Delete #{{ page_instance.slug }}'),
     'documents-page-history': ugettext_lazy('History'),
     'documents-page-attachments': ugettext_lazy('Attachments'),

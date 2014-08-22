@@ -4,13 +4,23 @@
 {% block board_menu_summary_active %} class="active"{% endblock %}
 
 {% block board_content %}
-    <div class="twelve">
-        <div class="six columns">
+    <div class="row">
+        <div class="small-12 medium-6 columns">
             <div class="panel radius">
                 <h3>{% trans "Pages" %}</h3>
                 <p><span class="round label">{{ page_count }}</span> {% trans "saved" %}</p>
                 <p><span class="round label">{{ page_hidden_count }}</span> {% trans "hidden" %}</p>
-                
+            </div>
+        </div>
+        <div class="small-12 medium-6 columns">
+            <div class="panel radius">
+                <h3>{% trans "Inserts" %}</h3>
+                <p><span class="round label">{{ insert_count }}</span> {% trans "saved" %}</p>
+                <p><span class="round label">{{ insert_hidden_count }}</span> {% trans "hidden" %}</p>
+            </div>
+        </div>
+        <div class="small-12 columns">
+            <div class="panel radius">
                 <h4>5 {% trans "last pages revised" %}</h4>
                 <ul class="square">{% for revised in page_last_revised %}
                     <li>
@@ -19,13 +29,6 @@
                         <p>On {{ revised.modified }} by {{ revised.author.get_full_name }}</p>
                     </li>
                 {% endfor %}</ul>
-            </div>
-        </div>
-        <div class="six columns">
-            <div class="panel radius">
-                <h3>{% trans "Inserts" %}</h3>
-                <p><span class="round label">{{ insert_count }}</span> {% trans "saved" %}</p>
-                <p><span class="round label">{{ insert_hidden_count }}</span> {% trans "hidden" %}</p>
             </div>
         </div>
     </div>

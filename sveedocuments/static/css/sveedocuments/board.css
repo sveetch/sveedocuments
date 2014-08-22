@@ -1,289 +1,61 @@
-@charset "UTF-8";
 /*
- * Pikaday
- * Copyright © 2012 David Bushell | BSD & MIT license | http://dbushell.com/
- */
-/* line 8, ../../scss/sveedocuments/_pikaday.scss */
-.pika-single {
-  z-index: 9999;
-  display: block;
-  position: relative;
-  width: 240px;
-  padding: 8px;
-  color: #333;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-bottom-color: #bbb;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-/* line 20, ../../scss/sveedocuments/_pikaday.scss */
-.pika-single.is-hidden {
-  display: none;
-}
-/* line 24, ../../scss/sveedocuments/_pikaday.scss */
-.pika-single.is-bound {
-  position: absolute;
-  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.5);
-}
+Syntax error: File to import not found or unreadable: settings.
+              Load paths:
+                /home/emencia/projects/extranet/django-apps-src/sveedocuments/compass/scss
+                /home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/blueprint/stylesheets
+                /home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/compass/stylesheets
+                /home/emencia/projects/extranet/foundation5/bower_components/foundation/scss
+                Compass::SpriteImporter
+        on line 7 of /home/emencia/projects/extranet/django-apps-src/sveedocuments/compass/scss/sveedocuments/board.scss
 
-/* line 31, ../../scss/sveedocuments/_pikaday.scss */
-.pika-title {
-  position: relative;
-  text-align: center;
-}
-/* line 35, ../../scss/sveedocuments/_pikaday.scss */
-.pika-title select {
-  cursor: pointer;
-  position: absolute;
-  z-index: 9998;
-  margin: 0;
-  left: 0;
-  top: 5px;
-  opacity: 0;
-}
-
-/* line 46, ../../scss/sveedocuments/_pikaday.scss */
-.pika-label {
-  display: inline-block;
-  *display: inline;
-  position: relative;
-  z-index: 9999;
-  overflow: hidden;
-  margin: 0;
-  padding: 5px 3px;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: bold;
-  background-color: #fff;
-}
-
-/* line 61, ../../scss/sveedocuments/_pikaday.scss */
-.pika-prev,
-.pika-next {
-  display: block;
-  cursor: pointer;
-  position: relative;
-  outline: none;
-  border: 0;
-  padding: 0;
-  width: 20px;
-  height: 30px;
-  background-color: transparent;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 75% 75%;
-  white-space: nowrap;
-  text-indent: 100%;
-  overflow: hidden;
-  opacity: .5;
-  *position: absolute;
-  *top: 0;
-}
-/* line 81, ../../scss/sveedocuments/_pikaday.scss */
-.pika-prev:hover,
-.pika-next:hover {
-  opacity: 1;
-}
-/* line 84, ../../scss/sveedocuments/_pikaday.scss */
-.pika-prev.is-disabled,
-.pika-next.is-disabled {
-  cursor: default;
-  opacity: .2;
-}
-
-/* line 92, ../../scss/sveedocuments/_pikaday.scss */
-.pika-prev,
-.is-rtl .pika-next {
-  float: left;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAUklEQVR42u3VMQoAIBADQf8Pgj+OD9hG2CtONJB2ymQkKe0HbwAP0xucDiQWARITIDEBEnMgMQ8S8+AqBIl6kKgHiXqQqAeJepBo/z38J/U0uAHlaBkBl9I4GwAAAABJRU5ErkJggg==");
-  *left: 0;
-}
-
-/* line 99, ../../scss/sveedocuments/_pikaday.scss */
-.pika-next,
-.is-rtl .pika-prev {
-  float: right;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAU0lEQVR42u3VOwoAMAgE0dwfAnNjU26bYkBCFGwfiL9VVWoO+BJ4Gf3gtsEKKoFBNTCoCAYVwaAiGNQGMUHMkjGbgjk2mIONuXo0nC8XnCf1JXgArVIZAQh5TKYAAAAASUVORK5CYII=");
-  *right: 0;
-}
-
-/* line 105, ../../scss/sveedocuments/_pikaday.scss */
-.pika-select {
-  display: inline-block;
-  *display: inline;
-}
-
-/* line 110, ../../scss/sveedocuments/_pikaday.scss */
-.pika-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  border: 0;
-}
-/* line 116, ../../scss/sveedocuments/_pikaday.scss */
-.pika-table th, .pika-table td {
-  width: 14.285714285714286%;
-}
-/* line 120, ../../scss/sveedocuments/_pikaday.scss */
-.pika-table th {
-  color: #999;
-  font-size: 12px;
-  line-height: 25px;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* line 129, ../../scss/sveedocuments/_pikaday.scss */
-.pika-button {
-  cursor: pointer;
-  display: block;
-  outline: none;
-  border: 0;
-  margin: 0;
-  width: 100%;
-  padding: 5px;
-  color: #666;
-  font-size: 12px;
-  line-height: 15px;
-  text-align: right;
-  background: #f5f5f5;
-}
-/* line 143, ../../scss/sveedocuments/_pikaday.scss */
-.pika-button:hover {
-  color: #fff !important;
-  background: #ff8000 !important;
-  box-shadow: none !important;
-  border-radius: 3px !important;
-}
-
-/* line 151, ../../scss/sveedocuments/_pikaday.scss */
-.is-today .pika-button {
-  color: #33aaff;
-  font-weight: bold;
-}
-
-/* line 156, ../../scss/sveedocuments/_pikaday.scss */
-.is-selected .pika-button {
-  color: #fff;
-  font-weight: bold;
-  background: #33aaff;
-  box-shadow: inset 0 1px 3px #178fe5;
-  border-radius: 3px;
-}
-
-/* line 164, ../../scss/sveedocuments/_pikaday.scss */
-.is-disabled .pika-button {
-  pointer-events: none;
-  cursor: default;
-  color: #999;
-  opacity: .3;
-}
-
-/* line 14, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid, ul.list-tree-fluid ul {
-  margin: 0 1.4em 1.4em 1.4em;
-  padding: 0;
-  list-style-type: none;
-  background-image: url('../../images/list-tree/list-tree-alt-vline.png?1357992714');
-  background-repeat: repeat-y;
-}
-
-/* line 22, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid ul {
-  margin: 0 0 0 .5em;
-  margin-left: 1.3em;
-  padding-top: .6em;
-}
-/* line 28, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid li {
-  margin: 0;
-  padding: 0 0 0 .6em;
-  background-image: url('../../images/list-tree/list-tree-alt-node.png?1357992714');
-  background-repeat: no-repeat;
-  background-position: 0 1.2em;
-  color: #369;
-}
-/* line 37, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid li.last, ul.list-tree-fluid li:last-child {
-  background-image: url('../../images/list-tree/list-tree-alt-lastnode.png?1357992714');
-  background-color: #ffffff;
-  background-position: 0 -1em;
-}
-/* line 43, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid li .indicator {
-  padding: 1.4px 5px;
-  float: left;
-  text-align: center;
-  border: 1px solid black;
-  border-right: 0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-}
-/* line 51, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid li .indicator span {
-  display: block;
-  border: 0;
-}
-/* line 56, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid li .indicator i {
-  font-size: 18px;
-  line-height: 0;
-}
-/* line 62, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid li.hidden {
-  opacity: 0.5;
-}
-/* line 65, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid li.hidden:hover, ul.list-tree-fluid li.hidden.hover_highlight {
-  opacity: 1.0;
-}
-/* line 72, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid .button-group li, ul.list-tree-fluid .button.split li {
-  background-image: none;
-}
-/* line 77, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid li + li {
-  padding-top: .6em;
-}
-/* line 89, ../../scss/sveedocuments/board.scss */
-ul.list-tree-fluid .children.hidden_parent li.last,
-ul.list-tree-fluid .children.hidden_parent li:last-child {
-  background-position: 0 -2.4em;
-}
-
-/* line 98, ../../scss/sveedocuments/board.scss */
-.DjangoCodeMirror {
-  width: 100% !important;
-}
-
-/* line 102, ../../scss/sveedocuments/board.scss */
-.empty {
-  color: #BBBBBB;
-  font-style: italic;
-}
-
-/* line 107, ../../scss/sveedocuments/board.scss */
-ul.feed {
-  list-style-type: none;
-  margin-bottom: 5px;
-}
-/* line 111, ../../scss/sveedocuments/board.scss */
-ul.feed li {
-  padding: 15px;
-}
-/* line 114, ../../scss/sveedocuments/board.scss */
-ul.feed li p {
-  margin-bottom: 5px;
-}
-/* line 117, ../../scss/sveedocuments/board.scss */
-ul.feed li .ago {
-  font-size: 12px;
-  color: #BBBBBB;
-}
-/* line 122, ../../scss/sveedocuments/board.scss */
-ul.feed li + li {
-  border-top: 1px solid #DDDDDD;
-}
+Backtrace:
+/home/emencia/projects/extranet/django-apps-src/sveedocuments/compass/scss/sveedocuments/board.scss:7
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/import_node.rb:67:in `rescue in import'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/import_node.rb:45:in `import'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/import_node.rb:28:in `imported_file'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/import_node.rb:37:in `css_import?'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/base.rb:53:in `map'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/tree/root_node.rb:20:in `render'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/engine.rb:315:in `_render'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/sass-3.2.18/lib/sass/engine.rb:262:in `render'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/compiler.rb:139:in `block (2 levels) in compile'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/compiler.rb:126:in `timed'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/compiler.rb:138:in `block in compile'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/logger.rb:45:in `red'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/compiler.rb:137:in `compile'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/compiler.rb:118:in `compile_if_required'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/compiler.rb:103:in `block (2 levels) in run'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/compiler.rb:101:in `each'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/compiler.rb:101:in `block in run'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/compiler.rb:126:in `timed'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/compiler.rb:100:in `run'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/commands/update_project.rb:45:in `perform'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/commands/base.rb:18:in `execute'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/commands/project_base.rb:19:in `execute'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/bin/compass:30:in `block in <top (required)>'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/bin/compass:44:in `call'
+/home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/bin/compass:44:in `<top (required)>'
+/home/emencia/.rvm/gems/ruby-2.1.1/bin/compass:23:in `load'
+/home/emencia/.rvm/gems/ruby-2.1.1/bin/compass:23:in `<main>'
+/home/emencia/.rvm/gems/ruby-2.1.1/bin/ruby_executable_hooks:15:in `eval'
+/home/emencia/.rvm/gems/ruby-2.1.1/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: settings.\A               Load paths:\A                 /home/emencia/projects/extranet/django-apps-src/sveedocuments/compass/scss\A                 /home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/blueprint/stylesheets\A                 /home/emencia/.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/compass/stylesheets\A                 /home/emencia/projects/extranet/foundation5/bower_components/foundation/scss\A                 Compass::SpriteImporter\A         on line 7 of /home/emencia/projects/extranet/django-apps-src/sveedocuments/compass/scss/sveedocuments/board.scss"; }

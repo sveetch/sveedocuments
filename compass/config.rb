@@ -1,12 +1,12 @@
 # Require any additional compass plugins here.
-require 'zurb-foundation'
+add_import_path "../../../foundation5/bower_components/foundation/scss"
 
 # Set this to the root of your project when deployed:
 http_path = "/static/"
-sass_dir = "static/scss"
-css_dir = "static/css"
-images_dir = "static/images"
-javascripts_dir = "static/js"
+sass_dir = "scss"
+css_dir = "../sveedocuments/static/sveedocuments/css"
+images_dir = "../sveedocuments/static/sveedocuments/images"
+javascripts_dir = "../sveedocuments/static/sveedocuments/js"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed

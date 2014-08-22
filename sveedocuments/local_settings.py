@@ -12,17 +12,17 @@ DOCUMENTS_CACHE_KEYS_TO_CLEAN = getattr(settings, 'DOCUMENTS_CACHE_KEYS_TO_CLEAN
 DOCUMENTS_PAGE_RESERVED_SLUGS = getattr(settings, 'DOCUMENTS_PAGE_MENU', ('board','add','preview','documents-help','inserts'))
 
 # Default template to generate tree menu
-DOCUMENTS_PAGE_TREEMENU = getattr(settings, 'DOCUMENTS_PAGE_TREEMENU', "sveedocuments/page_treemenu.html")
+DOCUMENTS_PAGE_TREEMENU = getattr(settings, 'DOCUMENTS_PAGE_TREEMENU', "sveedocuments/menu_tree.html")
 # Default template to generate flat menu
-DOCUMENTS_PAGE_FLATMENU = getattr(settings, 'DOCUMENTS_PAGE_FLATMENU', "sveedocuments/page_flatmenu.html")
+DOCUMENTS_PAGE_FLATMENU = getattr(settings, 'DOCUMENTS_PAGE_FLATMENU', "sveedocuments/menu_flat.html")
 
 # Enable or disable Pages archiving
 DOCUMENTS_PAGE_ARCHIVED = True
 
 # Available templates for Pages
 DOCUMENTS_PAGE_TEMPLATES = {
-    'default': ('sveedocuments/page_details/default.html', _('Default template with document content only')),
-    'with_toc': ('sveedocuments/page_details/with_toc.html', _('Template with a Table Of Content and the document content')),
+    'default': ('sveedocuments/page_details/page_default.html', _('Default template with document content only')),
+    'with_toc': ('sveedocuments/page_details/page_with-toc.html', _('Template with a Table Of Content and the document content')),
 }
 DOCUMENTS_PAGE_TEMPLATES.update(getattr(settings, 'DOCUMENTS_PAGE_TEMPLATES', {}))
 

@@ -1,0 +1,16 @@
+{% load i18n %}{% spaceless %}
+<div class="clearfix">
+    <p class="document_action_menu right">
+        <a href="#" data-dropdown="document-actions-drop" class="button medium radius secondary dropdown">{% trans "Actions on this document" %}</a><br>
+        <ul id="document-actions-drop" data-dropdown-content class="f-dropdown">
+            {% if user.is_staff %}<li><a href="{% url 'documents-page-edit' page_instance.slug %}">{% trans "Edit" %}</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'documents-page-delete' page_instance.slug %}">{% trans "Delete" %}</a></li>{% endif %}
+            <li class="divider"></li>
+            <li><a href="{% url 'documents-page-source' page_instance.slug %}">{% trans "Plain text version" %}</a></li>
+            {% if pdf_export_enabled %}<li class="divider"></li>
+            <li><a href="{% url 'documents-page-pdf' page_instance.slug %}">{% trans "PDF version" %}</a></li>{% endif %}
+        </ul>
+    </p>
+</div>
+{% endspaceless %}

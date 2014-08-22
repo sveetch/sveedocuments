@@ -5,13 +5,13 @@
     {% document_context page_instance %}
     <div class="small-12 medium-3 columns context-menu">
         {% if document_toc %}<div class="panel">
-            <h2>{% trans "Table of content" %}</h2>
+            <h3>{% trans "Table of content" %}</h3>
             {{ document_toc }}
         </div>{% endif %}
         
         {% with document_navigation as tree_descendants %}
         {% if tree_descendants %}<div class="panel">
-            <h2>{% trans "Navigation" %}</h2>
+            <h3>{% trans "Navigation" %}</h3>
             <ul class="tree_bulletlist">
                 {% recursetree tree_descendants %}
                     <li{% if active_page_instance and active_page_instance.slug == node.slug %} class="active"{% endif %}>
@@ -28,8 +28,7 @@
         {% endwith %}
     </div>
     <div class="small-12 medium-9 columns">
-        {% include "sveedocuments/page_details/include_action_menu.html" %}
-        <h2>{{ page_instance.title }}</h2>
+        {% include "sveedocuments/page_details/_action_menu.html" %}
 
         <div class="restructuredtext_container">
             {{ document_render }}

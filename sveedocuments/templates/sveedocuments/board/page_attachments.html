@@ -11,9 +11,11 @@
     </script>
 {% endblock %}
 
-{% block board_content %}<div class="twelve">
-    {% if page_instance and page_instance.visible %}<a class="secondary button right" href="{% url 'documents-page-details' page_instance.slug %}">{% trans "View on site" %}</a>{% endif %}
-    <h2>{% current_title_from_breadcrumbs %}</h2>
+{% block board_content %}
+    <div class="clearfix">
+        {% if page_instance and page_instance.visible %}<a class="secondary button right" href="{% url 'documents-page-details' page_instance.slug %}">{% trans "View on site" %}</a>{% endif %}
+        <h2>{% current_title_from_breadcrumbs %}</h2>
+    </div>
     
     {% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="attachments" %}
     
@@ -23,8 +25,8 @@
             <p><strong>{% trans "Title" %} :</strong> {{ item.title }}</p>
             <p><strong>{% trans "Slug" %} :</strong> {{ item.slug }}</p>
             <p>
-                <a class="tiny round secondary button ui-open_blank" href="{{ item.file.url }}">{% trans "View" %}</a>
-                <a class="tiny round alert button ui-open_blank" href="{% url 'documents-page-attachments-delete' slug=page_instance.slug pk=item.id %}">{% trans "Delete" %}</a>
+                <a class="tiny round secondary button" target="_blank" href="{{ item.file.url }}">{% trans "View" %}</a>
+                <a class="tiny round alert button" href="{% url 'documents-page-attachments-delete' slug=page_instance.slug pk=item.id %}">{% trans "Delete" %}</a>
             </p>
         </li>
     {% empty %}
@@ -35,4 +37,4 @@
     
     <h3>{% trans "Add a new attachment" %}</h3>
     {% crispy form %}
-</div>{% endblock %}
+{% endblock %}

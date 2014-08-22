@@ -1,14 +1,14 @@
 //
 // SCSS sources for sveedocument board
 //
-// Require Compass (0.12.x) + Foundation (3.2.x) to compile
+// Require Compass (0.12.x) + Foundation (5.x) to compile
 //
-@import "foundation/settings";
-//@import "modular-scale";
+//@import "foundation/settings";
+@import "settings";
 @import "compass/css3/border-radius";
 
 // The pikaday plugin stylesheet
-@import "pikaday";
+@import "sveedocuments/pikaday";
 
 // "Fluid" tree list
 ul.list-tree-fluid, ul.list-tree-fluid ul {
@@ -46,7 +46,7 @@ ul.list-tree-fluid{
             text-align: center;
             border: 1px solid black;
             border-right: 0;
-            @include border-radius($buttonRadius);
+            @include border-radius($global-radius);
             
             span{
                 display: block;
@@ -109,7 +109,7 @@ ul.feed{
     margin-bottom: 5px;
     
     li{
-        padding: ($columnGutter/2);
+        padding: ($column-gutter/2);
         
         p{
             margin-bottom: 5px;
