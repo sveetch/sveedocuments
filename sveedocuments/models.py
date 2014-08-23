@@ -4,6 +4,7 @@ Data models
 """
 from datetime import datetime
 
+import django.dispatch
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.cache import cache
@@ -261,3 +262,20 @@ class Attachment(models.Model):
         verbose_name = _("attachment file")
         verbose_name_plural = _("attachment files")
 
+
+# Declaring signals
+documents_page_update_signal = django.dispatch.Signal(providing_args=["page_instance","edited"])
+documents_insert_update_signal = django.dispatch.Signal(providing_args=["insert_instance","edited"])
+
+## Signal receiver demo
+#def documents_page_update_receiver(sender, **kwargs):
+    #page_instance = kwargs['page_instance']
+    #edited = kwargs['edited']
+    
+    #if edited:
+        #print u"* {0} has been edited !".format(page_instance.title)
+    #else:
+        #print u"* {0} has been created !".format(page_instance.title)
+
+## Connecting signal to the receiver
+#documents_page_update_signal.connect(documents_page_update_receiver)

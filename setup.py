@@ -26,11 +26,11 @@ setup(
     install_requires=[
         'docutils>=0.7',
         'rstview>=0.2',
-        'autobreadcrumbs',
+        'autobreadcrumbs>=1.0',
         'djangocodemirror>=0.9.4.1',
         'django-mptt>=0.5.2',
-        'crispy-forms-foundation>=0.2.3',
-        'django-braces>=0.2.1',
+        'crispy-forms-foundation>=1.4.0',
+        'django-braces>=1.3.0',
     ],
     include_package_data=True,
     zip_safe=False

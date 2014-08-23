@@ -6,7 +6,7 @@
         {% recursetree page_list %}{% spaceless %}
             <li>
                 <div class="tree-node-pointer">
-                    <a href="{% url 'documents-page-details' node.slug %}">{{ node.title }}</a>
+                    <a href="{% url 'sveedocuments:page-details' node.slug %}">{{ node.title }}</a>
                 </div>
                 {% if not node.is_leaf_node %}
                     <ul class="list-tree">{{ children }}</ul>

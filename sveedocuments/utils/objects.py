@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Utilitaire autour des objets/instances de Django
-"""
 def get_instance_children(obj, depth=0, sig=0):
     """
     Récupèration récursive des relations enfants d'un objet

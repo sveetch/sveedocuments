@@ -15,7 +15,7 @@ from djangocodemirror.views import SampleQuicksaveMixin
 from rstview.parser import SourceParser
 
 from sveedocuments.models import Insert
-from sveedocuments.forms import InsertForm, InsertQuickForm
+from sveedocuments.forms.insert import InsertForm, InsertEditForm, InsertQuickForm
 from sveedocuments.utils.objects import get_instance_children
 
 class InsertCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
@@ -39,8 +39,8 @@ class InsertCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Crea
 
     def get_success_url(self):
         if self._redirect_to_self:
-            return reverse('documents-insert-edit', args=[self.object.slug])
-        return reverse('documents-insert-index')
+            return reverse('sveedocuments:insert-edit', args=[self.object.slug])
+        return reverse('sveedocuments:insert-index')
     
     def get_form_kwargs(self):
         kwargs = super(InsertCreateView, self).get_form_kwargs()
@@ -56,7 +56,7 @@ class InsertEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.Update
     model = Insert
     context_object_name = "insert_instance"
     template_name = "sveedocuments/board/insert_form.html"
-    form_class = InsertForm
+    form_class = InsertEditForm
     permission_required = "sveedocuments.change_insert"
     raise_exception = True
     _redirect_to_self = False
@@ -70,8 +70,8 @@ class InsertEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.Update
 
     def get_success_url(self):
         if self._redirect_to_self:
-            return reverse('documents-insert-edit', args=[self.object.slug])
-        return reverse('documents-insert-index')
+            return reverse('sveedocuments:insert-edit', args=[self.object.slug])
+        return reverse('sveedocuments:insert-index')
     
     def get_form_kwargs(self):
         kwargs = super(InsertEditView, self).get_form_kwargs()
@@ -97,7 +97,7 @@ class InsertDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.Dele
         return self.render_to_response(context)
 
     def get_success_url(self):
-        return reverse('documents-insert-index')
+        return reverse('sveedocuments:insert-index')
 
 class InsertQuicksaveView(SampleQuicksaveMixin, InsertEditView):
     """

@@ -4,7 +4,7 @@
 {% block board_content %}
     {% if perms.sveedocuments.add_page or perms.sveedocuments.change_page or perms.sveedocuments.delete_page %}
         <div class="clearfix">
-            <a class="secondary button right" href="{% url 'documents-page-add' %}">{% trans "Add a new page" %}</a>
+            <a class="secondary button right" href="{% url 'sveedocuments:page-add' %}">{% trans "Add a new page" %}</a>
             <h2>{% trans "Pages" %}</h2>
         </div>
         
@@ -15,10 +15,10 @@
                     <span class="has-tip" data-width="210" title="{% blocktrans with published=node.published|date:"d/m/Y H:i" %}Published on {{ published }}{% endblocktrans %}"><i class="icon-calendar"></i></span>
                 </div>
                 <div class="clearfix">
-                    <a href="{% url 'documents-page-edit' node.slug %}" class="button split">{{ node.title }} <span data-dropdown="page-drop-{{ node.id }}"></span></a><br>
+                    <a href="{% url 'sveedocuments:page-edit' node.slug %}" class="button split">{{ node.title }} <span data-dropdown="page-drop-{{ node.id }}"></span></a><br>
                     <ul id="page-drop-{{ node.id }}" class="f-dropdown" data-dropdown-content>
-                        <li><a href="{% url 'documents-page-add-child' node.slug %}" title="{% blocktrans %}Add a new child page to this one{% endblocktrans %}">{% trans "New child page" %}</a></li>
-                        <li><a href="{% url 'documents-page-delete' node.slug %}" title="{% blocktrans %}Recursively delete this page and his children{% endblocktrans %}">{% trans "Delete" %}</a></li>
+                        <li><a href="{% url 'sveedocuments:page-add-child' node.slug %}" title="{% blocktrans %}Add a new child page to this one{% endblocktrans %}">{% trans "New child page" %}</a></li>
+                        <li><a href="{% url 'sveedocuments:page-delete' node.slug %}" title="{% blocktrans %}Recursively delete this page and his children{% endblocktrans %}">{% trans "Delete" %}</a></li>
                     </ul>
                 </div>
                 {% if not node.is_leaf_node %}<ul class="children {% if not node.visible %}hidden_parent{% endif %}">{{ children }}</ul>{% endif %}

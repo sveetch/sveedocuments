@@ -19,9 +19,9 @@
     <div class="small-12 medium-2 columns context-menu">{% spaceless %}
 
         <ul class="side-nav">
-            <li{% block board_menu_summary_active %}{% endblock %}><a href="{% url 'documents-board' %}">{% trans "Summary" %}</a></li>
-            <li{% block board_menu_pages_active %}{% endblock %}><a href="{% url 'documents-page-index' %}">{% trans "Pages" %}</a></li>
-            <li{% block board_menu_inserts_active %}{% endblock %}><a href="{% url 'documents-insert-index' %}">{% trans "Inserts" %}</a></li>
+            <li{% block board_menu_summary_active %}{% endblock %}><a href="{% url 'sveedocuments:board' %}">{% trans "Summary" %}</a></li>
+            <li{% block board_menu_pages_active %}{% endblock %}><a href="{% url 'sveedocuments:page-index' %}">{% trans "Pages" %}</a></li>
+            <li{% block board_menu_inserts_active %}{% endblock %}><a href="{% url 'sveedocuments:insert-index' %}">{% trans "Inserts" %}</a></li>
         </ul>
 
     {% endspaceless %}</div>

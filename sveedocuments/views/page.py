@@ -22,7 +22,8 @@ from rstview.parser import SourceParser
 
 from sveedocuments import local_settings
 from sveedocuments.models import Page, Attachment
-from sveedocuments.forms import PageForm, PageQuickForm, AttachmentForm
+from sveedocuments.forms.page import PageForm, PageEditForm, PageQuickForm
+from sveedocuments.forms.attachment import AttachmentForm
 from sveedocuments.utils.objects import get_instance_children
 from sveedocuments.utils.braces_addons import DetailListAppendView, DirectDeleteView, DownloadMixin
 
@@ -114,8 +115,8 @@ class PageCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Create
         
     def get_success_url(self):
         if self._redirect_to_self:
-            return reverse('documents-page-edit', args=[self.object.slug])
-        return reverse('documents-page-index')
+            return reverse('sveedocuments:page-edit', args=[self.object.slug])
+        return reverse('sveedocuments:page-index')
 
     def _get_parent(self, **kwargs):
         if 'slug' in kwargs:
@@ -160,7 +161,7 @@ class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentM
     model = Page
     context_object_name = "page_instance"
     template_name = "sveedocuments/board/page_form.html"
-    form_class = PageForm
+    form_class = PageEditForm
     permission_required = "sveedocuments.change_page"
     raise_exception = True
     _redirect_to_self = False
@@ -182,8 +183,8 @@ class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentM
 
     def get_success_url(self):
         if self._redirect_to_self:
-            return reverse('documents-page-edit', args=[self.object.slug])
-        return reverse('documents-page-index')
+            return reverse('sveedocuments:page-edit', args=[self.object.slug])
+        return reverse('sveedocuments:page-index')
 
     def get_form_kwargs(self):
         kwargs = super(PageEditView, self).get_form_kwargs()
@@ -237,7 +238,7 @@ class PageAttachmentsView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsC
         return self.parent_object.attachment.all()
 
     def get_success_url(self):
-        return reverse('documents-page-attachments', args=[self.parent_object.slug])
+        return reverse('sveedocuments:page-attachments', args=[self.parent_object.slug])
 
     def get_form_kwargs(self):
         kwargs = super(PageAttachmentsView, self).get_form_kwargs()
@@ -256,7 +257,7 @@ class PageAttachmentDeleteView(LoginRequiredMixin, PermissionRequiredMixin, Dire
     _memoized_attr = ['id', 'slug', 'title', 'page']
 
     def get_success_url(self):
-        return reverse('documents-page-attachments', args=[self.old_object['page'].slug])
+        return reverse('sveedocuments:page-attachments', args=[self.old_object['page'].slug])
 
 class PageDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     """
@@ -284,7 +285,7 @@ class PageDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.Delete
         # Explicitly define a TreeManager() on your model to remove this warning.
         
         # Then redirect
-        return reverse('documents-page-index')
+        return reverse('sveedocuments:page-index')
 
 class PageQuicksaveView(SampleQuicksaveMixin, PageEditView):
     """

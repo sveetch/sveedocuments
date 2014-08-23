@@ -3,7 +3,7 @@
 
 {% block board_content %}
     {% if perms.sveedocuments.add_insert or perms.sveedocuments.change_insert or perms.sveedocuments.delete_insert %}
-        <a class="secondary button right" href="{% url 'documents-insert-add' %}">{% trans "Add a new insert document" %}</a>
+        <a class="secondary button right" href="{% url 'sveedocuments:insert-add' %}">{% trans "Add a new insert document" %}</a>
         <h2>{% trans "Insert documents" %}</h2>
         
         <table class="full">
@@ -19,11 +19,11 @@
             <tbody>
         {% for item in insert_list %}
                 <tr id="insert-row-{{ item.id }}">
-                    <th class="title-cell col-odd"><a href="{% url 'documents-insert-edit' item.slug %}">{{ item.title }}</a></th>
+                    <th class="title-cell col-odd"><a href="{% url 'sveedocuments:insert-edit' item.slug %}">{{ item.title }}</a></th>
                     <td class="slug-cell col-even">{{ item.slug }}</td>
                     <td class="visible-cell col-odd">{{ item.get_visible_display }}</td>
                     <td class="modified-cell col-even">{{ item.modified|date:"l d F Y à H:i"|title }}</td>
-                    <td class="actions-cell col-odd"><a href="{% url 'documents-insert-delete' item.slug %}">{% trans "Delete" %}</a></td>
+                    <td class="actions-cell col-odd"><a href="{% url 'sveedocuments:insert-delete' item.slug %}">{% trans "Delete" %}</a></td>
                 </tr>
             </tr>
         {% endfor %}

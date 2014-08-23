@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 DOCUMENTS_CACHE_KEYS_TO_CLEAN = getattr(settings, 'DOCUMENTS_CACHE_KEYS_TO_CLEAN', [])
 
 # Forbidden words for slug values in documents
-DOCUMENTS_PAGE_RESERVED_SLUGS = getattr(settings, 'DOCUMENTS_PAGE_MENU', ('board','add','preview','documents-help','inserts'))
+DOCUMENTS_PAGE_RESERVED_SLUGS = getattr(settings, 'DOCUMENTS_PAGE_MENU', ('add','board','help','inserts','preview','sitemap'))
 
 # Default template to generate tree menu
 DOCUMENTS_PAGE_TREEMENU = getattr(settings, 'DOCUMENTS_PAGE_TREEMENU', "sveedocuments/menu_tree.html")
@@ -42,30 +42,30 @@ CODEMIRROR_SETTINGS = {
     'sveetchies-documents-page': {
         'mode': 'rst',
         'csrf': 'CSRFpass',
-        'preview_url': ('documents-preview',),
-        #'quicksave_url': ('documents-page-quicksave',),
+        'preview_url': ('sveedocuments:preview',),
+        #'quicksave_url': ('sveedocuments:page-quicksave',),
         #'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
         'quicksave_url': None,
         'lineWrapping': False,
         'lineNumbers': True,
         'search_enabled': True,
         #'settings_cookie': DJANGOCODEMIRROR_USER_SETTINGS_COOKIE_NAME,
-        'help_link': ('documents-help',),
-        'settings_url': ('documents-editor-settings', [], {}),
+        'help_link': ('sveedocuments:help',),
+        'settings_url': ('sveedocuments:editor-settings', [], {}),
     },
     'sveetchies-documents-insert': {
         'mode': 'rst',
         'csrf': 'CSRFpass',
-        'preview_url': ('documents-preview',),
-        #'quicksave_url': ('documents-insert-quicksave',),
+        'preview_url': ('sveedocuments:preview',),
+        #'quicksave_url': ('sveedocuments:insert-quicksave',),
         #'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
         'quicksave_url': None,
         'lineWrapping': False,
         'lineNumbers': True,
         'search_enabled': True,
         #'settings_cookie': DJANGOCODEMIRROR_USER_SETTINGS_COOKIE_NAME,
-        'help_link': ('documents-help',),
-        'settings_url': ('documents-editor-settings', [], {}),
+        'help_link': ('sveedocuments:help',),
+        'settings_url': ('sveedocuments:editor-settings', [], {}),
     },
 }
 

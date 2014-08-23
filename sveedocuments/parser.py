@@ -22,16 +22,9 @@ def extract_toc(source, setting_key="default", body_only=True, initial_header_le
     """
     Extract the TOC from the rendered content by the parser
     
-    Actuellement c'est très gruik :
-    
-    * Pas de possibilité évidente d'avoir le TOC en dehors du document via la 
-      directive ``contents`` donc cette méthode parse de son coté la source en lui 
-      ajoutant cette directive au tout début;
-    * Le résultat est parsé comme du ElementTree pour y retrouver le bloc concernant le 
-      TOC et l'extraire;
-    * Comme la recherche Xpath n'est pas assez développé dans le ElementTree embarqué dans 
-      Python 2.6, on assume que le premier bloc est toujours celui du TOC (à ma 
-      connaissance ce n'est pas possible autrement);
+    This is very tricky, we add the ``contents`` directive to the document, 
+    parse it again (sic) with docutils, then parse it with ElementTree to find 
+    the TOC element to extract it. We assume the first element is allways the TOC.
     """
     parser_settings = get_functional_settings(setting_key, body_only, initial_header_level, silent)
     

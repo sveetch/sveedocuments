@@ -5,9 +5,9 @@
 
 {% block breadcrumbs %}{{ block.super }}
 {% for item in page_instance.get_ancestors %}
-    <a href="{% url 'documents-page-details' item.slug %}">{{ item.title }}</a>
+    <a href="{% url 'sveedocuments:page-details' item.slug %}">{{ item.title }}</a>
 {% endfor %}
-    <a href="{% url 'documents-page-details' page_instance.slug %}">{{ page_instance.title }}</a>
+    <a href="{% url 'sveedocuments:page-details' page_instance.slug %}">{{ page_instance.title }}</a>
 {% endblock %}
 
 {% block body_id %}doc-id-{{ page_instance.id }}{% endblock %}
