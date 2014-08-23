@@ -3,45 +3,33 @@
 //
 // Require Compass (0.12.x) + Foundation (5.x) to compile
 //
-//@import "foundation/settings";
-@import "settings";
 @import "compass/css3/border-radius";
 
-// The pikaday plugin stylesheet
-@import "sveedocuments/pikaday";
-
 // "Fluid" tree list
-ul.list-tree-fluid, ul.list-tree-fluid ul {
-    margin: 0 1.4em 1.4em 1.4em;
+ul.list-tree-fluid{
+    margin: 0 rem-calc(22px) rem-calc(22px);
     padding: 0;
     list-style-type: none;
     background-image: image-url('list-tree/list-tree-alt-vline.png');
-    background-repeat:repeat-y;
-}
-ul.list-tree-fluid{
-    ul{
-        margin: 0 0 0 .5em;
-        margin-left: 1.3em;
-        padding-top: .6em;
-    }
+    background-repeat: repeat-y;
     
-    li {
+    li.tree-item{
         margin: 0;
-        padding: 0 0 0 .6em;
+        padding: 0 0 0 rem-calc(10px);
         background-image: image-url('list-tree/list-tree-alt-node.png');
-        background-repeat:no-repeat;
-        background-position:0 1.2em;
+        background-repeat: no-repeat;
+        background-position: 0 rem-calc(19px);
         color: #369;
         
         &.last,
         &:last-child {
             background-image: image-url('list-tree/list-tree-alt-lastnode.png');
             background-color: #ffffff; 
-            background-position:0 -1em; 
+            background-position:0 rem-calc(-16px); 
         }
         
         .indicator{
-            padding: 1.4px 5px;
+            padding: rem-calc(1.4px) rem-calc(5px);
             float: left;
             text-align: center;
             border: 1px solid black;
@@ -54,9 +42,13 @@ ul.list-tree-fluid{
             }
             
             i{
-                font-size: 18px;
+                font-size: rem-calc(18px);
                 line-height: 0;
             }
+        }
+    
+        &+li{
+            padding-top: rem-calc(10px);
         }
     
         &.hidden{
@@ -68,28 +60,17 @@ ul.list-tree-fluid{
         }
     }
     
-    .button-group, .button.split{
-        li{
-            background-image: none;
-        }
+    ul.children{
+        margin: 0 0 0 rem-calc(20px);
+        padding: rem-calc(10px) 0 0;
+        list-style-type: none;
+        background-image: image-url('list-tree/list-tree-alt-vline.png');
+        background-repeat: repeat-y;
     }
     
-    li + li{
-        padding-top: .6em;
-    }
-    
-    // Redefine some attributes for the hidden element
-    // TODO: seems buggy, first hidden elements are not really hidden but there 
-    // children are well hidden
-    .children{
-        &.hidden_parent{
-            //opacity: 0.5;
-            
-            li.last,
-            li:last-child {
-                background-position: 0 -2.4em; 
-            }
-        }
+    .button-group,
+    .button.split{
+        margin-bottom: 0;
     }
 }
 
@@ -103,23 +84,26 @@ ul.list-tree-fluid{
     color: #BBBBBB;
     font-style: italic;
 }
-//
+
+// Feed-like list
 ul.feed{
     list-style-type: none;
-    margin-bottom: 5px;
+    margin-bottom: rem-calc(5px);
     
     li{
         padding: ($column-gutter/2);
         
         p{
-            margin-bottom: 5px;
+            margin-bottom: rem-calc(5px);
         }
+        
         .ago{
-            font-size: 12px;
+            font-size: rem-calc(12px);
             color: #BBBBBB;
         }
-    }
-    li + li{
-        border-top: 1px solid #DDDDDD;
+        
+        &+li{
+            border-top: 1px solid #DDDDDD;
+        }
     }
 }

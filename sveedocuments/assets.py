@@ -10,10 +10,9 @@ else:
 
     AVALAIBLE_BUNDLES = {
         'sveedocuments_css': Bundle(
-            "css/sveedocuments/frontend.css",
-            "css/sveedocuments/board.css",
+            "css/sveedocuments_app.css",
             filters='yui_css',
-            output='css/sveedocuments/sveedocuments.min.css'
+            output='css/sveedocuments_app.min.css'
         ),
         'sveedocuments_board_js': Bundle(
             "js/jquery/jquery.slugify.js",

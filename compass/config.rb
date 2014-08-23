@@ -4,9 +4,9 @@ add_import_path "../../../foundation5/bower_components/foundation/scss"
 # Set this to the root of your project when deployed:
 http_path = "/static/"
 sass_dir = "scss"
-css_dir = "../sveedocuments/static/sveedocuments/css"
-images_dir = "../sveedocuments/static/sveedocuments/images"
-javascripts_dir = "../sveedocuments/static/sveedocuments/js"
+css_dir = "../sveedocuments/static/css"
+images_dir = "../sveedocuments/static/images"
+javascripts_dir = "../sveedocuments/static/js"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed

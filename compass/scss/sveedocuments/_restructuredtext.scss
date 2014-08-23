@@ -1,5 +1,5 @@
 //
-// SCSS sources for sveedocument ReStructuredText layout
+// SCSS addons for sveedocuments ReStructuredText contents
 //
 .restructuredtext_container{
     h3, 
@@ -70,47 +70,10 @@
         background-image: image-url("notices/stop.png");
     }
 
-    // Citations, codes, etc..
-    blockquote{
-        width:96%;
-        margin-left:1%;
-        margin-right:1%;
-        padding:1%;
-        border-left:3px solid #aaaaaa;
-        background-color:#ffffff;
-        text-shadow:none;
-    }
-    pre{
-        width:98%;
-        padding-left:1%;
-        padding-right:1%;
-        background-color:#e8efff;
-        border:1px solid #d3d3d3;
-        overflow:auto;
-        text-shadow:none;
-    }
-    code{
-        width:100%;
-        background-color:#e8efff;
-        border-bottom:1px solid #d3d3d3;
-        overflow:auto;
-    }
-
     tt.literal{
         background-color:#e8efff;
         border-bottom:1px solid #B0B0B0;
         text-shadow:none;
-    }
-    // Listes
-    ul, ol{
-        margin-left: ms(1);
-    }
-    dt {
-        margin-top: ms(0);
-        font-weight: bold;
-    }
-    dt:first-child {
-        margin-top:0;
     }
 
     // Pygments

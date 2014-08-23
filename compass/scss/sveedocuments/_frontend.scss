@@ -4,9 +4,6 @@
 // Require Compass (0.12) to compile
 //
 
-@import "sveedocuments/pygments";
-@import "sveedocuments/restructuredtext";
-
 // Simple tree list, should only contain simple text not too long (avoid multilines)
 ul.list-tree, ul.list-tree ul, ul.list-tree li{
     margin: 0;
@@ -14,19 +11,19 @@ ul.list-tree, ul.list-tree ul, ul.list-tree li{
     list-style: none;
 }
 ul.list-tree{
-    margin: 0 0 0 1.5em;
+    margin: 0 0 0 rem-calc(24px);
     
     li{
-        padding-left: 1em;
-        padding-bottom: .8em;
+        padding-left: rem-calc(16px);
+        padding-bottom: rem-calc(12px);
         background: image-url('list-tree/list-tree-bold-vline.png') repeat-y 0 0;
-        font-size: 1em;
-        line-height: 1em;
+        font-size: rem-calc(16px);
+        line-height: rem-calc(16px);
         
         div.tree-node-pointer{
-            position:relative;
-            left:-1em;
-            padding-left:1em;
+            position: relative;
+            left: rem-calc(-16px);
+            padding-left: rem-calc(16px);
             background: image-url('list-tree/list-tree-bold-node.png') no-repeat 0 0;
         }
         
@@ -41,6 +38,6 @@ ul.list-tree{
     }
     
     ul{
-        padding-top: .8em;
+        padding-top: rem-calc(12px);
     }
 }

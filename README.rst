@@ -52,8 +52,8 @@ Cleaning TODO
 
 I'm making some cleaning to use it in recent Django projects :
 
-* Clean templates with new structures (autobreadcrumbs usage is broken);
-* Migrate HTML from Foundation3 to Foundation5;
+* Clean templates with new structures (autobreadcrumbs usage is broken) : Done;
+* Migrate HTML from Foundation3 to Foundation5 : Done;
 * Use URL namespaces;
 * Use django-guardian;
 

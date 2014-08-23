@@ -239,7 +239,6 @@ numérotation des lignes.
 Pour un code source en **Javascript** sans numérotation, la source suivante : ::
 
   ..  sourcecode:: javascript
-      :linenos:
   
       function foobar(arg) {
           var foo = 'bar';

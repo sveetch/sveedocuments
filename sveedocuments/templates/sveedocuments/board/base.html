@@ -16,7 +16,7 @@
         {% autobreadcrumbs_tag %}
     </div>
     
-    <div class="small-12 medium-3 columns context-menu">{% spaceless %}
+    <div class="small-12 medium-2 columns context-menu">{% spaceless %}
 
         <ul class="side-nav">
             <li{% block board_menu_summary_active %}{% endblock %}><a href="{% url 'documents-board' %}">{% trans "Summary" %}</a></li>
@@ -26,7 +26,7 @@
 
     {% endspaceless %}</div>
     
-    <div class="small-12 medium-9 columns">
+    <div class="small-12 medium-10 columns">
         {% block board_content %}{% endblock %}
     </div>
 </div>{% endblock %}
