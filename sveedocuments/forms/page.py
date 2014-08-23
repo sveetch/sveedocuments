@@ -20,6 +20,7 @@ class PageForm(CrispyFormMixin, forms.ModelForm):
     Page form
     """
     crispy_form_helper_path = 'sveedocuments.forms.crispies.page_helper'
+    codemirror_config_name = 'sveetchies-documents-add-page'
     
     def __init__(self, author=None, parent=None, *args, **kwargs):
         self.author = author
@@ -47,7 +48,7 @@ class PageForm(CrispyFormMixin, forms.ModelForm):
             extra_settings = {'quicksave_url': None}
             
         # Widget d'édition du contenu
-        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, config_name='sveetchies-documents-page')
+        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, config_name=self.codemirror_config_name)
     
     def clean_slug(self):
         slug = self.cleaned_data.get("slug")
@@ -91,6 +92,7 @@ class PageForm(CrispyFormMixin, forms.ModelForm):
 
 class PageEditForm(PageForm):
     crispy_form_helper_path = 'sveedocuments.forms.crispies.page_edit_helper'
+    codemirror_config_name = 'sveetchies-documents-edit-page'
 
 
 class PageQuickForm(forms.ModelForm):

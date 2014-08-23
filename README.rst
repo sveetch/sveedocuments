@@ -66,7 +66,7 @@ Optionnally :
 Install
 =======
 
-Add it to your installed apps in settings : ::
+Add it to your installed apps in your project settings : ::
 
     INSTALLED_APPS = (
         ...
@@ -77,6 +77,42 @@ Add it to your installed apps in settings : ::
         'sveedocuments',
         ...
     )
+
+And add the djangocodemirror required settings : ::
+
+    DJANGOCODEMIRROR_USER_SETTINGS_COOKIE_NAME = "djangocodemirror_user_settings"
+    CODEMIRROR_SETTINGS = {
+        'sveetchies-documents-edit-page': {
+            'mode': 'rst',
+            'csrf': 'CSRFpass',
+            'preview_url': ('sveedocuments:preview',),
+            'quicksave_url': ('sveedocuments:page-quicksave',),
+            'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
+            'lineWrapping': True,
+            'lineNumbers': True,
+            'search_enabled': True,
+            'settings_cookie': DJANGOCODEMIRROR_USER_SETTINGS_COOKIE_NAME,
+            'help_link': ('sveedocuments:help',),
+            'settings_url': ('sveedocuments:editor-settings', [], {}),
+        },
+        'sveetchies-documents-edit-insert': {
+            'mode': 'rst',
+            'csrf': 'CSRFpass',
+            'preview_url': ('sveedocuments:preview',),
+            'quicksave_url': ('sveedocuments:insert-quicksave',),
+            'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
+            'lineWrapping': True,
+            'lineNumbers': True,
+            'search_enabled': True,
+            'settings_cookie': DJANGOCODEMIRROR_USER_SETTINGS_COOKIE_NAME,
+            'help_link': ('sveedocuments:help',),
+            'settings_url': ('sveedocuments:editor-settings', [], {}),
+        },
+    }
+    CODEMIRROR_SETTINGS['sveetchies-documents-add-page'] = CODEMIRROR_SETTINGS['sveetchies-documents-edit-page'].copy()
+    CODEMIRROR_SETTINGS['sveetchies-documents-add-page']['quicksave_url'] = None
+    CODEMIRROR_SETTINGS['sveetchies-documents-add-insert'] = CODEMIRROR_SETTINGS['sveetchies-documents-edit-insert'].copy()
+    CODEMIRROR_SETTINGS['sveetchies-documents-add-insert']['quicksave_url'] = None
 
 Also you can overrides app settings to change some behaviors, see ``sveedocuments.local_settings`` to see what you can override in your project settings like ``DOCUMENTS_PAGE_TEMPLATES`` to add new templates to use to build your pages.
 

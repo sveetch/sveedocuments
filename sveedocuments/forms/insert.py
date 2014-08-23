@@ -18,6 +18,7 @@ class InsertForm(CrispyFormMixin, forms.ModelForm):
     Insert form
     """
     crispy_form_helper_path = 'sveedocuments.forms.crispies.insert_helper'
+    codemirror_config_name = 'sveetchies-documents-add-insert'
     
     def __init__(self, author=None, *args, **kwargs):
         self.author = author
@@ -30,7 +31,7 @@ class InsertForm(CrispyFormMixin, forms.ModelForm):
             # Désactive l'option de sauvegarde rapide
             extra_settings = {'quicksave_url': None}
             
-        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, config_name='sveetchies-documents-insert')
+        self.fields['content'].widget = CodeMirrorWidget(attrs={'rows': 30}, config_name=self.codemirror_config_name)
     
     def clean_slug(self):
         slug = self.cleaned_data.get("slug")
@@ -73,6 +74,7 @@ class InsertForm(CrispyFormMixin, forms.ModelForm):
 
 class InsertEditForm(InsertForm):
     crispy_form_helper_path = 'sveedocuments.forms.crispies.insert_edit_helper'
+    codemirror_config_name = 'sveetchies-documents-edit-insert'
 
 
 class InsertQuickForm(PageQuickForm):

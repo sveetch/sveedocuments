@@ -33,42 +33,6 @@ DOCUMENTS_PAGE_TEMPLATE_DEFAULT = getattr(settings, 'DOCUMENTS_PAGE_TEMPLATE_DEF
 # if ``False`` the warning will be inserted in the render
 DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING = getattr(settings, 'DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING', False)
 
-"""
-Sample settings, you have to put them yourself in your webapp settings
-"""
-
-# Additional Django-CodeMirror settings for sveedocuments
-CODEMIRROR_SETTINGS = {
-    'sveetchies-documents-page': {
-        'mode': 'rst',
-        'csrf': 'CSRFpass',
-        'preview_url': ('sveedocuments:preview',),
-        #'quicksave_url': ('sveedocuments:page-quicksave',),
-        #'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
-        'quicksave_url': None,
-        'lineWrapping': False,
-        'lineNumbers': True,
-        'search_enabled': True,
-        #'settings_cookie': DJANGOCODEMIRROR_USER_SETTINGS_COOKIE_NAME,
-        'help_link': ('sveedocuments:help',),
-        'settings_url': ('sveedocuments:editor-settings', [], {}),
-    },
-    'sveetchies-documents-insert': {
-        'mode': 'rst',
-        'csrf': 'CSRFpass',
-        'preview_url': ('sveedocuments:preview',),
-        #'quicksave_url': ('sveedocuments:insert-quicksave',),
-        #'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
-        'quicksave_url': None,
-        'lineWrapping': False,
-        'lineNumbers': True,
-        'search_enabled': True,
-        #'settings_cookie': DJANGOCODEMIRROR_USER_SETTINGS_COOKIE_NAME,
-        'help_link': ('sveedocuments:help',),
-        'settings_url': ('sveedocuments:editor-settings', [], {}),
-    },
-}
-
 # This is the preface that will be added at start of the Page content when they are 
 # exported to PDF
 # The default preface put some document informations, add summary of content on the 
@@ -109,3 +73,40 @@ PAGEREV_TOC_CACHE_KEY_NAME = 'documents-toc-page-revision_{id}-setting_{setting}
 INSERT_TOC_CACHE_KEY_NAME = 'documents-toc-insert_{id}-setting_{setting}-hlv_{header_level}'
 PAGE_SLUGS_CACHE_KEY_NAME = 'documents-page_slugs'
 PAGE_ATTACHMENTS_SLUGS_CACHE_KEY_NAME = 'documents-page-attachments-slugs'
+
+"""
+WARNING: Sample additional Django-CodeMirror settings, you have to put them yourself in your project settings
+"""
+DJANGOCODEMIRROR_USER_SETTINGS_COOKIE_NAME = "djangocodemirror_user_settings"
+CODEMIRROR_SETTINGS = {
+    'sveetchies-documents-edit-page': {
+        'mode': 'rst',
+        'csrf': 'CSRFpass',
+        'preview_url': ('sveedocuments:preview',),
+        'quicksave_url': ('sveedocuments:page-quicksave',),
+        'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
+        'lineWrapping': True,
+        'lineNumbers': True,
+        'search_enabled': True,
+        'settings_cookie': DJANGOCODEMIRROR_USER_SETTINGS_COOKIE_NAME,
+        'help_link': ('sveedocuments:help',),
+        'settings_url': ('sveedocuments:editor-settings', [], {}),
+    },
+    'sveetchies-documents-edit-insert': {
+        'mode': 'rst',
+        'csrf': 'CSRFpass',
+        'preview_url': ('sveedocuments:preview',),
+        'quicksave_url': ('sveedocuments:insert-quicksave',),
+        'quicksave_datas': 'DJANGOCODEMIRROR_OBJECT',
+        'lineWrapping': True,
+        'lineNumbers': True,
+        'search_enabled': True,
+        'settings_cookie': DJANGOCODEMIRROR_USER_SETTINGS_COOKIE_NAME,
+        'help_link': ('sveedocuments:help',),
+        'settings_url': ('sveedocuments:editor-settings', [], {}),
+    },
+}
+CODEMIRROR_SETTINGS['sveetchies-documents-add-page'] = CODEMIRROR_SETTINGS['sveetchies-documents-edit-page'].copy()
+CODEMIRROR_SETTINGS['sveetchies-documents-add-page']['quicksave_url'] = None
+CODEMIRROR_SETTINGS['sveetchies-documents-add-insert'] = CODEMIRROR_SETTINGS['sveetchies-documents-edit-insert'].copy()
+CODEMIRROR_SETTINGS['sveetchies-documents-add-insert']['quicksave_url'] = None
