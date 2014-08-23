@@ -29,7 +29,7 @@ setup(
         'autobreadcrumbs>=1.0',
         'djangocodemirror>=0.9.4.1',
         'django-mptt>=0.5.2',
-        'crispy-forms-foundation>=1.4.0',
+        'crispy-forms-foundation>=0.3.4',
         'django-braces>=1.3.0',
     ],
     include_package_data=True,
