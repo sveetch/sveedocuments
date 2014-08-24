@@ -8716,6 +8716,15 @@ th.hide-for-touch {
 }
 
 /* Literal.Number.Integer.Long */
+/* line 4, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+.restructuredtext_container {
+  /*______________________________________
+  //  Pour les retours d'erreur du parser ReST
+  //  TODO: Move to RST stylesheet, this have nothing to do within djangocodemirror 
+  //  stylesheet
+  //
+  */
+}
 /* line 9, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container h3 a,
 .restructuredtext_container h4 a,
@@ -8793,59 +8802,39 @@ th.hide-for-touch {
 .restructuredtext_container .error {
   background-image: url('../images/notices/stop.png?1408414228');
 }
-/* line 74, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
-.restructuredtext_container blockquote {
-  width: 96%;
-  margin-left: 1%;
-  margin-right: 1%;
-  padding: 1%;
-  border-left: 3px solid #aaaaaa;
-  background-color: #ffffff;
-  text-shadow: none;
-}
-/* line 83, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
-.restructuredtext_container pre {
-  width: 98%;
-  padding-left: 1%;
-  padding-right: 1%;
-  background-color: #e8efff;
-  border: 1px solid #d3d3d3;
-  overflow: auto;
-  text-shadow: none;
-}
-/* line 92, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
-.restructuredtext_container code {
-  width: 100%;
-  background-color: #e8efff;
-  border-bottom: 1px solid #d3d3d3;
-  overflow: auto;
-}
-/* line 99, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 73, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container tt.literal {
   background-color: #e8efff;
   border-bottom: 1px solid #B0B0B0;
   text-shadow: none;
 }
-/* line 105, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
-.restructuredtext_container ul, .restructuredtext_container ol {
-  margin-left: ms(1);
+/* line 85, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+.restructuredtext_container .system-message {
+  padding: 8px 14px 8px 14px;
+  margin-bottom: 18px;
+  color: #c09853;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
 }
-/* line 108, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
-.restructuredtext_container dt {
-  margin-top: ms(0);
+/* line 100, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+.restructuredtext_container .system-message-title {
+  color: inherit;
   font-weight: bold;
 }
-/* line 112, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
-.restructuredtext_container dt:first-child {
-  margin-top: 0;
-}
-/* line 117, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 107, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygments-container {
   width: 100%;
   max-width: 100%;
   overflow: auto;
 }
-/* line 124, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 114, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable,
 .restructuredtext_container .pygments {
   width: 98%;
@@ -8853,14 +8842,14 @@ th.hide-for-touch {
   border-top: 1px solid #aaaaaa;
   border-bottom: 1px solid #aaaaaa;
 }
-/* line 130, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 120, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable .pygments {
   width: auto;
   margin-left: 0;
   margin-right: 0;
   border: 0;
 }
-/* line 136, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 126, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable td.linenos {
   width: 1%;
   padding-left: .4em;
@@ -8869,12 +8858,12 @@ th.hide-for-touch {
   text-align: right;
   background-color: #f0f0f0;
 }
-/* line 144, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 134, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable td.code {
   padding-left: .4em;
   background-color: #ffffff;
 }
-/* line 149, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 139, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable pre,
 .restructuredtext_container .pygments pre {
   width: auto;
@@ -9074,21 +9063,21 @@ ul.list-tree, ul.list-tree ul, ul.list-tree li {
 
 /* line 13, ../../../compass/scss/sveedocuments/_frontend.scss */
 ul.list-tree {
-  margin: 0 0 0 1.5em;
+  margin: 0 0 0 1.5rem;
 }
 /* line 16, ../../../compass/scss/sveedocuments/_frontend.scss */
 ul.list-tree li {
-  padding-left: 1em;
-  padding-bottom: .8em;
+  padding-left: 1rem;
+  padding-bottom: 0.75rem;
   background: url('../images/list-tree/list-tree-bold-vline.png?1408414228') repeat-y 0 0;
-  font-size: 1em;
-  line-height: 1em;
+  font-size: 1rem;
+  line-height: 1rem;
 }
 /* line 23, ../../../compass/scss/sveedocuments/_frontend.scss */
 ul.list-tree li div.tree-node-pointer {
   position: relative;
-  left: -1em;
-  padding-left: 1em;
+  left: -1rem;
+  padding-left: 1rem;
   background: url('../images/list-tree/list-tree-bold-node.png?1408414228') no-repeat 0 0;
 }
 /* line 30, ../../../compass/scss/sveedocuments/_frontend.scss */
@@ -9102,42 +9091,35 @@ ul.list-tree li:last-child div.tree-node-pointer {
 }
 /* line 40, ../../../compass/scss/sveedocuments/_frontend.scss */
 ul.list-tree ul {
-  padding-top: .8em;
+  padding-top: 0.75rem;
 }
 
 /* line 9, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid, ul.list-tree-fluid ul {
-  margin: 0 1.4em 1.4em 1.4em;
+ul.list-tree-fluid {
+  margin: 0 1.375rem 1.375rem;
   padding: 0;
   list-style-type: none;
   background-image: url('../images/list-tree/list-tree-alt-vline.png?1408414228');
   background-repeat: repeat-y;
 }
-
-/* line 17, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid ul {
-  margin: 0 0 0 .5em;
-  margin-left: 1.3em;
-  padding-top: .6em;
-}
-/* line 23, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid li {
+/* line 16, ../../../compass/scss/sveedocuments/_board.scss */
+ul.list-tree-fluid li.tree-item {
   margin: 0;
-  padding: 0 0 0 .6em;
+  padding: 0 0 0 0.625rem;
   background-image: url('../images/list-tree/list-tree-alt-node.png?1408414228');
   background-repeat: no-repeat;
-  background-position: 0 1.2em;
+  background-position: 0 1.1875rem;
   color: #369;
 }
-/* line 32, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid li.last, ul.list-tree-fluid li:last-child {
+/* line 25, ../../../compass/scss/sveedocuments/_board.scss */
+ul.list-tree-fluid li.tree-item.last, ul.list-tree-fluid li.tree-item:last-child {
   background-image: url('../images/list-tree/list-tree-alt-lastnode.png?1408414228');
   background-color: #ffffff;
-  background-position: 0 -1em;
+  background-position: 0 -1rem;
 }
-/* line 38, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid li .indicator {
-  padding: 1.4px 5px;
+/* line 31, ../../../compass/scss/sveedocuments/_board.scss */
+ul.list-tree-fluid li.tree-item .indicator {
+  padding: 0.0875rem 0.3125rem;
   float: left;
   text-align: center;
   border: 1px solid black;
@@ -9148,68 +9130,67 @@ ul.list-tree-fluid li .indicator {
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 46, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid li .indicator span {
+/* line 39, ../../../compass/scss/sveedocuments/_board.scss */
+ul.list-tree-fluid li.tree-item .indicator span {
   display: block;
   border: 0;
 }
-/* line 51, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid li .indicator i {
-  font-size: 18px;
-  line-height: 0;
+/* line 45, ../../../compass/scss/sveedocuments/_board.scss */
+ul.list-tree-fluid li.tree-item + li {
+  padding-top: 0.625rem;
 }
-/* line 57, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid li.hidden {
+/* line 49, ../../../compass/scss/sveedocuments/_board.scss */
+ul.list-tree-fluid li.tree-item.hidden {
   opacity: 0.5;
 }
-/* line 60, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid li.hidden:hover, ul.list-tree-fluid li.hidden.hover_highlight {
+/* line 52, ../../../compass/scss/sveedocuments/_board.scss */
+ul.list-tree-fluid li.tree-item.hidden:hover, ul.list-tree-fluid li.tree-item.hidden.hover_highlight {
   opacity: 1.0;
 }
+/* line 58, ../../../compass/scss/sveedocuments/_board.scss */
+ul.list-tree-fluid ul.children {
+  margin: 0 0 0 1.25rem;
+  padding: 0.625rem 0 0;
+  list-style-type: none;
+  background-image: url('../images/list-tree/list-tree-alt-vline.png?1408414228');
+  background-repeat: repeat-y;
+}
 /* line 67, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid .button-group li, ul.list-tree-fluid .button.split li {
-  background-image: none;
-}
-/* line 72, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid li + li {
-  padding-top: .6em;
-}
-/* line 84, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid .children.hidden_parent li.last,
-ul.list-tree-fluid .children.hidden_parent li:last-child {
-  background-position: 0 -2.4em;
+ul.list-tree-fluid .button-group,
+ul.list-tree-fluid .button.split {
+  margin-bottom: 0;
 }
 
-/* line 93, ../../../compass/scss/sveedocuments/_board.scss */
+/* line 74, ../../../compass/scss/sveedocuments/_board.scss */
 .DjangoCodeMirror {
   width: 100% !important;
 }
 
-/* line 97, ../../../compass/scss/sveedocuments/_board.scss */
+/* line 78, ../../../compass/scss/sveedocuments/_board.scss */
 .empty {
   color: #BBBBBB;
   font-style: italic;
 }
 
-/* line 102, ../../../compass/scss/sveedocuments/_board.scss */
+/* line 84, ../../../compass/scss/sveedocuments/_board.scss */
 ul.feed {
   list-style-type: none;
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem;
 }
-/* line 106, ../../../compass/scss/sveedocuments/_board.scss */
+/* line 88, ../../../compass/scss/sveedocuments/_board.scss */
 ul.feed li {
   padding: 0.9375rem;
 }
-/* line 109, ../../../compass/scss/sveedocuments/_board.scss */
+/* line 91, ../../../compass/scss/sveedocuments/_board.scss */
 ul.feed li p {
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem;
 }
-/* line 112, ../../../compass/scss/sveedocuments/_board.scss */
+/* line 95, ../../../compass/scss/sveedocuments/_board.scss */
 ul.feed li .ago {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #BBBBBB;
 }
-/* line 117, ../../../compass/scss/sveedocuments/_board.scss */
+/* line 100, ../../../compass/scss/sveedocuments/_board.scss */
 ul.feed li + li {
   border-top: 1px solid #DDDDDD;
 }

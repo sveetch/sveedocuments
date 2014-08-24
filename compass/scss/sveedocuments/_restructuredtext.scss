@@ -76,6 +76,30 @@
         text-shadow:none;
     }
 
+    /*
+     * For RST parser errors and warnings
+     */
+    .system-message {
+        padding: 8px 14px 8px 14px;
+        margin-bottom: 18px;
+        color: #c09853;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        background-color: #fcf8e3;
+        border: 1px solid #fbeed5;
+        -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+                border-radius: 4px;
+        color: #b94a48;
+        background-color: #f2dede;
+        border-color: #eed3d7;
+    }
+
+    .system-message-title{
+        color: inherit;
+        font-weight: bold;
+    }
+    
+
     // Pygments
     .pygments-container{
         width: 100%;
