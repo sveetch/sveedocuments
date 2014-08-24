@@ -8,6 +8,7 @@ from django.utils.translation import ugettext as _
 from mptt.forms import TreeNodeChoiceField
 
 from djangocodemirror.fields import CodeMirrorWidget
+from djangocodemirror.forms import DjangoCodeMirrorSettingsForm as DjangoCodeMirrorSettingsFormBase
 
 from rstview.parser import SourceReporter, map_parsing_errors
 
@@ -127,3 +128,6 @@ class PageQuickForm(forms.ModelForm):
     class Meta:
         model = Page
         fields = ('content',)
+
+class DjangoCodeMirrorSettingsForm(DjangoCodeMirrorSettingsFormBase):
+    editor_settings_url = 'sveedocuments:editor-settings'

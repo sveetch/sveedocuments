@@ -7,6 +7,7 @@ from django.views import generic
 from djangocodemirror.views import SamplePreviewView, EditorSettingsView
 
 from sveedocuments.models import Page, Insert
+from sveedocuments.forms.page import DjangoCodeMirrorSettingsForm
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -60,4 +61,4 @@ class BoardEditorSettingsView(LoginRequiredMixin, EditorSettingsView):
     """
     Page form for djangocode-mirror editor settings
     """
-    pass
+    form_class = DjangoCodeMirrorSettingsForm
