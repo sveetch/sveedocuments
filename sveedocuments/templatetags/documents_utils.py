@@ -69,13 +69,13 @@ class DocumentTagContext(template.Node):
             parser_kwargs['initial_header_level'] = title_level
         
         content_render = mark_safe( get_render_with_cache(instance, **parser_kwargs) )
-        if self.with_toc:
-            toc_render = mark_safe( get_toc_with_cache(instance, **parser_kwargs) )
+        #if self.with_toc:
+            #toc_render = mark_safe( get_toc_with_cache(instance, **parser_kwargs) )
         if self.with_navigation and isinstance(instance, Page):
             navigation = instance.get_descendants(include_self=False).filter(visible=True)
         
         context.update({
-            'document_toc': toc_render,
+            #'document_toc': toc_render,
             'document_navigation': navigation,
             'document_render': content_render,
         })
