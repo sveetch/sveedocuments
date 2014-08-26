@@ -16,6 +16,8 @@ from django.views.generic.detail import SingleObjectMixin
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
+from guardian.mixins import PermissionRequiredMixin as PerObjectPermissionRequiredMixin
+
 from djangocodemirror.views import SampleQuicksaveMixin
 
 from rstview.parser import SourceParser
@@ -89,7 +91,7 @@ class PageSourceView(PageDetailsView):
             raise Http404
         return HttpResponse(self.get_object().content, content_type="text/plain; charset=utf-8")
 
-class PageCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
+class PageCreateView(PermissionRequiredMixin, generic.CreateView):
     """
     Form view to create a *Page* document
     """
@@ -154,7 +156,7 @@ class PageTabsContentMixin(object):
         })
         return context
 
-class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentMixin, generic.UpdateView):
+class PageEditView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, generic.UpdateView):
     """
     Form view to edit a *Page* document
     """
@@ -192,7 +194,7 @@ class PageEditView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentM
         return kwargs
 
 
-class PageHistoryView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentMixin, generic.DetailView):
+class PageHistoryView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, generic.DetailView):
     """
     *Page* history
     """
@@ -220,7 +222,7 @@ class PageHistoryView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsConte
         return context
 
 
-class PageAttachmentsView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsContentMixin, DetailListAppendView):
+class PageAttachmentsView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, DetailListAppendView):
     """
     Form view to add file attachments to a Page
     """
@@ -246,12 +248,12 @@ class PageAttachmentsView(LoginRequiredMixin, PermissionRequiredMixin, PageTabsC
         return kwargs
 
 
-class PageAttachmentDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DirectDeleteView):
+class PageAttachmentDeleteView(PerObjectPermissionRequiredMixin, DirectDeleteView):
     """
     View to delete a *Page* document
     """
     model = Attachment
-    permission_required = "sveedocuments.delete_attachment"
+    permission_required = "sveedocuments.change_page"
     raise_exception = True
     memoize_old_object = True
     _memoized_attr = ['id', 'slug', 'title', 'page']
@@ -259,7 +261,8 @@ class PageAttachmentDeleteView(LoginRequiredMixin, PermissionRequiredMixin, Dire
     def get_success_url(self):
         return reverse('sveedocuments:page-attachments', args=[self.old_object['page'].slug])
 
-class PageDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
+
+class PageDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
     """
     Form view to delete a *Page* document
     

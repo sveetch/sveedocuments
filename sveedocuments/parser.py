@@ -25,6 +25,8 @@ def extract_toc(source, setting_key="default", body_only=True, initial_header_le
     This is very tricky, we add the ``contents`` directive to the document, 
     parse it again (sic) with docutils, then parse it with ElementTree to find 
     the TOC element to extract it. We assume the first element is allways the TOC.
+    
+    DEPRECATED: for some documents this cause Etree parsing errors
     """
     parser_settings = get_functional_settings(setting_key, body_only, initial_header_level, silent)
     

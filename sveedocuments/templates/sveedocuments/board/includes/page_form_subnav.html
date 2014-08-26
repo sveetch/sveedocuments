@@ -1,4 +1,5 @@
-{% load i18n %}{% spaceless %}
+{% load i18n guardian_tags %}{% spaceless %}
+    {% get_obj_perms user for page_instance as "page_perms" %}
     <dl class="sub-nav">
         <dt class="hide">Sections:</dt>
         <dd{% if active_tab == 'edit' %} class="active"{% endif %}>
@@ -10,8 +11,11 @@
         <dd{% if active_tab == 'attachments' %} class="active"{% endif %}>
             <a href="{% url 'sveedocuments:page-attachments' page_instance.slug %}">{% trans "Attachments" %} <em>({% if files_count %}{{ files_count }}{% else %}0{% endif %})</em></a>
         </dd>
-        {% if page_instance and page_instance.visible %}<dd>
+        {% if page_instance.visible %}<dd>
             <a target="_blank" href="{% url 'sveedocuments:page-details' page_instance.slug %}">{% trans "View on site" %}</a>
+        </dd>{% endif %}
+        {% if user.is_staff and "change_page" in page_perms %}<dd>
+            <a target="_blank" href="{% url 'admin:sveedocuments_page_permissions' object_pk=page_instance.id %}">{% trans "Permissions" %}</a>
         </dd>{% endif %}
     </dl>
 {% endspaceless %}

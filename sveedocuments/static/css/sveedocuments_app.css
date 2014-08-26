@@ -8718,12 +8718,9 @@ th.hide-for-touch {
 /* Literal.Number.Integer.Long */
 /* line 4, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container {
-  /*______________________________________
-  //  Pour les retours d'erreur du parser ReST
-  //  TODO: Move to RST stylesheet, this have nothing to do within djangocodemirror 
-  //  stylesheet
-  //
-  */
+  /*
+   * For RST parser errors and warnings
+   */
 }
 /* line 9, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container h3 a,
@@ -8808,7 +8805,7 @@ th.hide-for-touch {
   border-bottom: 1px solid #B0B0B0;
   text-shadow: none;
 }
-/* line 85, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 82, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .system-message {
   padding: 8px 14px 8px 14px;
   margin-bottom: 18px;
@@ -8823,18 +8820,18 @@ th.hide-for-touch {
   background-color: #f2dede;
   border-color: #eed3d7;
 }
-/* line 100, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 97, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .system-message-title {
   color: inherit;
   font-weight: bold;
 }
-/* line 107, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 104, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygments-container {
   width: 100%;
   max-width: 100%;
   overflow: auto;
 }
-/* line 114, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 111, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable,
 .restructuredtext_container .pygments {
   width: 98%;
@@ -8842,14 +8839,14 @@ th.hide-for-touch {
   border-top: 1px solid #aaaaaa;
   border-bottom: 1px solid #aaaaaa;
 }
-/* line 120, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 117, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable .pygments {
   width: auto;
   margin-left: 0;
   margin-right: 0;
   border: 0;
 }
-/* line 126, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 123, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable td.linenos {
   width: 1%;
   padding-left: .4em;
@@ -8858,12 +8855,12 @@ th.hide-for-touch {
   text-align: right;
   background-color: #f0f0f0;
 }
-/* line 134, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 131, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable td.code {
   padding-left: .4em;
   background-color: #ffffff;
 }
-/* line 139, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
+/* line 136, ../../../compass/scss/sveedocuments/_restructuredtext.scss */
 .restructuredtext_container .pygmentstable pre,
 .restructuredtext_container .pygments pre {
   width: auto;
@@ -9156,7 +9153,7 @@ ul.list-tree-fluid ul.children {
   background-repeat: repeat-y;
 }
 /* line 67, ../../../compass/scss/sveedocuments/_board.scss */
-ul.list-tree-fluid .button-group,
+ul.list-tree-fluid .button-dropdown,
 ul.list-tree-fluid .button.split {
   margin-bottom: 0;
 }

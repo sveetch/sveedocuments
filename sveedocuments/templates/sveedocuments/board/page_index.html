@@ -1,28 +1,39 @@
 {% extends "sveedocuments/board/subbase_pages.html" %}
-{% load i18n mptt_tags autobreadcrumb documents_admin %}
+{% load i18n mptt_tags autobreadcrumb guardian_tags documents_admin %}
 
 {% block board_content %}
-    {% if perms.sveedocuments.add_page or perms.sveedocuments.change_page or perms.sveedocuments.delete_page %}
         <div class="clearfix">
-            <a class="secondary button right" href="{% url 'sveedocuments:page-add' %}">{% trans "Add a new page" %}</a>
+            {% if perms.sveedocuments.add_page %}
+                <a class="secondary button right" href="{% url 'sveedocuments:page-add' %}">{% trans "Add a new page" %}</a>
+            {% endif %}
             <h2>{% trans "Pages" %}</h2>
         </div>
         
         <ul class="list-tree-fluid">{% recursetree page_list %}
+            {% get_obj_perms user for node as "page_perms" %}
             <li class="tree-item{% if not node.visible %} hidden{% endif %}">
                 <div class="indicator">
                     <span class="has-tip" data-width="90" title="{{ node.get_visible_display }}"><i class="lsf">{% if node.visible %}<i class="icon-eye"></i>{% else %}<i class="icon-eye-slash"></i>{% endif %}</i></span>
                     <span class="has-tip" data-width="210" title="{% blocktrans with published=node.published|date:"d/m/Y H:i" %}Published on {{ published }}{% endblocktrans %}"><i class="icon-calendar"></i></span>
                 </div>
                 <div class="clearfix">
-                    <a href="{% url 'sveedocuments:page-edit' node.slug %}" class="button split">{{ node.title }} <span data-dropdown="page-drop-{{ node.id }}"></span></a><br>
+                    {% if "change_page" in page_perms %}
+                        <a href="{% url 'sveedocuments:page-edit' node.slug %}" class="button split">{{ node.title }} <span data-dropdown="page-drop-{{ node.id }}"></span></a><br>
+                    {% else %}
+                        <a href="#" data-dropdown="page-drop-{{ node.id }}" class="button{% if "add_page" in page_perms or "delete_page" in page_perms %} dropdown{% endif %}">{{ node.title }}</a><br>
+                    {% endif %}
+                    {% if "add_page" in page_perms or "delete_page" in page_perms %}
                     <ul id="page-drop-{{ node.id }}" class="f-dropdown" data-dropdown-content>
-                        <li><a href="{% url 'sveedocuments:page-add-child' node.slug %}" title="{% blocktrans %}Add a new child page to this one{% endblocktrans %}">{% trans "New child page" %}</a></li>
+                        {% if "add_page" in page_perms %}
+                            <li><a href="{% url 'sveedocuments:page-add-child' node.slug %}" title="{% blocktrans %}Add a new child page to this one{% endblocktrans %}">{% trans "New child page" %}</a></li>
+                        {% endif %}
+                        {% if "delete_page" in page_perms %}
                         <li><a href="{% url 'sveedocuments:page-delete' node.slug %}" title="{% blocktrans %}Recursively delete this page and his children{% endblocktrans %}">{% trans "Delete" %}</a></li>
+                        {% endif %}
                     </ul>
+                    {% endif %}
                 </div>
                 {% if not node.is_leaf_node %}<ul class="children {% if not node.visible %}hidden_parent{% endif %}">{{ children }}</ul>{% endif %}
             </li>
         {% endrecursetree %}</ul>
-    {% endif %}
 {% endblock %}

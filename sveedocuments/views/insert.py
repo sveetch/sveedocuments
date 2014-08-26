@@ -8,7 +8,9 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.views import generic
 
-from braces.views import LoginRequiredMixin, PermissionRequiredMixin
+from braces.views import LoginRequiredMixin#, PermissionRequiredMixin
+
+from guardian.mixins import PermissionRequiredMixin
 
 from djangocodemirror.views import SampleQuicksaveMixin
 
@@ -18,7 +20,7 @@ from sveedocuments.models import Insert
 from sveedocuments.forms.insert import InsertForm, InsertEditForm, InsertQuickForm
 from sveedocuments.utils.objects import get_instance_children
 
-class InsertCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
+class InsertCreateView(PermissionRequiredMixin, generic.CreateView):
     """
     Form view to create an *Insert* document
     """
@@ -49,7 +51,7 @@ class InsertCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Crea
         })
         return kwargs
 
-class InsertEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):
+class InsertEditView(PermissionRequiredMixin, generic.UpdateView):
     """
     Form view to edit an *Insert* document
     """
@@ -78,7 +80,7 @@ class InsertEditView(LoginRequiredMixin, PermissionRequiredMixin, generic.Update
         kwargs.update({'author': self.request.user})
         return kwargs
 
-class InsertDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
+class InsertDeleteView(PermissionRequiredMixin, generic.DeleteView):
     """
     Form view to delete an *Insert* document
     
