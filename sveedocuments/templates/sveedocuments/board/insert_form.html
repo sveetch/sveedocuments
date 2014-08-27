@@ -24,5 +24,7 @@
 {% block board_content %}
     <h2>{% current_title_from_breadcrumbs %}</h2>
 
+    {% if insert_instance and insert_instance.visible %}{% include "sveedocuments/board/includes/insert_form_subnav.html" with active_tab="edit" %}{% endif %}
+
     {% crispy form %}
 {% endblock %}

@@ -8,9 +8,9 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.views import generic
 
-from braces.views import LoginRequiredMixin#, PermissionRequiredMixin
+from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
-from guardian.mixins import PermissionRequiredMixin
+from guardian.mixins import PermissionRequiredMixin as PerObjectPermissionRequiredMixin
 
 from djangocodemirror.views import SampleQuicksaveMixin
 
@@ -51,7 +51,7 @@ class InsertCreateView(PermissionRequiredMixin, generic.CreateView):
         })
         return kwargs
 
-class InsertEditView(PermissionRequiredMixin, generic.UpdateView):
+class InsertEditView(PerObjectPermissionRequiredMixin, generic.UpdateView):
     """
     Form view to edit an *Insert* document
     """
@@ -80,7 +80,7 @@ class InsertEditView(PermissionRequiredMixin, generic.UpdateView):
         kwargs.update({'author': self.request.user})
         return kwargs
 
-class InsertDeleteView(PermissionRequiredMixin, generic.DeleteView):
+class InsertDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
     """
     Form view to delete an *Insert* document
     

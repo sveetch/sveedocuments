@@ -1,33 +1,48 @@
 {% extends "sveedocuments/board/subbase_inserts.html" %}
-{% load i18n mptt_tags autobreadcrumb documents_admin %}
+{% load i18n mptt_tags autobreadcrumb guardian_tags documents_admin %}
 
 {% block board_content %}
-    {% if perms.sveedocuments.add_insert or perms.sveedocuments.change_insert or perms.sveedocuments.delete_insert %}
-        <a class="secondary button right" href="{% url 'sveedocuments:insert-add' %}">{% trans "Add a new insert document" %}</a>
+    <div class="clearfix">
+        {% if perms.sveedocuments.add_insert %}
+            <a class="secondary button right" href="{% url 'sveedocuments:insert-add' %}">{% trans "Add a new insert document" %}</a>
+        {% endif %}
         <h2>{% trans "Insert documents" %}</h2>
-        
-        <table class="full">
-            <thead>
-                <tr>
-                    <th class="title-cell col-odd">{% trans "Title" %}</th>
-                    <th class="slug-cell col-even">{% trans "Slug" %}</th>
-                    <th class="visible-cell col-odd">{% trans "Visibility" %}</th>
-                    <th class="modified-cell col-even">{% trans "Last modified" %}</th>
-                    <th class="actions-cell col-odd">#</th>
-                </tr>
-            </thead>
-            <tbody>
-        {% for item in insert_list %}
-                <tr id="insert-row-{{ item.id }}">
-                    <th class="title-cell col-odd"><a href="{% url 'sveedocuments:insert-edit' item.slug %}">{{ item.title }}</a></th>
-                    <td class="slug-cell col-even">{{ item.slug }}</td>
-                    <td class="visible-cell col-odd">{{ item.get_visible_display }}</td>
-                    <td class="modified-cell col-even">{{ item.modified|date:"l d F Y à H:i"|title }}</td>
-                    <td class="actions-cell col-odd"><a href="{% url 'sveedocuments:insert-delete' item.slug %}">{% trans "Delete" %}</a></td>
-                </tr>
+    </div>
+    
+    <table class="full">
+        <thead>
+            <tr>
+                <th class="title-cell col-odd">{% trans "Title" %}</th>
+                <th class="slug-cell col-even">{% trans "Slug" %}</th>
+                <th class="visible-cell col-odd">{% trans "Visibility" %}</th>
+                <th class="modified-cell col-even">{% trans "Last modified" %}</th>
+                <th class="actions-cell col-odd">#</th>
             </tr>
-        {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
+        </thead>
+        <tbody>
+    {% for item in insert_list %}
+            {% get_obj_perms user for item as "insert_perms" %}
+            <tr id="insert-row-{{ item.id }}">
+                <th class="title-cell col-odd">
+                    {% if "change_insert" in insert_perms %}
+                        <a href="{% url 'sveedocuments:insert-edit' item.slug %}">{{ item.title }}</a>
+                    {% else %}
+                        {{ item.title }}
+                    {% endif %}
+                </th>
+                <td class="slug-cell col-even">{{ item.slug }}</td>
+                <td class="visible-cell col-odd">{{ item.get_visible_display }}</td>
+                <td class="modified-cell col-even">{{ item.modified|date:"l d F Y à H:i"|title }}</td>
+                <td class="actions-cell col-odd">
+                    {% if "delete_insert" in insert_perms %}
+                        <a href="{% url 'sveedocuments:insert-delete' item.slug %}">{% trans "Delete" %}</a>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

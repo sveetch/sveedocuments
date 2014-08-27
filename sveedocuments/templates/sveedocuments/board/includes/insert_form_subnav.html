@@ -1,0 +1,9 @@
+{% load i18n guardian_tags %}{% spaceless %}
+    {% get_obj_perms user for insert_instance as "insert_perms" %}
+    <dl class="sub-nav">
+        <dt class="hide">Sections:</dt>
+        {% if user.is_staff and "change_insert" in insert_perms %}<dd>
+            <a target="_blank" href="{% url 'admin:sveedocuments_insert_permissions' object_pk=insert_instance.id %}">{% trans "Permissions" %}</a>
+        </dd>{% endif %}
+    </dl>
+{% endspaceless %}
