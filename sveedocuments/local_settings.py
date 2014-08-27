@@ -22,7 +22,8 @@ DOCUMENTS_PAGE_ARCHIVED = True
 # Available templates for Pages
 DOCUMENTS_PAGE_TEMPLATES = {
     'default': ('sveedocuments/page_details/page_default.html', _('Default template with document content only')),
-    'with_toc': ('sveedocuments/page_details/page_with-toc.html', _('Template with a Table Of Content and the document content')),
+    # Disabled, because TOC extract is buggy
+    #'with_toc': ('sveedocuments/page_details/page_with-toc.html', _('Template with a Table Of Content and the document content')),
 }
 DOCUMENTS_PAGE_TEMPLATES.update(getattr(settings, 'DOCUMENTS_PAGE_TEMPLATES', {}))
 

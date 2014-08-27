@@ -27,6 +27,7 @@ from sveedocuments.models import Page, Attachment
 from sveedocuments.forms.page import PageForm, PageEditForm, PageQuickForm
 from sveedocuments.forms.attachment import AttachmentForm
 from sveedocuments.utils.objects import get_instance_children
+from sveedocuments.mixins import PageChangePermissionRequiredMixin
 from sveedocuments.utils.braces_addons import DetailListAppendView, DirectDeleteView, DownloadMixin
 
 class PageIndexView(generic.TemplateView):
@@ -222,46 +223,6 @@ class PageHistoryView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, ge
         return context
 
 
-class PageAttachmentsView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, DetailListAppendView):
-    """
-    Form view to add file attachments to a Page
-    """
-    model = Attachment
-    form_class = AttachmentForm
-    template_name = "sveedocuments/board/page_attachments.html"
-    permission_required = "sveedocuments.change_page"
-    raise_exception = True
-    context_parent_object_name = 'page_instance'
-    
-    def get_parent_object(self):
-        return get_object_or_404(Page, slug=self.kwargs['slug'])
-    
-    def get_queryset(self):
-        return self.parent_object.attachment.all()
-
-    def get_success_url(self):
-        return reverse('sveedocuments:page-attachments', args=[self.parent_object.slug])
-
-    def get_form_kwargs(self):
-        kwargs = super(PageAttachmentsView, self).get_form_kwargs()
-        kwargs.update({'author': self.request.user})
-        return kwargs
-
-
-class PageAttachmentDeleteView(PerObjectPermissionRequiredMixin, DirectDeleteView):
-    """
-    View to delete a *Page* document
-    """
-    model = Attachment
-    permission_required = "sveedocuments.change_page"
-    raise_exception = True
-    memoize_old_object = True
-    _memoized_attr = ['id', 'slug', 'title', 'page']
-
-    def get_success_url(self):
-        return reverse('sveedocuments:page-attachments', args=[self.old_object['page'].slug])
-
-
 class PageDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
     """
     Form view to delete a *Page* document
@@ -289,6 +250,51 @@ class PageDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
         
         # Then redirect
         return reverse('sveedocuments:page-index')
+
+
+class PageAttachmentsView(PageChangePermissionRequiredMixin, PageTabsContentMixin, DetailListAppendView):
+    """
+    Form view to add file attachments to a Page
+    """
+    model = Attachment
+    form_class = AttachmentForm
+    template_name = "sveedocuments/board/page_attachments.html"
+    raise_exception = True
+    context_parent_object_name = 'page_instance'
+    
+    def get_page_object(self):
+        return self.get_parent_object()
+    
+    def get_parent_object(self):
+        return get_object_or_404(Page, slug=self.kwargs['slug'])
+    
+    def get_queryset(self):
+        return self.parent_object.attachment.all()
+
+    def get_success_url(self):
+        return reverse('sveedocuments:page-attachments', args=[self.parent_object.slug])
+
+    def get_form_kwargs(self):
+        kwargs = super(PageAttachmentsView, self).get_form_kwargs()
+        kwargs.update({'author': self.request.user})
+        return kwargs
+
+
+class PageAttachmentDeleteView(PageChangePermissionRequiredMixin, DirectDeleteView):
+    """
+    View to delete a *Page* document
+    """
+    model = Attachment
+    raise_exception = True
+    memoize_old_object = True
+    _memoized_attr = ['id', 'slug', 'title', 'page']
+    
+    def get_page_object(self):
+        return get_object_or_404(Page, slug=self.kwargs['slug'])
+
+    def get_success_url(self):
+        return reverse('sveedocuments:page-attachments', args=[self.old_object['page'].slug])
+
 
 class PageQuicksaveView(SampleQuicksaveMixin, PageEditView):
     """
