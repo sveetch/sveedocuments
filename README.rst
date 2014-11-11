@@ -57,7 +57,7 @@ Requires
 * `autobreadcrumbs`_ >= 1.0;
 * `djangocodemirror`_ >= 0.9.4;
 * `django-mptt`_ >= 0.5.2;
-* `crispy-forms-foundation`_ >= 1.4.0;
+* `crispy-forms-foundation`_ >= 0.3.4;
 * `django-braces`_ >= 1.3.0;
 * `django-guardian`_ >= 1.2.0;
 

@@ -8988,24 +8988,26 @@ th.hide-for-touch {
 /* line 110, ../../../compass/scss/sveedocuments/_pikaday.scss */
 .pika-table {
   width: 100%;
+  margin: 0;
   border-collapse: collapse;
   border-spacing: 0;
   border: 0;
 }
-/* line 116, ../../../compass/scss/sveedocuments/_pikaday.scss */
+/* line 117, ../../../compass/scss/sveedocuments/_pikaday.scss */
 .pika-table th, .pika-table td {
   width: 14.285714285714286%;
+  padding: 0;
+  text-align: center;
 }
-/* line 120, ../../../compass/scss/sveedocuments/_pikaday.scss */
+/* line 123, ../../../compass/scss/sveedocuments/_pikaday.scss */
 .pika-table th {
   color: #999;
   font-size: 12px;
   line-height: 25px;
   font-weight: bold;
-  text-align: center;
 }
 
-/* line 129, ../../../compass/scss/sveedocuments/_pikaday.scss */
+/* line 131, ../../../compass/scss/sveedocuments/_pikaday.scss */
 .pika-button {
   cursor: pointer;
   display: block;
@@ -9017,10 +9019,9 @@ th.hide-for-touch {
   color: #666;
   font-size: 12px;
   line-height: 15px;
-  text-align: right;
   background: #f5f5f5;
 }
-/* line 143, ../../../compass/scss/sveedocuments/_pikaday.scss */
+/* line 144, ../../../compass/scss/sveedocuments/_pikaday.scss */
 .pika-button:hover {
   color: #fff !important;
   background: #ff8000 !important;
@@ -9028,13 +9029,13 @@ th.hide-for-touch {
   border-radius: 3px !important;
 }
 
-/* line 151, ../../../compass/scss/sveedocuments/_pikaday.scss */
+/* line 152, ../../../compass/scss/sveedocuments/_pikaday.scss */
 .is-today .pika-button {
   color: #33aaff;
   font-weight: bold;
 }
 
-/* line 156, ../../../compass/scss/sveedocuments/_pikaday.scss */
+/* line 157, ../../../compass/scss/sveedocuments/_pikaday.scss */
 .is-selected .pika-button {
   color: #fff;
   font-weight: bold;
@@ -9043,7 +9044,7 @@ th.hide-for-touch {
   border-radius: 3px;
 }
 
-/* line 164, ../../../compass/scss/sveedocuments/_pikaday.scss */
+/* line 165, ../../../compass/scss/sveedocuments/_pikaday.scss */
 .is-disabled .pika-button {
   pointer-events: none;
   cursor: default;
