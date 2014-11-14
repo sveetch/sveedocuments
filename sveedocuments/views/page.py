@@ -242,13 +242,6 @@ class PageDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
         return self.render_to_response(context)
 
     def get_success_url(self):
-        # On success, force mptt tree rebuild to avoid which seems a bug that will cause 
-        # recursetree templatetag to raise an exception
-        Page.tree.rebuild()
-        # DEPRECATED: Implicit manager Page.tree will be removed in django-mptt 0.6.
-        # Explicitly define a TreeManager() on your model to remove this warning.
-        
-        # Then redirect
         return reverse('sveedocuments:page-index')
 
 
