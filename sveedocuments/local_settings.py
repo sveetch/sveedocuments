@@ -19,6 +19,10 @@ DOCUMENTS_PAGE_FLATMENU = getattr(settings, 'DOCUMENTS_PAGE_FLATMENU', "sveedocu
 # Enable or disable Pages archiving
 DOCUMENTS_PAGE_ARCHIVED = True
 
+# Page view restriction, if True page viewing will require to be authenticated, 
+# if False page viewing is free for all
+DOCUMENTS_PAGE_RESTRICTED = getattr(settings, 'DOCUMENTS_PAGE_RESTRICTED', False)
+
 # Available templates for Pages
 DOCUMENTS_PAGE_TEMPLATES = {
     'default': ('sveedocuments/page_details/page_default.html', _('Default template with document content only')),

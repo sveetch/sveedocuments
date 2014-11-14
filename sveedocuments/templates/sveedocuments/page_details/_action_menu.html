@@ -1,5 +1,7 @@
 {% load i18n guardian_tags %}{% spaceless %}
+{% if user.is_authenticated %}
 {% get_obj_perms user for page_instance as "page_perms" %}
+{% endif %}
 <div class="clearfix">
     <p class="document_action_menu right">
         <a href="#" data-dropdown="document-actions-drop" class="button medium radius secondary dropdown">{% trans "Actions on this document" %}</a><br>

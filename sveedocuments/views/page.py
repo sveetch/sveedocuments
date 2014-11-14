@@ -55,7 +55,7 @@ class HelpPageView(generic.TemplateView):
         context = {'content' : SourceParser(content, silent=False)}
         return self.render_to_response(context)
 
-class PageDetailsView(generic.DetailView):
+class PageDetailsMixin(object):
     """
     *Page* view
     """
@@ -70,17 +70,24 @@ class PageDetailsView(generic.DetailView):
         """
         cache_key = "_cache_get_object"
         if not hasattr(self, cache_key):
-            setattr(self, cache_key, super(PageDetailsView, self).get_object(*args, **kwargs))
+            setattr(self, cache_key, super(PageDetailsMixin, self).get_object(*args, **kwargs))
         return getattr(self, cache_key)
     
     def get(self, request, **kwargs):
         # Check if the object is ``visible``
         if not self.get_object().visible:
             raise Http404
-        return super(PageDetailsView, self).get(request, **kwargs)
+        return super(PageDetailsMixin, self).get(request, **kwargs)
     
     def get_template_names(self):
         return [self.object.get_template()]
+
+if local_settings.DOCUMENTS_PAGE_RESTRICTED:
+    class PageDetailsView(PageDetailsMixin, LoginRequiredMixin, generic.DetailView):
+        pass
+else:
+    class PageDetailsView(PageDetailsMixin, generic.DetailView):
+        pass
 
 class PageSourceView(PageDetailsView):
     """
