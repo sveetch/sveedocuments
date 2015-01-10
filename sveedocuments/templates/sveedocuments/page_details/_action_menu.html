@@ -6,11 +6,11 @@
     <p class="document_action_menu right">
         <a href="#" data-dropdown="document-actions-drop" class="button medium radius secondary dropdown">{% trans "Actions on this document" %}</a><br>
         <ul id="document-actions-drop" data-dropdown-content class="f-dropdown">
-            {% if "change_page" in page_perms %}
+            {% if "change_page" in page_perms or 'sveedocuments.change_page' in perms %}
             <li><a href="{% url 'sveedocuments:page-edit' page_instance.slug %}">{% trans "Edit" %}</a></li>
             <li class="divider"></li>
             {% endif %}
-            {% if "delete_page" in page_perms %}
+            {% if "delete_page" in page_perms or 'sveedocuments.delete_page' in perms %}
             <li><a href="{% url 'sveedocuments:page-delete' page_instance.slug %}">{% trans "Delete" %}</a></li>
             <li class="divider"></li>
             {% endif %}

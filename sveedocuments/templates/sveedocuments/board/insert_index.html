@@ -3,7 +3,7 @@
 
 {% block board_content %}
     <div class="clearfix">
-        {% if perms.sveedocuments.add_insert %}
+        {% if 'sveedocuments.add_insert' in perms %}
             <a class="secondary button right" href="{% url 'sveedocuments:insert-add' %}">{% trans "Add a new insert document" %}</a>
         {% endif %}
         <h2>{% trans "Insert documents" %}</h2>
@@ -24,7 +24,7 @@
             {% get_obj_perms user for item as "insert_perms" %}
             <tr id="insert-row-{{ item.id }}">
                 <th class="title-cell col-odd">
-                    {% if "change_insert" in insert_perms %}
+                    {% if "change_insert" in insert_perms or 'sveedocuments.change_insert' in perms %}
                         <a href="{% url 'sveedocuments:insert-edit' item.slug %}">{{ item.title }}</a>
                     {% else %}
                         {{ item.title }}
@@ -34,7 +34,7 @@
                 <td class="visible-cell col-odd">{{ item.get_visible_display }}</td>
                 <td class="modified-cell col-even">{{ item.modified|date:"l d F Y à H:i"|title }}</td>
                 <td class="actions-cell col-odd">
-                    {% if "delete_insert" in insert_perms %}
+                    {% if "delete_insert" in insert_perms or 'sveedocuments.delete_insert' in perms %}
                         <a href="{% url 'sveedocuments:insert-delete' item.slug %}">{% trans "Delete" %}</a>
                     {% else %}
                         -

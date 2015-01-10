@@ -29,6 +29,7 @@ class InsertCreateView(PermissionRequiredMixin, generic.CreateView):
     template_name = "sveedocuments/board/insert_form.html"
     form_class = InsertForm
     permission_required = "sveedocuments.add_insert"
+    accept_global_perms = True
     raise_exception = True
     _redirect_to_self = False
 
@@ -60,6 +61,7 @@ class InsertEditView(PerObjectPermissionRequiredMixin, generic.UpdateView):
     template_name = "sveedocuments/board/insert_form.html"
     form_class = InsertEditForm
     permission_required = "sveedocuments.change_insert"
+    accept_global_perms = True
     raise_exception = True
     _redirect_to_self = False
 
@@ -90,6 +92,7 @@ class InsertDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
     context_object_name = "insert_instance"
     template_name = "sveedocuments/board/insert_delete.html"
     permission_required = "sveedocuments.delete_insert"
+    accept_global_perms = True
     raise_exception = True
 
     def get(self, request, *args, **kwargs):

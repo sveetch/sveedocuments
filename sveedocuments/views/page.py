@@ -173,6 +173,7 @@ class PageEditView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, gener
     template_name = "sveedocuments/board/page_form.html"
     form_class = PageEditForm
     permission_required = "sveedocuments.change_page"
+    accept_global_perms = True
     raise_exception = True
     _redirect_to_self = False
         
@@ -210,6 +211,7 @@ class PageHistoryView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, ge
     context_object_name = "page_instance"
     template_name = "sveedocuments/board/page_history.html"
     permission_required = "sveedocuments.change_page"
+    accept_global_perms = True
     raise_exception = True
     
     def get_object(self, *args, **kwargs):
@@ -240,6 +242,7 @@ class PageDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
     context_object_name = "page_instance"
     template_name = "sveedocuments/board/page_delete.html"
     permission_required = "sveedocuments.delete_page"
+    accept_global_perms = True
     raise_exception = True
 
     def get(self, request, *args, **kwargs):
@@ -260,6 +263,7 @@ class PageAttachmentsView(PageChangePermissionRequiredMixin, PageTabsContentMixi
     form_class = AttachmentForm
     template_name = "sveedocuments/board/page_attachments.html"
     raise_exception = True
+    accept_global_perms = True
     context_parent_object_name = 'page_instance'
     
     def get_page_object(self):
@@ -287,6 +291,7 @@ class PageAttachmentDeleteView(PageChangePermissionRequiredMixin, DirectDeleteVi
     model = Attachment
     raise_exception = True
     memoize_old_object = True
+    accept_global_perms = True
     _memoized_attr = ['id', 'slug', 'title', 'page']
     
     def get_page_object(self):
