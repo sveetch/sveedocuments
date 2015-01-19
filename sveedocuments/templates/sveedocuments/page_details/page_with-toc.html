@@ -33,5 +33,14 @@
         <div class="restructuredtext_container">
             {{ document_render }}
         </div>
+        
+        {% if attachments %}
+        <h3 id="attachments">{% trans "Attachments" %}</h3>
+        <ul>
+            {% for attach in attachments %}
+            <li><a href="{{ item.file.url }}">{{ attach.title }}</a> {{ attach.size|filesizeformat }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </div>
 </div>{% endblock %}

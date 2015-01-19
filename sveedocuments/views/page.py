@@ -73,6 +73,16 @@ class PageDetailsMixin(object):
             setattr(self, cache_key, super(PageDetailsMixin, self).get_object(*args, **kwargs))
         return getattr(self, cache_key)
     
+    def get_attachments(self):
+        return self.object.attachment.all()
+        
+    def get_context_data(self, **kwargs):
+        context = super(PageDetailsMixin, self).get_context_data(**kwargs)
+        context.update({
+            'attachments': self.get_attachments(),
+        })
+        return context
+    
     def get(self, request, **kwargs):
         # Check if the object is ``visible``
         if not self.get_object().visible:

@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# DAVID THENON <sveetch@gmail.com>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
@@ -10,46 +10,47 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-19 02:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: DAVID THENON <sveetch@gmail.com>\n"
-"Language-Team: FRENCH <FR@li.org>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: crumbs.py:9
 msgid "Document sitemap"
-msgstr "Plan des documents"
+msgstr ""
 
 #: crumbs.py:10
 msgid "Document management"
-msgstr "Gestion des documents"
+msgstr ""
 
 #: crumbs.py:11 templates/sveedocuments/board/insert_index.html:9
 msgid "Insert documents"
-msgstr "Documents insérables"
+msgstr ""
 
 #: crumbs.py:12 templates/sveedocuments/board/insert_index.html:7
 msgid "Add a new insert document"
-msgstr "Ajouter un nouveau document insérable"
+msgstr ""
 
 #: crumbs.py:13
 msgid "Delete #{{ insert_instance.slug }}"
-msgstr "Supprimer #{{ page_instance.slug }}"
+msgstr ""
 
 #: crumbs.py:14
 msgid "Edit #{{ insert_instance.slug }}"
-msgstr "Editer #{{ page_instance.slug }}"
+msgstr ""
 
 #: crumbs.py:15 templates/sveedocuments/board/base.html:23
 #: templates/sveedocuments/board/index.html:10
 #: templates/sveedocuments/board/page_index.html:9
 msgid "Pages"
-msgstr "Pages"
+msgstr ""
 
 #: crumbs.py:16 templates/sveedocuments/board/page_index.html:7
 msgid "Add a new page"
-msgstr "Ajouter une nouvelle page"
+msgstr ""
 
 #: crumbs.py:17
 msgid "{{ page_instance.title }}"
@@ -57,12 +58,12 @@ msgstr ""
 
 #: crumbs.py:18
 msgid "Delete #{{ page_instance.slug }}"
-msgstr "Supprimer #{{ page_instance.slug }}"
+msgstr ""
 
 #: crumbs.py:19 forms/crispies.py:48
 #: templates/sveedocuments/board/includes/page_form_subnav.html:9
 msgid "History"
-msgstr "Historique"
+msgstr ""
 
 #: crumbs.py:20
 #: templates/sveedocuments/board/includes/page_form_subnav.html:12
@@ -70,124 +71,119 @@ msgstr "Historique"
 #: templates/sveedocuments/page_details/page_default.html:13
 #: templates/sveedocuments/page_details/page_with-toc.html:38
 msgid "Attachments"
-msgstr "Fichiers attachés"
+msgstr ""
 
 #: crumbs.py:21
 msgid "Usage help"
-msgstr "Aide à l'utilisation"
+msgstr ""
 
 #: crumbs.py:22
 msgid "Edit #{{ page_instance.slug }}"
-msgstr "Editer #{{ page_instance.slug }}"
+msgstr ""
 
 #: crumbs.py:23
 msgid "Add a new child page to #{{ parent_page_instance.slug }}"
-msgstr "Ajouter une nouvelle sous-page à #{{ parent_page_instance.slug }}"
+msgstr ""
 
 #: local_settings.py:28
 msgid "Default template with document content only"
-msgstr "Template par défaut juste avec le contenu du document"
+msgstr ""
 
 #: models.py:28
 msgid "Visible"
-msgstr "Visible"
+msgstr ""
 
 #: models.py:29
 msgid "Hidden"
-msgstr "Caché"
+msgstr ""
 
 #: models.py:46 models.py:107 models.py:242
 msgid "created"
-msgstr "créé"
+msgstr ""
 
 #: models.py:47 models.py:132
 msgid "last edit"
-msgstr "dernière modification"
+msgstr ""
 
 #: models.py:48 models.py:108 models.py:239
 msgid "author"
-msgstr "auteur"
+msgstr ""
 
 #: models.py:49 models.py:109 models.py:240
 msgid "title"
-msgstr "titre"
+msgstr ""
 
 #: models.py:50 models.py:133 models.py:221 models.py:241
 msgid "slug"
-msgstr "nom de raccourci"
+msgstr ""
 
 #: models.py:51 models.py:113
 msgid "visibility"
-msgstr "visibilité"
+msgstr ""
 
 #: models.py:52 models.py:114
 msgid "content"
-msgstr "contenu"
+msgstr ""
 
 #: models.py:98 models.py:99
 msgid "insert document"
-msgstr "document insérable"
+msgstr ""
 
 #: models.py:110
 msgid "publish date"
-msgstr "date de publication"
+msgstr ""
 
 #: models.py:110
 msgid ""
 "Define when the document will be displayed on the site. Empty value mean an "
 "instant publish, use a coming date to program a futur publish."
 msgstr ""
-"Définit quand le document sera affiché sur le site. Si non rempli la "
-"publication sera instantanée, utilisez une date future pour programmer une "
-"publication."
 
 #: models.py:111
 msgid "template"
-msgstr "gabarit"
+msgstr ""
 
 #: models.py:111
 msgid "This template will be used to render the page."
-msgstr "Ce gabarit sera utilisé pour afficher la page."
+msgstr ""
 
 #: models.py:112
 msgid "order"
-msgstr "ordre"
+msgstr ""
 
 #: models.py:112
 msgid "Display order in lists and trees."
-msgstr "Ordre d'affichage dans les listes et arborescences."
+msgstr ""
 
 #: models.py:115
 msgid "comment"
-msgstr "commentaire"
+msgstr ""
 
 #: models.py:133
 msgid ""
 "Unique slug used in URL, should be automatically filled with sluggified "
 "title."
 msgstr ""
-"Nom de raccourci unique utilisé dans les URL, rempli automatiquement à la "
-"création par une version modifiée du titre."
 
 #: models.py:208 models.py:222 models.py:238
 msgid "page"
-msgstr "page"
+msgstr ""
 
 #: models.py:209
 msgid "pages"
-msgstr "pages"
+msgstr ""
 
 #: models.py:224
 msgid "revision number"
-msgstr "numéro de révision"
+msgstr ""
 
 #: models.py:227
 msgid "page revision"
-msgstr "version de page"
+msgstr ""
 
 #: models.py:228
 msgid "pages revisions"
-msgstr "versions de pages"
+msgstr ""
 
 #: models.py:241
 msgid ""
@@ -198,253 +194,253 @@ msgstr ""
 
 #: models.py:243
 msgid "file"
-msgstr "fichier"
+msgstr ""
 
 #: models.py:244
 msgid "size"
-msgstr "taille"
+msgstr ""
 
 #: models.py:245
 msgid "content_type"
-msgstr "contenu"
+msgstr ""
 
 #: models.py:262
 msgid "attachment file"
-msgstr "fichier attaché"
+msgstr ""
 
 #: models.py:263
 msgid "attachment files"
-msgstr "fichiers attachés"
+msgstr ""
 
 #: forms/__init__.py:23
 msgid "Submit"
-msgstr "Soumettre"
+msgstr ""
 
 #: forms/crispies.py:31 forms/crispies.py:74
 msgid "Content"
-msgstr "Contenu"
+msgstr ""
 
 #: forms/crispies.py:36 forms/crispies.py:79
 msgid "Display settings"
-msgstr "Paramètres d'affichage"
+msgstr ""
 
 #: forms/crispies.py:44
 msgid "Publish settings"
-msgstr "Paramètres de publication"
+msgstr ""
 
 #: forms/crispies.py:52 forms/crispies.py:86
 msgid "Save and continue"
-msgstr "Sauvegarder et continuer"
+msgstr ""
 
 #: forms/crispies.py:53 forms/crispies.py:87 forms/crispies.py:113
 msgid "Save"
-msgstr "Sauvegarder"
+msgstr ""
 
 #: forms/insert.py:41 forms/page.py:58
 msgid "This is a reserved keyword"
-msgstr "Ce mot clé est réservé"
+msgstr ""
 
 #: forms/page.py:43
 msgid "-- Root --"
-msgstr "-- Racine --"
+msgstr ""
 
 #: templates/sveedocuments/board/base.html:22
 msgid "Summary"
-msgstr "Sommaire"
+msgstr ""
 
 #: templates/sveedocuments/board/base.html:24
 #: templates/sveedocuments/board/index.html:17
 msgid "Inserts"
-msgstr "Documents insérables"
+msgstr ""
 
 #: templates/sveedocuments/board/index.html:11
 #: templates/sveedocuments/board/index.html:18
 msgid "saved"
-msgstr "sauvegardé"
+msgstr ""
 
 #: templates/sveedocuments/board/index.html:12
 #: templates/sveedocuments/board/index.html:19
 msgid "hidden"
-msgstr "caché"
+msgstr ""
 
 #: templates/sveedocuments/board/index.html:24
 msgid "last pages revised"
-msgstr "dernières pages modifiées"
+msgstr ""
 
 #: templates/sveedocuments/board/index.html:28
 #: templates/sveedocuments/board/page_history.html:16
 #: templates/sveedocuments/board/page_history.html:23
 msgid "Empty comment"
-msgstr "Commentaire vide"
+msgstr ""
 
 #: templates/sveedocuments/board/insert_delete.html:14
 #: templates/sveedocuments/board/page_delete.html:14
 msgid "Confirm delete"
-msgstr "Confirmez la suppression"
+msgstr ""
 
 #: templates/sveedocuments/board/insert_index.html:15
 #: templates/sveedocuments/board/page_attachments.html:25
 msgid "Title"
-msgstr "Titre"
+msgstr ""
 
 #: templates/sveedocuments/board/insert_index.html:16
 #: templates/sveedocuments/board/page_attachments.html:26
 msgid "Slug"
-msgstr "Nom de raccourci"
+msgstr ""
 
 #: templates/sveedocuments/board/insert_index.html:17
 msgid "Visibility"
-msgstr "Visibilité"
+msgstr ""
 
 #: templates/sveedocuments/board/insert_index.html:18
 msgid "Last modified"
-msgstr "Dernière modification"
+msgstr ""
 
 #: templates/sveedocuments/board/insert_index.html:38
 #: templates/sveedocuments/board/page_attachments.html:29
 #: templates/sveedocuments/board/page_index.html:34
 #: templates/sveedocuments/page_details/_action_menu.html:11
 msgid "Delete"
-msgstr "Supprimer"
+msgstr ""
 
 #: templates/sveedocuments/board/page_attachments.html:16
 #: templates/sveedocuments/board/page_history.html:6
 #: templates/sveedocuments/board/includes/page_form_subnav.html:15
 msgid "View on site"
-msgstr "Voir sur le site"
+msgstr ""
 
 #: templates/sveedocuments/board/page_attachments.html:28
 msgid "View"
-msgstr "Voir"
+msgstr ""
 
 #: templates/sveedocuments/board/page_attachments.html:33
 msgid "There is no attachments"
-msgstr "Il n'y aucun fichier attaché"
+msgstr ""
 
 #: templates/sveedocuments/board/page_attachments.html:38
 msgid "Add a new attachment"
-msgstr "Ajouter un nouveau fichier attaché"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "January"
-msgstr "Janvier"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "February"
-msgstr "Février"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "March"
-msgstr "Mars"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "April"
-msgstr "Avril"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "May"
-msgstr "Mai"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "June"
-msgstr "Juin"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "July"
-msgstr "Juillet"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "August"
-msgstr "Aout"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "September"
-msgstr "Septembre"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "October"
-msgstr "Octobre"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "November"
-msgstr "Novembre"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:16
 msgid "December"
-msgstr "Décembre"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:17
 msgid "Sunday"
-msgstr "Dimanche"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:17
 msgid "Monday"
-msgstr "Lundi"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:17
 msgid "Tuesday"
-msgstr "Mardi"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:17
 msgid "Wednesday"
-msgstr "Mercredi"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:17
 msgid "Thursday"
-msgstr "Jeudi"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:17
 msgid "Friday"
-msgstr "Vendredi"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:17
 msgid "Saturday"
-msgstr "Samedi"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:18
 msgid "Sun"
-msgstr "Dim"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:18
 msgid "Mon"
-msgstr "Lun"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:18
 msgid "Tue"
-msgstr "Mar"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:18
 msgid "Wed"
-msgstr "Mer"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:18
 msgid "Thu"
-msgstr "Jeu"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:18
 msgid "Fri"
-msgstr "Ven"
+msgstr ""
 
 #: templates/sveedocuments/board/page_form.html:18
 msgid "Sat"
-msgstr "Sam"
+msgstr ""
 
 #: templates/sveedocuments/board/page_index.html:18
 #, python-format
 msgid "Published on %(published)s"
-msgstr "Publié le %(published)s"
+msgstr ""
 
 #: templates/sveedocuments/board/page_index.html:31
 msgid "Add a new child page to this one"
-msgstr "Ajouter une nouvelle page à celle-ci"
+msgstr ""
 
 #: templates/sveedocuments/board/page_index.html:31
 msgid "New child page"
-msgstr "Nouvelle sous-page"
+msgstr ""
 
 #: templates/sveedocuments/board/page_index.html:34
 msgid "Recursively delete this page and his children"
-msgstr "Supprimer la page et tout ses enfants"
+msgstr ""
 
 #: templates/sveedocuments/board/includes/insert_form_subnav.html:6
 #: templates/sveedocuments/board/includes/page_form_subnav.html:18
@@ -454,23 +450,23 @@ msgstr ""
 #: templates/sveedocuments/board/includes/page_form_subnav.html:6
 #: templates/sveedocuments/page_details/_action_menu.html:8
 msgid "Edit"
-msgstr "Editer"
+msgstr ""
 
 #: templates/sveedocuments/page_details/_action_menu.html:13
 msgid "Plain text version"
-msgstr "Source"
+msgstr ""
 
 #: templates/sveedocuments/page_details/_action_menu.html:15
 msgid "PDF version"
-msgstr "Version PDF"
+msgstr ""
 
 #: templates/sveedocuments/page_details/page_with-toc.html:8
 msgid "Table of content"
-msgstr "Sommaire"
+msgstr ""
 
 #: templates/sveedocuments/page_details/page_with-toc.html:14
 msgid "Navigation"
-msgstr "Navigation"
+msgstr ""
 
 #: utils/braces_addons.py:178 utils/braces_addons.py:192
 #, python-format
