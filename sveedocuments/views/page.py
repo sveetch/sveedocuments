@@ -64,6 +64,7 @@ class PageIndexView(generic.TemplateView):
                 "id": n.pk,
                 "label": n.title,
                 "slug": n.slug,
+                "view_url": reverse('sveedocuments:page-details', args=[n.slug]),
                 "children": self.get_recursed_tree(n.get_children())
             })
         return nodes
