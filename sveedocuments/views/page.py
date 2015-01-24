@@ -50,7 +50,7 @@ class PageIndexView(generic.TemplateView):
         
         # Fill the JSON tree if there is at least one entry
         if page_list:
-            context['json_tree'] = json.dumps(self.get_recursed_tree( cache_tree_children(page_list) ), indent=4)
+            context['json_tree'] = json.dumps(self.get_recursed_tree( cache_tree_children(page_list) ))
             
         return self.render_to_response(context)
     
