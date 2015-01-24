@@ -14,6 +14,8 @@ from django.template.loader import render_to_string
 from django.views import generic
 from django.views.generic.detail import SingleObjectMixin
 
+from mptt.templatetags.mptt_tags import cache_tree_children
+
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from guardian.mixins import PermissionRequiredMixin as PerObjectPermissionRequiredMixin
@@ -37,8 +39,34 @@ class PageIndexView(generic.TemplateView):
     template_name = "sveedocuments/index.html"
     
     def get(self, request, *args, **kwargs):
-        context = {'page_list' : Page.objects.filter(visible=True)}
+        # Force queryset interpretation to list so mptt recursing does not 
+        # trigger two request from the same queryset
+        page_list = list(Page.objects.filter(visible=True))
+        
+        context = {
+            'page_list': page_list,
+            'json_tree': [],
+        }
+        
+        # Fill the JSON tree if there is at least one entry
+        if page_list:
+            context['json_tree'] = json.dumps(self.get_recursed_tree( cache_tree_children(page_list) ), indent=4)
+            
         return self.render_to_response(context)
+    
+    def get_recursed_tree(self, root_nodes):
+        """
+        Get the recursed tree from the queryset
+        """
+        nodes = []
+        for n in root_nodes:
+            nodes.append({
+                "id": n.pk,
+                "label": n.title,
+                "slug": n.slug,
+                "children": self.get_recursed_tree(n.get_children())
+            })
+        return nodes
 
 class HelpPageView(generic.TemplateView):
     """
