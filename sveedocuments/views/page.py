@@ -36,9 +36,9 @@ class PageIndexView(generic.TemplateView):
     template_name = "sveedocuments/index.html"
     
     def get(self, request, *args, **kwargs):
-        # Force queryset interpretation to list so mptt recursing does not 
-        # trigger two request from the same queryset
-        page_list = list(Page.objects.filter(visible=True))
+        # We can't force queryset evaluation here else it will mess the tree 
+        # resolution from mptt
+        page_list = Page.objects.filter(visible=True)
         
         context = {
             'page_list': page_list,
