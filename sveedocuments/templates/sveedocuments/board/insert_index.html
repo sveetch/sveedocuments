@@ -1,9 +1,9 @@
 {% extends "sveedocuments/board/subbase_inserts.html" %}
-{% load i18n mptt_tags autobreadcrumb guardian_tags documents_admin %}
+{% load i18n mptt_tags autobreadcrumb documents_admin %}
 
 {% block board_content %}
     <div class="clearfix">
-        {% if 'sveedocuments.add_insert' in perms %}
+        {% if perms.sveedocuments.add_insert %}
             <a class="secondary button right" href="{% url 'sveedocuments:insert-add' %}">{% trans "Add a new insert document" %}</a>
         {% endif %}
         <h2>{% trans "Insert documents" %}</h2>
@@ -21,24 +21,19 @@
         </thead>
         <tbody>
     {% for item in insert_list %}
-            {% get_obj_perms user for item as "insert_perms" %}
             <tr id="insert-row-{{ item.id }}">
                 <th class="title-cell col-odd">
-                    {% if "change_insert" in insert_perms or 'sveedocuments.change_insert' in perms %}
+                    {% if perms.sveedocuments.change_insert %}
                         <a href="{% url 'sveedocuments:insert-edit' item.slug %}">{{ item.title }}</a>
-                    {% else %}
-                        {{ item.title }}
-                    {% endif %}
+                    {% else %}{{ item.title }}{% endif %}
                 </th>
                 <td class="slug-cell col-even">{{ item.slug }}</td>
                 <td class="visible-cell col-odd">{{ item.get_visible_display }}</td>
                 <td class="modified-cell col-even">{{ item.modified|date:"l d F Y à H:i"|title }}</td>
                 <td class="actions-cell col-odd">
-                    {% if "delete_insert" in insert_perms or 'sveedocuments.delete_insert' in perms %}
+                    {% if perms.sveedocuments.delete_insert %}
                         <a href="{% url 'sveedocuments:insert-delete' item.slug %}">{% trans "Delete" %}</a>
-                    {% else %}
-                        -
-                    {% endif %}
+                    {% else %}-{% endif %}
                 </td>
             </tr>
         </tr>

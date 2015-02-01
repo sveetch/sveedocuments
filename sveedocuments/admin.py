@@ -5,9 +5,7 @@ Model admin
 from django.contrib import admin
 from models import *
 
-from guardian.admin import GuardedModelAdmin
-
-class InsertAdmin(GuardedModelAdmin):
+class InsertAdmin(admin.ModelAdmin):
     list_display = ('slug', 'title', 'modified', 'author', 'visible' )
     list_filter = ('created', 'modified', 'visible')
     ordering = ('slug',)
@@ -27,7 +25,7 @@ class InsertAdmin(GuardedModelAdmin):
 
         return instance
 
-class PageAdmin(GuardedModelAdmin):
+class PageAdmin(admin.ModelAdmin):
     list_display = ('title', 'order', 'modified', 'published', 'author', 'visible' )
     list_filter = ('created', 'modified', 'published', 'visible')
     ordering = ('order',)

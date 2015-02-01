@@ -30,7 +30,6 @@ setup(
         'djangocodemirror>=0.9.6',
         'django-mptt>=0.6.1',
         'crispy-forms-foundation>=0.3.4',
-        'django-guardian>=1.2.0',
         'django-braces>=1.3.0',
     ],
     include_package_data=True,

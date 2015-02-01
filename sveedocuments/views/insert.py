@@ -8,9 +8,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.views import generic
 
-from braces.views import LoginRequiredMixin, PermissionRequiredMixin
-
-from guardian.mixins import PermissionRequiredMixin as PerObjectPermissionRequiredMixin
+from braces.views import PermissionRequiredMixin
 
 from djangocodemirror.views import SampleQuicksaveMixin
 
@@ -29,7 +27,6 @@ class InsertCreateView(PermissionRequiredMixin, generic.CreateView):
     template_name = "sveedocuments/board/insert_form.html"
     form_class = InsertForm
     permission_required = "sveedocuments.add_insert"
-    accept_global_perms = True
     raise_exception = True
     _redirect_to_self = False
 
@@ -52,7 +49,7 @@ class InsertCreateView(PermissionRequiredMixin, generic.CreateView):
         })
         return kwargs
 
-class InsertEditView(PerObjectPermissionRequiredMixin, generic.UpdateView):
+class InsertEditView(PermissionRequiredMixin, generic.UpdateView):
     """
     Form view to edit an *Insert* document
     """
@@ -61,7 +58,6 @@ class InsertEditView(PerObjectPermissionRequiredMixin, generic.UpdateView):
     template_name = "sveedocuments/board/insert_form.html"
     form_class = InsertEditForm
     permission_required = "sveedocuments.change_insert"
-    accept_global_perms = True
     raise_exception = True
     _redirect_to_self = False
 
@@ -82,7 +78,7 @@ class InsertEditView(PerObjectPermissionRequiredMixin, generic.UpdateView):
         kwargs.update({'author': self.request.user})
         return kwargs
 
-class InsertDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
+class InsertDeleteView(PermissionRequiredMixin, generic.DeleteView):
     """
     Form view to delete an *Insert* document
     
@@ -92,7 +88,6 @@ class InsertDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
     context_object_name = "insert_instance"
     template_name = "sveedocuments/board/insert_delete.html"
     permission_required = "sveedocuments.delete_insert"
-    accept_global_perms = True
     raise_exception = True
 
     def get(self, request, *args, **kwargs):

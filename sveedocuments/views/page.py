@@ -18,8 +18,6 @@ from mptt.templatetags.mptt_tags import cache_tree_children
 
 from braces.views import LoginRequiredMixin, PermissionRequiredMixin
 
-from guardian.mixins import PermissionRequiredMixin as PerObjectPermissionRequiredMixin
-
 from djangocodemirror.views import SampleQuicksaveMixin
 
 from rstview.parser import SourceParser
@@ -29,7 +27,6 @@ from sveedocuments.models import Page, Attachment
 from sveedocuments.forms.page import PageForm, PageEditForm, PageQuickForm
 from sveedocuments.forms.attachment import AttachmentForm
 from sveedocuments.utils.objects import get_instance_children
-from sveedocuments.mixins import PageChangePermissionRequiredMixin
 from sveedocuments.utils.braces_addons import DetailListAppendView, DirectDeleteView, DownloadMixin
 
 class PageIndexView(generic.TemplateView):
@@ -84,6 +81,7 @@ class HelpPageView(generic.TemplateView):
         context = {'content' : SourceParser(content, silent=False)}
         return self.render_to_response(context)
 
+
 class PageDetailsMixin(object):
     """
     *Page* view
@@ -128,6 +126,7 @@ else:
     class PageDetailsView(PageDetailsMixin, generic.DetailView):
         pass
 
+
 class PageSourceView(PageDetailsView):
     """
     Raw content *Page* view
@@ -137,6 +136,7 @@ class PageSourceView(PageDetailsView):
         if not self.get_object().visible:
             raise Http404
         return HttpResponse(self.get_object().content, content_type="text/plain; charset=utf-8")
+
 
 class PageCreateView(PermissionRequiredMixin, generic.CreateView):
     """
@@ -203,7 +203,7 @@ class PageTabsContentMixin(object):
         })
         return context
 
-class PageEditView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, generic.UpdateView):
+class PageEditView(PermissionRequiredMixin, PageTabsContentMixin, generic.UpdateView):
     """
     Form view to edit a *Page* document
     """
@@ -212,7 +212,6 @@ class PageEditView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, gener
     template_name = "sveedocuments/board/page_form.html"
     form_class = PageEditForm
     permission_required = "sveedocuments.change_page"
-    accept_global_perms = True
     raise_exception = True
     _redirect_to_self = False
         
@@ -242,7 +241,7 @@ class PageEditView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, gener
         return kwargs
 
 
-class PageHistoryView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, generic.DetailView):
+class PageHistoryView(PermissionRequiredMixin, PageTabsContentMixin, generic.DetailView):
     """
     *Page* history
     """
@@ -250,7 +249,6 @@ class PageHistoryView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, ge
     context_object_name = "page_instance"
     template_name = "sveedocuments/board/page_history.html"
     permission_required = "sveedocuments.change_page"
-    accept_global_perms = True
     raise_exception = True
     
     def get_object(self, *args, **kwargs):
@@ -271,7 +269,7 @@ class PageHistoryView(PerObjectPermissionRequiredMixin, PageTabsContentMixin, ge
         return context
 
 
-class PageDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
+class PageDeleteView(PermissionRequiredMixin, generic.DeleteView):
     """
     Form view to delete a *Page* document
     
@@ -281,7 +279,6 @@ class PageDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
     context_object_name = "page_instance"
     template_name = "sveedocuments/board/page_delete.html"
     permission_required = "sveedocuments.delete_page"
-    accept_global_perms = True
     raise_exception = True
 
     def get(self, request, *args, **kwargs):
@@ -294,15 +291,15 @@ class PageDeleteView(PerObjectPermissionRequiredMixin, generic.DeleteView):
         return reverse('sveedocuments:page-index')
 
 
-class PageAttachmentsView(PageChangePermissionRequiredMixin, PageTabsContentMixin, DetailListAppendView):
+class PageAttachmentsView(PermissionRequiredMixin, PageTabsContentMixin, DetailListAppendView):
     """
     Form view to add file attachments to a Page
     """
     model = Attachment
     form_class = AttachmentForm
     template_name = "sveedocuments/board/page_attachments.html"
+    permission_required = 'sveedocuments.change_page'
     raise_exception = True
-    accept_global_perms = True
     context_parent_object_name = 'page_instance'
     
     def get_page_object(self):
@@ -323,14 +320,14 @@ class PageAttachmentsView(PageChangePermissionRequiredMixin, PageTabsContentMixi
         return kwargs
 
 
-class PageAttachmentDeleteView(PageChangePermissionRequiredMixin, DirectDeleteView):
+class PageAttachmentDeleteView(PermissionRequiredMixin, DirectDeleteView):
     """
     View to delete a *Page* document
     """
     model = Attachment
+    permission_required = 'sveedocuments.change_page'
     raise_exception = True
     memoize_old_object = True
-    accept_global_perms = True
     _memoized_attr = ['id', 'slug', 'title', 'page']
     
     def get_page_object(self):

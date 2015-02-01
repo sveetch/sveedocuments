@@ -10,7 +10,6 @@
 .. _crispy-forms-foundation: https://github.com/sveetch/crispy-forms-foundation
 .. _django-mptt: http://pypi.python.org/pypi/django-mptt
 .. _django-braces: https://github.com/brack3t/django-braces
-.. _django-guardian: https://github.com/lukaszb/django-guardian
 .. _ReStructuredText: http://docutils.sourceforge.net/rst.html
 .. _Pygments: http://pygments.org/
 .. _Foundation5: http://foundation.zurb.com/docs/
@@ -30,7 +29,7 @@ Features
 * Nice forms with `django-crispy-forms`_;
 * Usage of `autobreadcrumbs`_;
 * Optional usage of Assets bundles with `django-assets`_;
-* Usage of the Django cache system for the parser rendering;
+* Usage of the Django cache system for Markup parser and renderer;
 * A management board ready to use in frontend;
 * Two kind of documents :
 
@@ -39,7 +38,6 @@ Features
 
 * Simple collaborative way (History, authoring) for Pages;
 * Templatetags to use documents in your templates;
-* Global or 'per object' moderation on categories, threads and messages;
 * Internationalized (English and French for now);
 
 Links
@@ -59,7 +57,6 @@ Requires
 * `django-mptt`_ >= 0.5.2;
 * `crispy-forms-foundation`_ >= 0.3.4;
 * `django-braces`_ >= 1.3.0;
-* `django-guardian`_ >= 1.2.0;
 
 Optionnally :
 
@@ -74,24 +71,12 @@ Add it to your installed apps in your project settings : ::
     INSTALLED_APPS = (
         ...
         'autobreadcrumbs',
-        'guardian',
         'djangocodemirror',
         'rstview',
         'mptt',
         'sveedocuments',
         ...
     )
-
-Add `django-guardian`_ settings (see its doc for more details) :
-
-::
-
-    AUTHENTICATION_BACKENDS = (
-        'django.contrib.auth.backends.ModelBackend', # this is default
-        'guardian.backends.ObjectPermissionBackend',
-    )
-
-    ANONYMOUS_USER_ID = None
 
 And add the `djangocodemirror`_ required settings : ::
 
@@ -161,11 +146,11 @@ Usage
 Permissions
 -----------
 
-sveedocuments make usage of `django-guardian`_ to manage 'per object permissions' or 'global permissions'.
+sveedocuments make usage of Django permissions and groups.
 
-Actually you need to use the Django admin and be a staff user with the right permissions for managing Page or Insert objects to add these permissions for your users.
+Actually you need to use the Django admin and be a staff user with the right permissions for managing permissions for your users.
 
-And so, you can add the needed permissions globally to the all documents within each user accounts. Or you can add a permission for a specific object in its edit page (in Django admin) using the link named *Object permissions*.
+And so, you can add the needed permissions globally to all documents within each user accounts.
 
 * All users can see the sitemap and visible pages;
 * Users with ``sveedocuments.add_page`` permission can create new pages;
@@ -173,13 +158,6 @@ And so, you can add the needed permissions globally to the all documents within 
 * Users with ``sveedocuments.delete_page`` permission can create delete pages;
 
 Others Page's and Insert's model permissions have no roles on frontend.
-
-Permission error response
-.........................
-
-Permission error is rendered though a ``403.html`` template that is allready embedded within this app, you can override it in your project with adding your custom ``403.html`` template in your project templates directory.
-
-Also you can use another template name, you will have to define its name in ``settings.GUARDIAN_TEMPLATE_403`` (yes, this is a setting from `django-guardian`_, see its doc for more details).
 
 Signals
 -------

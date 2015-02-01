@@ -1,13 +1,10 @@
-{% load i18n guardian_tags %}{% spaceless %}
-{% if user.is_authenticated %}
-{% get_obj_perms user for page_instance as "page_perms" %}
-{% endif %}
+{% load i18n %}{% spaceless %}
 <div class="clearfix">
     <ul class="button-group radius right">
-        {% if "change_page" in page_perms or 'sveedocuments.change_page' in perms %}
+        {% if perms.sveedocuments.change_page %}
             <li><a class="button tiny secondary" href="{% url 'sveedocuments:page-edit' page_instance.slug %}">{% trans "Edit" %}</a></li>
         {% endif %}
-        {% if "delete_page" in page_perms or 'sveedocuments.delete_page' in perms %}
+        {% if perms.sveedocuments.delete_page %}
             <li><a class="button tiny secondary" href="{% url 'sveedocuments:page-delete' page_instance.slug %}">{% trans "Delete" %}</a></li>
         {% endif %}
         <li><a class="button tiny secondary" href="{% url 'sveedocuments:page-source' page_instance.slug %}">{% trans "Plain text version" %}</a></li>
