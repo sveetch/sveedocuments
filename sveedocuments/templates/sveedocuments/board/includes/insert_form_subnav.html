@@ -1,8 +1,8 @@
 {% load i18n %}{% spaceless %}
-    <dl class="sub-nav">
+    {% comment %}<dl class="sub-nav">
         <dt class="hide">Sections:</dt>
         {% if user.is_staff and perms.sveedocuments.change_insert %}<dd>
             <a target="_blank" href="{% url 'admin:sveedocuments_insert_permissions' object_pk=insert_instance.id %}">{% trans "Permissions" %}</a>
         </dd>{% endif %}
-    </dl>
+    </dl>{% endcomment %}
 {% endspaceless %}
