@@ -25,7 +25,11 @@
             <p><strong>{% trans "Title" %} :</strong> {{ item.title }}</p>
             <p><strong>{% trans "Slug" %} :</strong> {{ item.slug }}</p>
             <p>
-                <a class="tiny round secondary button" target="_blank" href="{{ item.file.url }}">{% trans "View" %}</a>
+                {% if ATTACHMENTS_WITH_SENDFILE %}
+                    <a class="tiny round secondary button" target="_blank" href="{% url 'sveedocuments:page-attachment-download' slug=page_instance.slug attachment_id=item.id %}">{% trans "View" %}</a>
+                {% else %}
+                    <a class="tiny round secondary button" target="_blank" href="{{ item.file.url }}">{% trans "View" %}</a>
+                {% endif %}
                 <a class="tiny round alert button" href="{% url 'sveedocuments:page-attachments-delete' slug=page_instance.slug pk=item.id %}">{% trans "Delete" %}</a>
             </p>
         </li>

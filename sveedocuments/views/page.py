@@ -23,7 +23,7 @@ from djangocodemirror.views import SampleQuicksaveMixin
 from rstview.parser import SourceParser
 
 from sveedocuments import local_settings
-from sveedocuments.models import Page, Attachment
+from sveedocuments.models import ATTACHMENTS_WITH_SENDFILE, Page, Attachment
 from sveedocuments.forms.page import PageForm, PageEditForm, PageQuickForm
 from sveedocuments.forms.attachment import AttachmentForm
 from sveedocuments.utils.objects import get_instance_children
@@ -32,6 +32,8 @@ from sveedocuments.utils.braces_addons import DetailListAppendView, DirectDelete
 class PageIndexView(generic.TemplateView):
     """
     Pages index
+    
+    TODO: Sitemap view should be conditionnated on DOCUMENTS_PAGE_RESTRICTED like PageDetailsView
     """
     template_name = "sveedocuments/index.html"
     
@@ -69,6 +71,8 @@ class PageIndexView(generic.TemplateView):
 class HelpPageView(generic.TemplateView):
     """
     Help document
+    
+    TODO: Should be conditionnated on DOCUMENTS_PAGE_RESTRICTED like PageDetailsView
     """
     template_name = "sveedocuments/help.html"
     
@@ -107,6 +111,7 @@ class PageDetailsMixin(object):
         context = super(PageDetailsMixin, self).get_context_data(**kwargs)
         context.update({
             'attachments': self.get_attachments(),
+            'ATTACHMENTS_WITH_SENDFILE': ATTACHMENTS_WITH_SENDFILE,
         })
         return context
     
@@ -313,6 +318,13 @@ class PageAttachmentsView(PermissionRequiredMixin, PageTabsContentMixin, DetailL
 
     def get_success_url(self):
         return reverse('sveedocuments:page-attachments', args=[self.parent_object.slug])
+        
+    def get_context_data(self, **kwargs):
+        context = super(PageAttachmentsView, self).get_context_data(**kwargs)
+        context.update({
+            'ATTACHMENTS_WITH_SENDFILE': ATTACHMENTS_WITH_SENDFILE,
+        })
+        return context
 
     def get_form_kwargs(self):
         kwargs = super(PageAttachmentsView, self).get_form_kwargs()
@@ -348,6 +360,9 @@ class PageQuicksaveView(SampleQuicksaveMixin, PageEditView):
             self.kwargs['slug'] = self.request.POST['slug']
         return super(PageQuicksaveView, self).get_object(queryset=queryset)
 
+
+#DEPRECATED: It was fully implemented but sadly, rst2pdf is not maintained anymore 
+# and badly packaged, it cause too many issue with many current package versions.
 # Optional view for PDF export need RstToPdf
 try:
     from rst2pdf.createpdf import RstToPdf

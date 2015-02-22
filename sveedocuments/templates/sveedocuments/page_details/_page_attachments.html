@@ -1,0 +1,13 @@
+{% load i18n %}<hr/>
+<h3 id="attachments">{% trans "Attachments" %}</h3>
+<ul>
+    {% if ATTACHMENTS_WITH_SENDFILE %}
+        {% for attach in attachments %}
+            <li><a href="{% url 'sveedocuments:page-attachment-download' slug=page_instance.slug attachment_id=attach.id %}">{{ attach.title }}</a> {{ attach.size|filesizeformat }}</li>
+        {% endfor %}
+    {% else %}
+        {% for attach in attachments %}
+            <li><a href="{{ attach.file.url }}">{{ attach.title }}</a> {{ attach.size|filesizeformat }}</li>
+        {% endfor %}
+    {% endif %}
+</ul>

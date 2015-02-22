@@ -13,7 +13,7 @@
 .. _ReStructuredText: http://docutils.sourceforge.net/rst.html
 .. _Pygments: http://pygments.org/
 .. _Foundation5: http://foundation.zurb.com/docs/
-.. _rst2pdf: http://code.google.com/p/rst2pdf/
+.. _django-sendfile: https://github.com/johnsensible/django-sendfile
 
 Introduction
 ============
@@ -39,6 +39,7 @@ Features
 * Simple collaborative way (History, authoring) for Pages;
 * Templatetags to use documents in your templates;
 * Internationalized (English and French for now);
+* Optional usage of `django-sendfile`_ for page's attachments when page are restricted to loggued users;
 
 Links
 -----
@@ -115,6 +116,9 @@ And add the `djangocodemirror`_ required settings : ::
     CODEMIRROR_SETTINGS['sveetchies-documents-add-insert']['quicksave_url'] = None
 
 Also you can overrides app settings to change some behaviors, see ``sveedocuments.local_settings`` to see what you can override in your project settings like ``DOCUMENTS_PAGE_TEMPLATES`` to add new templates to use to build your pages or ``DOCUMENTS_PAGE_RESTRICTED`` to restrict pages viewing to be logged in.
+
+.. TODO::
+   Info about PROJECT_PATH required for attachments
 
 Optionnally if you plan to use `autobreadcrumbs`_,  register its *context processor* in settings :
 

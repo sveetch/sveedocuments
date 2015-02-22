@@ -10,11 +10,6 @@
     </div>
     
     {% if attachments %}
-    <h3 id="attachments">{% trans "Attachments" %}</h3>
-    <ul>
-        {% for attach in attachments %}
-        <li><a href="{{ attach.file.url }}">{{ attach.title }}</a> {{ attach.size|filesizeformat }}</li>
-        {% endfor %}
-    </ul>
+        {% include 'sveedocuments/page_details/_page_attachments.html' %}
     {% endif %}
 </div>{% endblock %}

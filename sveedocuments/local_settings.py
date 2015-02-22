@@ -23,6 +23,9 @@ DOCUMENTS_PAGE_ARCHIVED = True
 # if False page viewing is free for all
 DOCUMENTS_PAGE_RESTRICTED = getattr(settings, 'DOCUMENTS_PAGE_RESTRICTED', False)
 
+# To enable django-sendfile usage when DOCUMENTS_PAGE_RESTRICTED is True
+DOCUMENTS_ATTACHMENT_USE_SENDFILE = getattr(settings, 'DOCUMENTS_ATTACHMENT_USE_SENDFILE', True)
+
 # Available templates for Pages
 DOCUMENTS_PAGE_TEMPLATES = {
     'default': ('sveedocuments/page_details/page_default.html', _('Default template with document content only')),

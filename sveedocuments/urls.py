@@ -4,8 +4,9 @@ Root url's map for application
 """
 from django.conf.urls import *
 
+from sveedocuments.models import ATTACHMENTS_WITH_SENDFILE
 from sveedocuments.views.page import (HelpPageView, PageIndexView, PageDetailsView, 
-                                        PageSourceView, PagePDFView)
+                                        PageSourceView)
 
 urlpatterns = patterns('',
     url(r'^$', PageIndexView.as_view(), name='index'),
@@ -19,7 +20,17 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/source/$', PageSourceView.as_view(), name='page-source'),
 )
 
-if not getattr(PagePDFView, 'is_dummy', False):
+#DEPRECATED: It was fully implemented but sadly, rst2pdf is not maintained anymore 
+# and badly packaged, it cause too many issue with many current package versions.
+#if not getattr(PagePDFView, 'is_dummy', False):
+    #from sveedocuments.views.page import PagePDFView
+    #urlpatterns += patterns('',
+        #url(r'^(?P<slug>[-\w]+)/pdf/$', PagePDFView.as_view(), name='page-pdf'),
+    #)
+
+
+if ATTACHMENTS_WITH_SENDFILE:
+    from sveedocuments.views.attachment import AttachmentProtectedDownloadView
     urlpatterns += patterns('',
-        url(r'^(?P<slug>[-\w]+)/pdf/$', PagePDFView.as_view(), name='page-pdf'),
+        url(r'^(?P<slug>[-\w]+)/attachment/(?P<attachment_id>\d+)/$', AttachmentProtectedDownloadView.as_view(), name='page-attachment-download'),
     )

@@ -2,9 +2,12 @@
 """
 Data models
 """
+import warnings
 from datetime import datetime
 
 import django.dispatch
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.cache import cache
@@ -15,14 +18,11 @@ from mptt.models import TreeForeignKey
 
 from rstview.local_settings import RSTVIEW_PARSER_FILTER_SETTINGS
 
-from sveedocuments.local_settings import (DOCUMENTS_PAGE_TEMPLATES, PAGE_SLUGS_CACHE_KEY_NAME, 
-                                        PAGE_RENDER_CACHE_KEY_NAME, INSERT_RENDER_CACHE_KEY_NAME,
-                                        PAGE_TOC_CACHE_KEY_NAME, INSERT_TOC_CACHE_KEY_NAME,
-                                        DOCUMENTS_PAGE_ARCHIVED, DOCUMENTS_PAGE_TEMPLATE_DEFAULT)
+from sveedocuments import local_settings
 from sveedocuments.utils import _get_cache_keyset
 from sveedocuments.utils.filefield import content_file_name
 
-DOCUMENTS_PAGE_TEMPLATES_CHOICES = [(k,v[1]) for k,v in DOCUMENTS_PAGE_TEMPLATES.items()]
+DOCUMENTS_PAGE_TEMPLATES_CHOICES = [(k,v[1]) for k,v in local_settings.DOCUMENTS_PAGE_TEMPLATES.items()]
 
 DOCUMENTS_VISIBILTY_CHOICES = (
     (True, _('Visible')),
@@ -38,6 +38,18 @@ IMAGE_MIMETYPES = (
 )
 
 ATTACH_FILE_UPLOADTO = lambda x,y: content_file_name('pages/attachments/%Y/%m/%d', x, y)
+
+# Check for django-sendfile availibility
+try:
+    from sendfile import sendfile
+except ImportError:
+    warnings.warn("Your documents are private but you don't have installed 'django-sendfile' so page attachments will be public for everyone. Install it or set setting 'DOCUMENTS_ATTACHMENT_USE_SENDFILE' to False to avoid this warning.", UserWarning)
+    ATTACHMENTS_WITH_SENDFILE = False
+    ATTACHMENT_FS_STORAGE = FileSystemStorage(location=settings.MEDIA_ROOT, base_url=settings.MEDIA_URL)
+else:
+    ATTACHMENTS_WITH_SENDFILE = True
+    ATTACHMENT_FS_STORAGE = FileSystemStorage(location=settings.SENDFILE_ROOT, base_url=settings.SENDFILE_URL)
+
 
 class Insert(models.Model):
     """
@@ -58,13 +70,13 @@ class Insert(models.Model):
         """
         Get the cache key for the content render according to the given settings
         """
-        return INSERT_RENDER_CACHE_KEY_NAME.format(id=self.id, **kwargs)
+        return local_settings.INSERT_RENDER_CACHE_KEY_NAME.format(id=self.id, **kwargs)
     
     def get_toc_cache_key(self, **kwargs):
         """
         Get the cache key for the content TOC according to the given settings
         """
-        return INSERT_TOC_CACHE_KEY_NAME.format(id=self.id, **kwargs)
+        return local_settings.INSERT_TOC_CACHE_KEY_NAME.format(id=self.id, **kwargs)
     
     def save(self, *args, **kwargs):
         # Invalidate all caches at edit
@@ -81,12 +93,12 @@ class Insert(models.Model):
         """
         Invalidate all possible cache keys
         """
-        keys = _get_cache_keyset(INSERT_RENDER_CACHE_KEY_NAME, **{
+        keys = _get_cache_keyset(local_settings.INSERT_RENDER_CACHE_KEY_NAME, **{
             'id': self.id,
             'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
             'header_level': ['None']+range(1, 7),
         })
-        keys += _get_cache_keyset(INSERT_TOC_CACHE_KEY_NAME, **{
+        keys += _get_cache_keyset(local_settings.INSERT_TOC_CACHE_KEY_NAME, **{
             'id': self.id,
             'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
             'header_level': ['None']+range(1, 7),
@@ -108,7 +120,7 @@ class PageModelBase(models.Model):
     author = models.ForeignKey(User, verbose_name=_('author'))
     title = models.CharField(_('title'), blank=False, max_length=255)
     published = models.DateTimeField(_('publish date'), blank=True, help_text=_("Define when the document will be displayed on the site. Empty value mean an instant publish, use a coming date to program a futur publish."))
-    template = models.CharField(_('template'), max_length=50, choices=DOCUMENTS_PAGE_TEMPLATES_CHOICES, default=DOCUMENTS_PAGE_TEMPLATE_DEFAULT, help_text=_("This template will be used to render the page."))
+    template = models.CharField(_('template'), max_length=50, choices=DOCUMENTS_PAGE_TEMPLATES_CHOICES, default=local_settings.DOCUMENTS_PAGE_TEMPLATE_DEFAULT, help_text=_("This template will be used to render the page."))
     order = models.SmallIntegerField(_('order'), default=1, help_text=_("Display order in lists and trees."))
     visible = models.BooleanField(_('visibility'), choices=DOCUMENTS_VISIBILTY_CHOICES, default=True)
     content = models.TextField(_('content'), blank=False)
@@ -118,7 +130,7 @@ class PageModelBase(models.Model):
         return self.title
 
     def get_template(self):
-        return DOCUMENTS_PAGE_TEMPLATES[self.template][0]
+        return local_settings.DOCUMENTS_PAGE_TEMPLATES[self.template][0]
     
     class Meta:
         abstract = True    
@@ -140,28 +152,28 @@ class Page(PageModelBase):
         """
         Get the cache key for the content render with according to the given settings
         """
-        return PAGE_RENDER_CACHE_KEY_NAME.format(id=self.id, **kwargs)
+        return local_settings.PAGE_RENDER_CACHE_KEY_NAME.format(id=self.id, **kwargs)
     
     def get_toc_cache_key(self, **kwargs):
         """
         Get the cache key for the content TOC with according to the given settings
         """
-        return PAGE_TOC_CACHE_KEY_NAME.format(id=self.id, **kwargs)
+        return local_settings.PAGE_TOC_CACHE_KEY_NAME.format(id=self.id, **kwargs)
     
     def clear_cache(self):
         """
         Invalidate all possible cache keys
         """
-        keys = _get_cache_keyset(PAGE_RENDER_CACHE_KEY_NAME, **{
+        keys = _get_cache_keyset(local_settings.PAGE_RENDER_CACHE_KEY_NAME, **{
             'id': self.id,
             'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
         })
-        keys += _get_cache_keyset(PAGE_TOC_CACHE_KEY_NAME, **{
+        keys += _get_cache_keyset(local_settings.PAGE_TOC_CACHE_KEY_NAME, **{
             'id': self.id,
             'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
         })
         # Drop cache for knowed pages slugs used in the ``page`` rest role
-        cache.delete_many([PAGE_SLUGS_CACHE_KEY_NAME]+keys)
+        cache.delete_many([local_settings.PAGE_SLUGS_CACHE_KEY_NAME]+keys)
         return keys
     
     def _get_current_revision(self):
@@ -173,7 +185,7 @@ class Page(PageModelBase):
         if not self.created:
             self.created = datetime.now()
         # Creating a new revision archive
-        elif DOCUMENTS_PAGE_ARCHIVED:
+        elif local_settings.DOCUMENTS_PAGE_ARCHIVED:
             old = Page.objects.get(pk=self.id)
             PageRevision(
                 page=self,
@@ -228,7 +240,6 @@ class PageRevision(PageModelBase):
         verbose_name_plural = _("pages revisions")
 
 
-
 class Attachment(models.Model):
     """
     Attachment file for a Page document
@@ -240,7 +251,7 @@ class Attachment(models.Model):
     title = models.CharField(_('title'), max_length=75, blank=True)
     slug = models.CharField(_('slug'), max_length=75, blank=True, help_text=_("Used as the key to put the attachment in your documents. This does not really use the slug syntax, you can use more special characters. If empty, will be filled with the original file name."))
     created = models.DateTimeField(_('created'), auto_now_add=True)
-    file = models.FileField(_('file'), upload_to=ATTACH_FILE_UPLOADTO, max_length=255, blank=False)
+    file = models.FileField(_('file'), upload_to=ATTACH_FILE_UPLOADTO, storage=ATTACHMENT_FS_STORAGE, max_length=255, blank=False)
     size = models.IntegerField(_('size'), blank=False, default=0, editable=False)
     content_type = models.CharField(_('content_type'), max_length=120, blank=False, null=True, editable=False)
     
