@@ -4,13 +4,22 @@ Url's map for documents board
 """
 from django.conf.urls import *
 
-from sveedocuments.views.board import (BoardIndexView, PreviewView, BoardEditorSettingsView,
-                                        BoardPagesIndexView, BoardInsertsIndexView)
-from sveedocuments.views.board.page import (PageCreateView, PageQuicksaveView,
-                                      PageEditView, PageDeleteView, PageDeleteView, PageHistoryView, 
-                                      PageAttachmentsView, PageAttachmentDeleteView)
-from sveedocuments.views.board.insert import (InsertCreateView, InsertEditView, 
-                                        InsertDeleteView, InsertQuicksaveView)
+from sveedocuments.views.board import (
+    BoardIndexView, PreviewView, BoardEditorSettingsView,
+    BoardPagesIndexView, BoardInsertsIndexView
+)
+from sveedocuments.views.board.page import (
+    PageCreateView,
+    PageEditView, PageDeleteView, PageDeleteView, 
+    PageHistoryView, PageQuicksaveView
+)
+from sveedocuments.views.board.attachment import (
+    PageAttachmentsView, PageAttachmentDeleteView
+)
+from sveedocuments.views.board.insert import (
+    InsertCreateView, InsertEditView, 
+    InsertDeleteView, InsertQuicksaveView
+)
 
 urlpatterns = patterns('',
     url(r'^$', BoardIndexView.as_view(), name='board'),

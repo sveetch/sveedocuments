@@ -2,6 +2,7 @@
 """
 Insert forms
 """
+from django.conf import settings
 from django import forms
 from django.utils.translation import ugettext as _
 
@@ -9,7 +10,6 @@ from djangocodemirror.fields import CodeMirrorWidget
 
 from rstview.parser import SourceReporter, map_parsing_errors
 
-from sveedocuments.local_settings import DOCUMENTS_PAGE_RESERVED_SLUGS
 from sveedocuments.models import Insert, documents_insert_update_signal
 from sveedocuments.forms import CrispyFormMixin
 from sveedocuments.forms.page import PageQuickForm
@@ -37,7 +37,7 @@ class InsertForm(CrispyFormMixin, forms.ModelForm):
     def clean_slug(self):
         slug = self.cleaned_data.get("slug")
         if slug:
-            if slug in DOCUMENTS_PAGE_RESERVED_SLUGS:
+            if slug in settings.DOCUMENTS_PAGE_RESERVED_SLUGS:
                 raise forms.ValidationError(_('This is a reserved keyword'))
         return slug
     

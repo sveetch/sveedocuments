@@ -2,6 +2,7 @@
 """
 Page forms
 """
+from django.conf import settings
 from django import forms
 from django.utils.translation import ugettext as _
 
@@ -12,7 +13,6 @@ from djangocodemirror.forms import DjangoCodeMirrorSettingsForm as DjangoCodeMir
 
 from rstview.parser import SourceReporter, map_parsing_errors
 
-from sveedocuments.local_settings import DOCUMENTS_PAGE_RESERVED_SLUGS
 from sveedocuments.models import Page, documents_page_update_signal
 from sveedocuments.forms import CrispyFormMixin
 
@@ -54,7 +54,7 @@ class PageForm(CrispyFormMixin, forms.ModelForm):
     def clean_slug(self):
         slug = self.cleaned_data.get("slug")
         if slug:
-            if slug in DOCUMENTS_PAGE_RESERVED_SLUGS:
+            if slug in settings.DOCUMENTS_PAGE_RESERVED_SLUGS:
                 raise forms.ValidationError(_('This is a reserved keyword'))
         return slug
     

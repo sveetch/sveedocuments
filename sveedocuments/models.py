@@ -18,11 +18,10 @@ from mptt.models import TreeForeignKey
 
 from rstview.local_settings import RSTVIEW_PARSER_FILTER_SETTINGS
 
-from sveedocuments import local_settings
 from sveedocuments.utils import _get_cache_keyset
 from sveedocuments.utils.filefield import content_file_name
 
-DOCUMENTS_PAGE_TEMPLATES_CHOICES = [(k,v[1]) for k,v in local_settings.DOCUMENTS_PAGE_TEMPLATES.items()]
+DOCUMENTS_PAGE_TEMPLATES_CHOICES = [(k,v[1]) for k,v in settings.DOCUMENTS_PAGE_TEMPLATES.items()]
 
 DOCUMENTS_VISIBILTY_CHOICES = (
     (True, _('Visible')),
@@ -70,13 +69,13 @@ class Insert(models.Model):
         """
         Get the cache key for the content render according to the given settings
         """
-        return local_settings.INSERT_RENDER_CACHE_KEY_NAME.format(id=self.id, **kwargs)
+        return settings.INSERT_RENDER_CACHE_KEY_NAME.format(id=self.id, **kwargs)
     
     def get_toc_cache_key(self, **kwargs):
         """
         Get the cache key for the content TOC according to the given settings
         """
-        return local_settings.INSERT_TOC_CACHE_KEY_NAME.format(id=self.id, **kwargs)
+        return settings.INSERT_TOC_CACHE_KEY_NAME.format(id=self.id, **kwargs)
     
     def save(self, *args, **kwargs):
         # Invalidate all caches at edit
@@ -93,12 +92,12 @@ class Insert(models.Model):
         """
         Invalidate all possible cache keys
         """
-        keys = _get_cache_keyset(local_settings.INSERT_RENDER_CACHE_KEY_NAME, **{
+        keys = _get_cache_keyset(settings.INSERT_RENDER_CACHE_KEY_NAME, **{
             'id': self.id,
             'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
             'header_level': ['None']+range(1, 7),
         })
-        keys += _get_cache_keyset(local_settings.INSERT_TOC_CACHE_KEY_NAME, **{
+        keys += _get_cache_keyset(settings.INSERT_TOC_CACHE_KEY_NAME, **{
             'id': self.id,
             'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
             'header_level': ['None']+range(1, 7),
@@ -120,7 +119,7 @@ class PageModelBase(models.Model):
     author = models.ForeignKey(User, verbose_name=_('author'))
     title = models.CharField(_('title'), blank=False, max_length=255)
     published = models.DateTimeField(_('publish date'), blank=True, help_text=_("Define when the document will be displayed on the site. Empty value mean an instant publish, use a coming date to program a futur publish."))
-    template = models.CharField(_('template'), max_length=50, choices=DOCUMENTS_PAGE_TEMPLATES_CHOICES, default=local_settings.DOCUMENTS_PAGE_TEMPLATE_DEFAULT, help_text=_("This template will be used to render the page."))
+    template = models.CharField(_('template'), max_length=50, choices=DOCUMENTS_PAGE_TEMPLATES_CHOICES, default=settings.DOCUMENTS_PAGE_TEMPLATE_DEFAULT, help_text=_("This template will be used to render the page."))
     order = models.SmallIntegerField(_('order'), default=1, help_text=_("Display order in lists and trees."))
     visible = models.BooleanField(_('visibility'), choices=DOCUMENTS_VISIBILTY_CHOICES, default=True)
     content = models.TextField(_('content'), blank=False)
@@ -130,7 +129,7 @@ class PageModelBase(models.Model):
         return self.title
 
     def get_template(self):
-        return local_settings.DOCUMENTS_PAGE_TEMPLATES[self.template][0]
+        return settings.DOCUMENTS_PAGE_TEMPLATES[self.template][0]
     
     class Meta:
         abstract = True    
@@ -152,28 +151,28 @@ class Page(PageModelBase):
         """
         Get the cache key for the content render with according to the given settings
         """
-        return local_settings.PAGE_RENDER_CACHE_KEY_NAME.format(id=self.id, **kwargs)
+        return settings.PAGE_RENDER_CACHE_KEY_NAME.format(id=self.id, **kwargs)
     
     def get_toc_cache_key(self, **kwargs):
         """
         Get the cache key for the content TOC with according to the given settings
         """
-        return local_settings.PAGE_TOC_CACHE_KEY_NAME.format(id=self.id, **kwargs)
+        return settings.PAGE_TOC_CACHE_KEY_NAME.format(id=self.id, **kwargs)
     
     def clear_cache(self):
         """
         Invalidate all possible cache keys
         """
-        keys = _get_cache_keyset(local_settings.PAGE_RENDER_CACHE_KEY_NAME, **{
+        keys = _get_cache_keyset(settings.PAGE_RENDER_CACHE_KEY_NAME, **{
             'id': self.id,
             'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
         })
-        keys += _get_cache_keyset(local_settings.PAGE_TOC_CACHE_KEY_NAME, **{
+        keys += _get_cache_keyset(settings.PAGE_TOC_CACHE_KEY_NAME, **{
             'id': self.id,
             'setting': RSTVIEW_PARSER_FILTER_SETTINGS.keys(),
         })
         # Drop cache for knowed pages slugs used in the ``page`` rest role
-        cache.delete_many([local_settings.PAGE_SLUGS_CACHE_KEY_NAME]+keys)
+        cache.delete_many([settings.PAGE_SLUGS_CACHE_KEY_NAME]+keys)
         return keys
     
     def _get_current_revision(self):
@@ -185,7 +184,7 @@ class Page(PageModelBase):
         if not self.created:
             self.created = datetime.now()
         # Creating a new revision archive
-        elif local_settings.DOCUMENTS_PAGE_ARCHIVED:
+        elif settings.DOCUMENTS_PAGE_ARCHIVED:
             old = Page.objects.get(pk=self.id)
             PageRevision(
                 page=self,

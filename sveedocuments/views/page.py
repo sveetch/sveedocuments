@@ -22,7 +22,7 @@ from djangocodemirror.views import SampleQuicksaveMixin
 
 from rstview.parser import SourceParser
 
-from sveedocuments import local_settings
+from sveedocuments import __init__ as sveedocuments_basemod
 from sveedocuments.models import ATTACHMENTS_WITH_SENDFILE, Page, Attachment
 from sveedocuments.forms.page import PageForm, PageEditForm, PageQuickForm
 from sveedocuments.forms.attachment import AttachmentForm
@@ -77,7 +77,7 @@ class HelpPageView(generic.TemplateView):
     template_name = "sveedocuments/help.html"
     
     def get(self, request, *args, **kwargs):
-        path_root = os.path.abspath(os.path.dirname(local_settings.__file__))
+        path_root = os.path.abspath(os.path.dirname(sveedocuments_basemod.__file__))
         f = open(os.path.join(path_root, "HELP.rst"))
         content = f.read()
         f.close()
@@ -124,7 +124,7 @@ class PageDetailsMixin(object):
     def get_template_names(self):
         return [self.object.get_template()]
 
-if local_settings.DOCUMENTS_PAGE_RESTRICTED:
+if settings.DOCUMENTS_PAGE_RESTRICTED:
     class PageDetailsView(PageDetailsMixin, LoginRequiredMixin, generic.DetailView):
         pass
 else:

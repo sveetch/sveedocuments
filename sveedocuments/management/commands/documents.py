@@ -10,7 +10,6 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.management.base import CommandError, BaseCommand
 
-from sveedocuments.local_settings import DOCUMENTS_CACHE_KEYS_TO_CLEAN
 from sveedocuments.models import Page, Insert
 
 class Command(BaseCommand):
@@ -52,8 +51,8 @@ class Command(BaseCommand):
         for page_item in pages:
             keys = page_item.clear_cache()
         
-        if DOCUMENTS_CACHE_KEYS_TO_CLEAN:
-            cache.delete_many(DOCUMENTS_CACHE_KEYS_TO_CLEAN)
+        if settings.DOCUMENTS_CACHE_KEYS_TO_CLEAN:
+            cache.delete_many(settings.DOCUMENTS_CACHE_KEYS_TO_CLEAN)
             
         if self.verbosity:
             print "* All documents cache cleared"

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Attachment views
+Page's attachment views
 """
 import os
 

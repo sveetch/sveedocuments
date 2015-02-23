@@ -12,10 +12,6 @@ from django.core.urlresolvers import reverse
 from django.core.cache import cache
 from django.contrib.sites.models import Site
 
-from sveedocuments.local_settings import (DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING, 
-                                            PAGE_SLUGS_CACHE_KEY_NAME, 
-                                            PAGE_ATTACHMENTS_SLUGS_CACHE_KEY_NAME)
-
 from sveedocuments.models import Page, Attachment
 
 _ATTACHMENT_ROLE_REGEX = re.compile(r"^(?:id)(?P<id>[0-9]+)(?:\-)(?P<slug>.*?)$")
@@ -31,11 +27,11 @@ def get_page_slugs(force_update_cache=False):
     
     Try to get it from the cache if it exist, else build it
     """
-    if force_update_cache or not cache.get(PAGE_SLUGS_CACHE_KEY_NAME):
+    if force_update_cache or not cache.get(settings.PAGE_SLUGS_CACHE_KEY_NAME):
         slugs_map = dict(Page.objects.filter(visible=True).values_list('slug', 'title'))
-        cache.set(PAGE_SLUGS_CACHE_KEY_NAME, slugs_map)
+        cache.set(settings.PAGE_SLUGS_CACHE_KEY_NAME, slugs_map)
         return slugs_map
-    return cache.get(PAGE_SLUGS_CACHE_KEY_NAME)
+    return cache.get(settings.PAGE_SLUGS_CACHE_KEY_NAME)
 
 def page_link(role, rawtext, text, lineno, inliner, options={}, content=[]):
     """
@@ -48,7 +44,7 @@ def page_link(role, rawtext, text, lineno, inliner, options={}, content=[]):
     # Get the page slugs map
     slugs = get_page_slugs()
     # Throw error if the given slug does not exist
-    if text not in slugs and not DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING:
+    if text not in slugs and not settings.DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING:
         msg = inliner.reporter.error('Page with slug "%s" does not exist.' % text, line=lineno)
         prb = inliner.problematic(rawtext, rawtext, msg)
         return [prb], [msg]
@@ -70,7 +66,7 @@ def get_page_attachment_slugs(page_id, force_update_cache=False):
     
     Try to get it from the cache if it exist, else build it
     """
-    cache_key = PAGE_ATTACHMENTS_SLUGS_CACHE_KEY_NAME.format(page_id)
+    cache_key = settings.PAGE_ATTACHMENTS_SLUGS_CACHE_KEY_NAME.format(page_id)
     if force_update_cache or not cache.get(cache_key):
         page = Page.objects.get(pk=page_id)
         slugs_map = dict(page.attachment.all().values_list('slug', 'file'))
@@ -102,7 +98,7 @@ def page_attachment(role, rawtext, text, lineno, inliner, options={}, content=[]
     except Page.DoesNotExist:
         return rst_parser_error('Page with id "{pk}" does not exist in pattern "{pattern}"'.format(pk=pk, pattern=text), rawtext, text, lineno, inliner)
     else:
-        if attachment_slug not in slugs_map and not DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING:
+        if attachment_slug not in slugs_map and not settings.DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING:
             return rst_parser_error('Attachment with slug "{slug}" does not exist for page id "{pk}" in pattern "{pattern}".'.format(pk=pk, slug=attachment_slug, pattern=text), rawtext, text, lineno, inliner)
         link = slugs_map[attachment_slug]
         # Add a class to the item

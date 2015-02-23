@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Insert document views
+Insert documents management views
 """
 import json
 

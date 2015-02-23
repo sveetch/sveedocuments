@@ -5,8 +5,10 @@ Root url's map for application
 from django.conf.urls import *
 
 from sveedocuments.models import ATTACHMENTS_WITH_SENDFILE
-from sveedocuments.views.page import (HelpPageView, PageIndexView, PageDetailsView, 
-                                        PageSourceView)
+from sveedocuments.views.page import (
+    HelpPageView, PageIndexView, PageDetailsView, 
+    PageSourceView
+)
 
 urlpatterns = patterns('',
     url(r'^$', PageIndexView.as_view(), name='index'),

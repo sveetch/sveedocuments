@@ -2,10 +2,10 @@
 """
 Templates tags divers pour les documents
 """
+from django.conf import settings
 from django import template
 from django.utils.safestring import mark_safe
 
-from sveedocuments.local_settings import DOCUMENTS_PAGE_TREEMENU, DOCUMENTS_PAGE_FLATMENU
 from sveedocuments.models import Insert, Page
 from sveedocuments.utils.templatetags import resolve_string_or_variable
 
@@ -56,9 +56,9 @@ class PageMenuTagRender(template.Node):
         page_var = resolve_string_or_variable(self.page_var_name, context)
         # Template par défaut selon le mode (arborescence/plat)
         if not self.flat_mode:
-            self.template_path = DOCUMENTS_PAGE_TREEMENU
+            self.template_path = settings.DOCUMENTS_PAGE_TREEMENU
         else:
-            self.template_path = DOCUMENTS_PAGE_FLATMENU
+            self.template_path = settings.DOCUMENTS_PAGE_FLATMENU
         # Custom template if any
         if self.template_path_varname:
             self.template_path = resolve_string_or_variable(self.template_path_varname, context)
