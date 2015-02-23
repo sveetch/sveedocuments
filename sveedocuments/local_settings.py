@@ -41,33 +41,6 @@ DOCUMENTS_PAGE_TEMPLATE_DEFAULT = getattr(settings, 'DOCUMENTS_PAGE_TEMPLATE_DEF
 # if ``False`` the warning will be inserted in the render
 DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING = getattr(settings, 'DOCUMENTS_PARSER_WIKIROLE_SILENT_WARNING', False)
 
-# This is the preface that will be added at start of the Page content when they are 
-# exported to PDF
-# The default preface put some document informations, add summary of content on the 
-# first page and active the section numbering.
-_PDF_PREFACE = u"""==================
-{page.title}
-==================
-
-:author: {page.author.first_name} {page.author.last_name} <{page.author.email}>
-:date: {page.modified}
-:revision: $LastChangedRevision: {page.current_revision} $
-
-.. class:: alert alert-info pull-right
-
-.. contents::
-
-.. section-numbering::
-
-.. raw:: pdf
-
-   PageBreak oneColumn
-
-"""
-DOCUMENTS_EXPORT_PDF_PREFACE = getattr(settings, 'DOCUMENTS_EXPORT_PDF_PREFACE', _PDF_PREFACE)
-DOCUMENTS_EXPORT_PDF_HEADER = getattr(settings, 'DOCUMENTS_EXPORT_PDF_PREFACE', "###Section###")
-DOCUMENTS_EXPORT_PDF_FOOTER = getattr(settings, 'DOCUMENTS_EXPORT_PDF_PREFACE', "Page ###Page### / ###Total###")
-
 """
 Internal settings only, can't be overriden from your webapp settings
 """

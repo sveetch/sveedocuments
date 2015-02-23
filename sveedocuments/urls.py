@@ -20,15 +20,6 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/source/$', PageSourceView.as_view(), name='page-source'),
 )
 
-#DEPRECATED: It was fully implemented but sadly, rst2pdf is not maintained anymore 
-# and badly packaged, it cause too many issue with many current package versions.
-#if not getattr(PagePDFView, 'is_dummy', False):
-    #from sveedocuments.views.page import PagePDFView
-    #urlpatterns += patterns('',
-        #url(r'^(?P<slug>[-\w]+)/pdf/$', PagePDFView.as_view(), name='page-pdf'),
-    #)
-
-
 if ATTACHMENTS_WITH_SENDFILE:
     from sveedocuments.views.attachment import AttachmentProtectedDownloadView
     urlpatterns += patterns('',

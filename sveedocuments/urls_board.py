@@ -6,10 +6,10 @@ from django.conf.urls import *
 
 from sveedocuments.views.board import (BoardIndexView, PreviewView, BoardEditorSettingsView,
                                         BoardPagesIndexView, BoardInsertsIndexView)
-from sveedocuments.views.page import (PageCreateView, PageQuicksaveView,
+from sveedocuments.views.board.page import (PageCreateView, PageQuicksaveView,
                                       PageEditView, PageDeleteView, PageDeleteView, PageHistoryView, 
                                       PageAttachmentsView, PageAttachmentDeleteView)
-from sveedocuments.views.insert import (InsertCreateView, InsertEditView, 
+from sveedocuments.views.board.insert import (InsertCreateView, InsertEditView, 
                                         InsertDeleteView, InsertQuicksaveView)
 
 urlpatterns = patterns('',
