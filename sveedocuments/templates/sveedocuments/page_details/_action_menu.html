@@ -8,9 +8,6 @@
             <li><a class="button tiny secondary" href="{% url 'sveedocuments:page-delete' page_instance.slug %}">{% trans "Delete" %}</a></li>
         {% endif %}
         <li><a class="button tiny secondary" href="{% url 'sveedocuments:page-source' page_instance.slug %}">{% trans "Plain text version" %}</a></li>
-        {% if pdf_export_enabled %}
-            <li><a class="button tiny secondary" href="{% url 'sveedocuments:page-pdf' page_instance.slug %}">{% trans "PDF version" %}</a></li>
-        {% endif %}
         {% if attachments %}
         <li><a class="button tiny secondary" href="#attachments">{% trans "Attachments" %}</a></li>
         {% endif %}

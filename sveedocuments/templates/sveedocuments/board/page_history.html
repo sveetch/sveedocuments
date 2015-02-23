@@ -11,15 +11,15 @@
     
     <ul class="feed">
         <li class="revision-current">
-            <p class="ago">{{ page_instance.modified|timesince }} ago</p>
-            <p class="details"><strong>Current : </strong> by {{ page_instance.author.get_full_name }}</p>
+            <p class="ago">{% blocktrans with since=page_instance.modified|timesince %}{{ since }} ago{% endblocktrans %}</p>
+            <p class="details">{% blocktrans with author=page_instance.author.get_full_name %}<strong>Current version:</strong> by {{ author }}{% endblocktrans %}</p>
             <p class="comment"><em>{% if page_instance.comment %}{{ page_instance.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
         </li>
 
         {% for revision in last_revisions %}
         <li>
-            <p class="ago">{{ page_instance.created|timesince }} ago</p>
-            <p class="details"><strong>N°{{ revision.revision }} : </strong> by {{ revision.author.get_full_name }}</p>
+            <p class="ago">{% blocktrans with since=page_instance.created|timesince %}{{ since }} ago{% endblocktrans %}</p>
+            <p class="details">{% blocktrans with version=revision.revision author=revision.author.get_full_name %}<strong>Version n°{{ version }}:</strong> by {{ author }}{% endblocktrans %}</p>
             <p class="comment{% if not revision.comment %} empty{% endif %}"><em>{% if revision.comment %}{{ revision.comment }}{% else %}{% trans "Empty comment" %}{% endif %}</em></p>
         </li>
         {% endfor %}

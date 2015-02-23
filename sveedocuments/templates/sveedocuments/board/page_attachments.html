@@ -21,7 +21,9 @@
     
     <ul class="feed">{% for item in object_list %}
         <li>
-            <p class="ago">{{ item.created|timesince }} ago - By <em>{{ item.author.get_full_name }}</em></p>
+            <p class="ago">
+                {% blocktrans with created=item.created|timesince author=item.author.get_full_name %}{{ created }} ago - By <em>{{ author }}</em>{% endblocktrans %}
+            </p>
             <p><strong>{% trans "Title" %} :</strong> {{ item.title }}</p>
             <p><strong>{% trans "Slug" %} :</strong> {{ item.slug }}</p>
             <p>
