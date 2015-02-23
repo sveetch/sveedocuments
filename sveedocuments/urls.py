@@ -15,7 +15,6 @@ urlpatterns = patterns('',
     
     (r'^board/', include('sveedocuments.urls_board')),
     
-    url(r'^sitemap/$', PageIndexView.as_view(), name='index'),
     url(r'^help/$', HelpPageView.as_view(), name='help'),
     
     url(r'^(?P<slug>[-\w]+)/$', PageDetailsView.as_view(), name='page-details'),

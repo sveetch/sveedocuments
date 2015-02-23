@@ -12,10 +12,7 @@
 {% endblock %}
 
 {% block board_content %}
-    <div class="clearfix">
-        {% if page_instance and page_instance.visible %}<a class="secondary button right" href="{% url 'sveedocuments:page-details' page_instance.slug %}">{% trans "View on site" %}</a>{% endif %}
-        <h2>{% current_title_from_breadcrumbs %}</h2>
-    </div>
+    <h2>{% current_title_from_breadcrumbs %}</h2>
     
     {% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="attachments" %}
     
