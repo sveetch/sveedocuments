@@ -1,3 +1,8 @@
+.. Sveedocuments documentation master file, created by
+   sphinx-quickstart on Mon Feb 23 03:47:19 2015.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
 .. _Django: https://www.djangoproject.com/
 .. _Django internationalization system: https://docs.djangoproject.com/en/dev/topics/i18n/
 .. _South: http://south.readthedocs.org/en/latest/
@@ -15,8 +20,8 @@
 .. _Foundation5: http://foundation.zurb.com/docs/
 .. _django-sendfile: https://github.com/johnsensible/django-sendfile
 
-Introduction
-============
+Welcome to Sveedocuments's documentation!
+=========================================
 
 **Sveetchies-documents** is a Django application to manage text documents. It work almost like a Wiki.
 
@@ -48,3 +53,11 @@ Links
 * Download his `PyPi package <http://pypi.python.org/pypi/sveedocuments>`_;
 * Clone it on his `Github repository <https://github.com/sveetch/sveedocuments>`_;
 
+Table of contents
+*****************
+
+.. toctree::
+   :maxdepth: 2
+   
+   install.rst
+   usage.rst

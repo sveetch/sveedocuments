@@ -2,4 +2,4 @@
 """
 Django application to manage documents in ReStructuredText
 """
-__version__ = '0.9.29'
+__version__ = '1.0.0'

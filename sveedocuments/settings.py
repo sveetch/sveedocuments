@@ -29,7 +29,7 @@ DOCUMENTS_PAGE_TEMPLATES = {
     #'with_toc': ('sveedocuments/page_details/page_with-toc.html', gettext('Template with a Table Of Content and the document content')),
 }
 
-DOCUMENTS_PAGE_TEMPLATE_DEFAULT = 'elastic'
+DOCUMENTS_PAGE_TEMPLATE_DEFAULT = 'default'
 
 # Active a silent reporter to avoid warnings about missing page on role ``:page:xxx``
 # If ``True`` the role will be transformed to link despite the page does not exist, 
