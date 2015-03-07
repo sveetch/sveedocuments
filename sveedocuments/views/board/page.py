@@ -10,6 +10,8 @@ from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.views import generic
 from django.views.generic.detail import SingleObjectMixin
+from django.contrib import messages
+from django.utils.translation import ugettext as _
 
 from mptt.templatetags.mptt_tags import cache_tree_children
 
@@ -81,6 +83,11 @@ class PageCreateView(PermissionRequiredMixin, generic.CreateView):
         })
         return context
     
+    def form_valid(self, form):
+        resp = super(PageCreateView, self).form_valid(form)
+        messages.add_message(self.request, messages.SUCCESS, _("Page with slug <strong>{0}</strong> has been added successfully").format(self.object.slug), fail_silently=True)
+        return resp
+    
     def get_form_kwargs(self):
         kwargs = super(PageCreateView, self).get_form_kwargs()
         kwargs.update({
@@ -122,6 +129,11 @@ class PageEditView(PermissionRequiredMixin, PageTabsContentMixin, generic.Update
         if self._redirect_to_self:
             return reverse('sveedocuments:page-edit', args=[self.object.slug])
         return reverse('sveedocuments:page-index')
+    
+    def form_valid(self, form):
+        resp = super(PageEditView, self).form_valid(form)
+        messages.add_message(self.request, messages.SUCCESS, _("Page with slug <strong>{0}</strong> has been edited successfully").format(self.object.slug), fail_silently=True)
+        return resp
 
     def get_form_kwargs(self):
         kwargs = super(PageEditView, self).get_form_kwargs()
@@ -147,7 +159,17 @@ class PageDeleteView(PermissionRequiredMixin, generic.DeleteView):
         context.update({'relations': get_instance_children(self.object)})
         return self.render_to_response(context)
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.memoized_object_values = {'title':self.object.title, 'slug':self.object.slug, }
+        return super(PageDeleteView, self).post(request, *args, **kwargs)
+
     def get_success_url(self):
+        messages.add_message(
+            self.request, messages.WARNING,
+            _('Page with slug <strong>{0}</strong> has been deleted successfully').format(self.memoized_object_values['slug']),
+            fail_silently=True
+        )
         return reverse('sveedocuments:page-index')
 
 

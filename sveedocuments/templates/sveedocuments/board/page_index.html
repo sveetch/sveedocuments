@@ -9,6 +9,15 @@
             <h2>{% trans "Pages" %}</h2>
         </div>
         
+        {% if messages %}
+            {% for message in messages %}
+            <div data-alert class="alert-box {% if message.tags %}{{ message.tags }}{% endif %} radius">
+            {{ message|safe }}
+            <a href="#" class="close">&times;</a>
+            </div>
+            {% endfor %}
+        {% endif %}
+        
         <ul class="list-tree-fluid">{% recursetree page_list %}
             <li class="tree-item{% if not node.visible %} hidden{% endif %}">
             

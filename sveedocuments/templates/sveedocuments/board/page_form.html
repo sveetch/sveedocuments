@@ -35,6 +35,15 @@
 {% block board_content %}
     <h2>{% current_title_from_breadcrumbs %}</h2>
 
+    {% if messages %}
+        {% for message in messages %}
+        <div data-alert class="alert-box {% if message.tags %}{{ message.tags }}{% endif %} radius">
+        {{ message|safe }}
+        <a href="#" class="close">&times;</a>
+        </div>
+        {% endfor %}
+    {% endif %}
+    
     {% if page_instance and page_instance.visible %}{% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="edit" %}{% endif %}
     
     {% crispy form %}

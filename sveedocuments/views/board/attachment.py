@@ -5,6 +5,8 @@ Page's attachments management views
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.views import generic
+from django.contrib import messages
+from django.utils.translation import ugettext as _
 
 from braces.views import PermissionRequiredMixin
 
@@ -32,9 +34,15 @@ class PageAttachmentsView(PermissionRequiredMixin, PageTabsContentMixin, DetailL
     
     def get_queryset(self):
         return self.parent_object.attachment.all()
+    
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.SUCCESS, _('Attachment has been added successfully'), fail_silently=True)
+        return super(PageAttachmentsView, self).form_valid(form)
 
-    def get_success_url(self):
-        return reverse('sveedocuments:page-attachments', args=[self.parent_object.slug])
+    def get_form_kwargs(self):
+        kwargs = super(PageAttachmentsView, self).get_form_kwargs()
+        kwargs.update({'author': self.request.user})
+        return kwargs
         
     def get_context_data(self, **kwargs):
         context = super(PageAttachmentsView, self).get_context_data(**kwargs)
@@ -43,10 +51,8 @@ class PageAttachmentsView(PermissionRequiredMixin, PageTabsContentMixin, DetailL
         })
         return context
 
-    def get_form_kwargs(self):
-        kwargs = super(PageAttachmentsView, self).get_form_kwargs()
-        kwargs.update({'author': self.request.user})
-        return kwargs
+    def get_success_url(self):
+        return reverse('sveedocuments:page-attachments', args=[self.parent_object.slug])
 
 
 class PageAttachmentDeleteView(PermissionRequiredMixin, DirectDeleteView):
@@ -61,6 +67,7 @@ class PageAttachmentDeleteView(PermissionRequiredMixin, DirectDeleteView):
     
     def get_page_object(self):
         return get_object_or_404(Page, slug=self.kwargs['slug'])
-
+    
     def get_success_url(self):
+        messages.add_message(self.request, messages.WARNING, _('Attachment has been deleted successfully'), fail_silently=True)
         return reverse('sveedocuments:page-attachments', args=[self.old_object['page'].slug])

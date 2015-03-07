@@ -2,17 +2,15 @@
 """
 Insert documents management views
 """
-import json
-
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.views import generic
+from django.contrib import messages
+from django.utils.translation import ugettext as _
 
 from braces.views import PermissionRequiredMixin
 
 from djangocodemirror.views import SampleQuicksaveMixin
-
-from rstview.parser import SourceParser
 
 from sveedocuments.models import Insert
 from sveedocuments.forms.insert import InsertForm, InsertEditForm, InsertQuickForm
@@ -41,6 +39,11 @@ class InsertCreateView(PermissionRequiredMixin, generic.CreateView):
         if self._redirect_to_self:
             return reverse('sveedocuments:insert-edit', args=[self.object.slug])
         return reverse('sveedocuments:insert-index')
+    
+    def form_valid(self, form):
+        resp = super(InsertCreateView, self).form_valid(form)
+        messages.add_message(self.request, messages.SUCCESS, _("Insert with slug <strong>{0}</strong> has been added successfully").format(self.object.slug), fail_silently=True)
+        return resp
     
     def get_form_kwargs(self):
         kwargs = super(InsertCreateView, self).get_form_kwargs()
@@ -73,6 +76,11 @@ class InsertEditView(PermissionRequiredMixin, generic.UpdateView):
             return reverse('sveedocuments:insert-edit', args=[self.object.slug])
         return reverse('sveedocuments:insert-index')
     
+    def form_valid(self, form):
+        resp = super(InsertEditView, self).form_valid(form)
+        messages.add_message(self.request, messages.SUCCESS, _("Insert with slug <strong>{0}</strong> has been edited successfully").format(self.object.slug), fail_silently=True)
+        return resp
+    
     def get_form_kwargs(self):
         kwargs = super(InsertEditView, self).get_form_kwargs()
         kwargs.update({'author': self.request.user})
@@ -96,7 +104,17 @@ class InsertDeleteView(PermissionRequiredMixin, generic.DeleteView):
         context.update({'relations': get_instance_children(self.object)})
         return self.render_to_response(context)
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.memoized_object_values = {'title':self.object.title, 'slug':self.object.slug, }
+        return super(InsertDeleteView, self).post(request, *args, **kwargs)
+
     def get_success_url(self):
+        messages.add_message(
+            self.request, messages.WARNING,
+            _('Insert with slug <strong>{0}</strong> has been deleted successfully').format(self.memoized_object_values['slug']),
+            fail_silently=True
+        )
         return reverse('sveedocuments:insert-index')
 
 class InsertQuicksaveView(SampleQuicksaveMixin, InsertEditView):

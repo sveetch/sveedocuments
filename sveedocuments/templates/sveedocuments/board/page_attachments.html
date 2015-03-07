@@ -16,6 +16,15 @@
     
     {% include "sveedocuments/board/includes/page_form_subnav.html" with active_tab="attachments" %}
     
+    {% if messages %}
+        {% for message in messages %}
+        <div data-alert class="alert-box {% if message.tags %}{{ message.tags }}{% endif %} radius">
+        {{ message|safe }}
+        <a href="#" class="close">&times;</a>
+        </div>
+        {% endfor %}
+    {% endif %}
+    
     <ul class="feed">{% for item in object_list %}
         <li>
             <p class="ago">
