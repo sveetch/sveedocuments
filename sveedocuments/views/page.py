@@ -35,7 +35,7 @@ class PageIndexMixin(object):
         }
         
         # Fill the JSON tree if there is at least one entry
-        if page_list:
+        if page_list.count()>0:
             context['json_tree'] = json.dumps(self.get_recursed_tree( cache_tree_children(page_list) ))
             
         return self.render_to_response(context)

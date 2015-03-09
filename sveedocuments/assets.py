@@ -14,18 +14,20 @@ else:
             filters='yui_css',
             output='css/sveedocuments_app.min.css'
         ),
-        'sveedocuments_board_js': Bundle(
+        'sveedocuments_js': Bundle(
             "js/jquery/jquery.slugify.js",
             "js/jquery/moment.js",
             "js/jquery/pikaday.js",
+            "js/jquery/tree.jquery.js",
+            "js/sveedocuments_plugins.js",
             filters='yui_js',
-            output='js/sveedocuments_board.min.js'
+            output='js/sveedocuments.min.js'
         ),
     }
 
     ENABLED_BUNDLES = (
         'sveedocuments_css',
-        'sveedocuments_board_js',
+        'sveedocuments_js',
     )
 
     for item in ENABLED_BUNDLES:

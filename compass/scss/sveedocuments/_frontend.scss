@@ -1,43 +1,54 @@
-//
-// SCSS sources for sveedocument frontend pages
-//
-// Require Compass (0.12) to compile
-//
-
-// Simple tree list, should only contain simple text not too long (avoid multilines)
-ul.list-tree, ul.list-tree ul, ul.list-tree li{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-ul.list-tree{
-    margin: 0 0 0 rem-calc(24px);
+/*
+ * Sveedocuments stylesheets for frontend
+ */
+.documents{
     
-    li{
-        padding-left: rem-calc(16px);
-        padding-bottom: rem-calc(12px);
-        background: image-url('list-tree/list-tree-bold-vline.png') repeat-y 0 0;
-        font-size: rem-calc(16px);
-        line-height: rem-calc(16px);
-        
-        div.tree-node-pointer{
-            position: relative;
-            left: rem-calc(-16px);
-            padding-left: rem-calc(16px);
-            background: image-url('list-tree/list-tree-bold-node.png') no-repeat 0 0;
+    // Adapt jqTree DOM for sitemap
+    .jqtree-tree{
+                
+        .jqtree-folder{
+            font-weight: bold;
+            
+            ul.jqtree_common{
+                font-weight: normal;
+            }
+            
+            &.jqtree-closed{
+                font-weight: normal;
+            }
         }
         
-        &:last-child{
-            padding-bottom: 0;
-            background: none;
-        }
-        
-        &:last-child div.tree-node-pointer{
-            background: image-url('list-tree/list-tree-bold-lastnode.png') no-repeat 0 0;
+        .jqtree-element{
+            cursor: default;
+            font-size: rem-calc(16px);
+            
+            .jqtree-toggler{
+                margin-left: 0.3em;
+                margin-right: 0.5em;
+                
+                i{
+                    font-size: 1.2em;
+                }
+            }
+            
+            .jqtree-title{
+                display: none;
+                
+                &+a.view{
+                    margin-left: 2em;
+                    
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+                
+                &.jqtree-title-folder{
+                    &+a.view{
+                        margin-left: 0;
+                    }
+                }
+            }
         }
     }
     
-    ul{
-        padding-top: rem-calc(12px);
-    }
 }

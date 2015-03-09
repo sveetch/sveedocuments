@@ -1,7 +1,30 @@
 {% extends "sveedocuments/base.html" %}
-{% load mptt_tags autobreadcrumb %}
+{% load i18n mptt_tags autobreadcrumb %}
+
+{% block foot_more_js %}
+    <script type="text/javascript">
+    //<![CDATA[
+    $(document).ready(function() {
+        $('.list-jqtree').jqtree_documents_index({
+            'json_tree_data': {{ json_tree|safe }}
+        });
+    });
+    //]]>
+    </script>
+{% endblock %}
+
 
 {% block sveedocuments_content %}
+<div class="clearfix">
+    <ul class="button-group radius right">
+        <li><a class="button tiny secondary tree-open-link" href="#"><i class="icon-plus-square"></i> {% trans "Open all" %}</a></li>
+        <li><a class="button tiny secondary tree-close-link" href="#"><i class="icon-minus-square"></i> {% trans "Close all" %}</a></li>
+    </ul>
+</div>
+
+<div class="list-jqtree"></div>
+
+<noscript>
     <ul class="list-tree">
         {% recursetree page_list %}{% spaceless %}
             <li>
@@ -14,4 +37,5 @@
             </li>
         {% endspaceless %}{% endrecursetree %}
     </ul>
+</noscript>
 {% endblock %}

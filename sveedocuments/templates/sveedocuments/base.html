@@ -8,6 +8,9 @@
 {% block head_base_links %}{{ block.super }}
     {% include "sveedocuments/assets_css.html" %}
 {% endblock %}
+{% block head_base_js %}{{ block.super }}
+    {% include "sveedocuments/assets_js.html" %}
+{% endblock %}
 
 {% block base_content %}<div class="row documents">
     <div class="small-12 columns">

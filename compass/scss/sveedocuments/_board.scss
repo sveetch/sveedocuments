@@ -1,10 +1,7 @@
+@import "compass";
+
 //
 // SCSS sources for sveedocument board
-//
-// Require Compass (0.12.x) + Foundation (5.x) to compile
-//
-@import "compass/css3/border-radius";
-
 // "Fluid" tree list
 ul.list-tree-fluid{
     margin: 0 rem-calc(22px) rem-calc(22px);
@@ -69,36 +66,101 @@ ul.list-tree-fluid{
     }
 }
 
+.documents.board{
 
-// Force DjangoCodeMirror widget to take full width from his container
-.DjangoCodeMirror{
-    width: 100% !important;
-}
+    // Force DjangoCodeMirror widget to take full width from his container
+    .DjangoCodeMirror{
+        width: 100% !important;
+    }
 
-.empty{
-    color: #BBBBBB;
-    font-style: italic;
-}
-
-// Feed-like list
-ul.feed{
-    list-style-type: none;
-    margin-bottom: rem-calc(5px);
+    .empty{
+        color: #BBBBBB;
+        font-style: italic;
+    }
     
-    li{
-        padding: ($column-gutter/2);
+    // Page tree
+    .list-jqtree{
+        $jqtree-toggler-font-size: 1.5em;
+        $jqtree-toggler-margin-left: 0.3em;
+        $jqtree-toggler-margin-right: 0.5em;
         
-        p{
-            margin-bottom: rem-calc(5px);
+        $jqtree-dropdown-font-size: rem-calc(16px);
+        
+        
+        .f-dropdown{
+            font-size: $jqtree-dropdown-font-size;
+            font-weight: normal;
         }
         
-        .ago{
-            font-size: rem-calc(12px);
-            color: #BBBBBB;
+        // Styling/restyling first for all items
+        ul > li{
+            &> .jqtree-element{
+                margin-bottom: 1em;
+                
+                .jqtree-toggler{
+                    display: inline-block;
+                    width: $jqtree-toggler-font-size;
+                    margin-left: $jqtree-toggler-margin-left;
+                    margin-right: $jqtree-toggler-margin-right;
+                    
+                    i{
+                        font-size: $jqtree-toggler-font-size; //+0.3em
+                    }
+                }
+
+                
+                &> a.view{
+                    margin-bottom: 0;
+                    margin-left: $jqtree-toggler-font-size + $jqtree-toggler-margin-left + $jqtree-toggler-margin-right;
+                    
+                    /*&:before{
+                        @extend .icon-level-down;
+                        position: absolute;
+                        left: -1em;
+                        font-family: 'icomoon';
+                        font-size: 2em;
+                        line-height: .5em;
+                        color: lighten(#000000, 15%);
+                    }*/
+                }
+            }
         }
         
-        &+li{
-            border-top: 1px solid #DDDDDD;
+        // Remove some stuff for first level items and folders only
+        &> ul > li,
+        ul > li.jqtree-folder{
+            &> .jqtree-element > a.view{
+                //margin-left: 0;
+
+                &:before{
+                    content: "";
+                    display: none;
+                }
+            }
         }
     }
+
+    // Feed-like list
+    ul.feed{
+        list-style-type: none;
+        margin-bottom: rem-calc(5px);
+        
+        li{
+            padding: ($column-gutter/2);
+            
+            p{
+                margin-bottom: rem-calc(5px);
+            }
+            
+            .ago{
+                font-size: rem-calc(12px);
+                color: #BBBBBB;
+            }
+            
+            &+li{
+                border-top: 1px solid #DDDDDD;
+            }
+        }
+    }
+    
 }

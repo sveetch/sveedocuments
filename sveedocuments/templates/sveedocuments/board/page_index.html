@@ -1,51 +1,73 @@
 {% extends "sveedocuments/board/subbase_pages.html" %}
 {% load i18n mptt_tags autobreadcrumb documents_admin %}
 
+{% block foot_more_js %}
+    <script type="text/javascript">
+    //<![CDATA[
+    $(document).ready(function() {
+        $('.list-jqtree').jqtree_documents_index({
+            'state_cookie_name': 'sveedocuments_admin_tree_all',
+            'link_add_child_title': '{% trans "New child page" %}',
+            'link_delete_title': '{% trans "Delete" %}',
+            'admin_mode': true,
+            'json_tree_data': {{ json_tree|safe }}
+        });
+    });
+    //]]>
+    </script>
+{% endblock %}
+
 {% block board_content %}
         <div class="clearfix">
-            {% if perms.sveedocuments.add_page %}
-                <a class="secondary button right" href="{% url 'sveedocuments:page-add' %}">{% trans "Add a new page" %}</a>
-            {% endif %}
+            <ul class="button-group radius right">
+                <li><a class="button tiny secondary tree-open-link" href="#"><i class="icon-plus-square"></i> {% trans "Open all" %}</a></li>
+                <li><a class="button tiny secondary tree-close-link" href="#"><i class="icon-minus-square"></i> {% trans "Close all" %}</a></li>
+                {% if perms.sveedocuments.add_page %}
+                    <li><a class="button tiny" href="{% url 'sveedocuments:page-add' %}">{% trans "Add a new page" %}</a></li>
+                {% endif %}
+            </ul>
             <h2>{% trans "Pages" %}</h2>
         </div>
         
-        {% if messages %}
-            {% for message in messages %}
+        {% if messages %}{% for message in messages %}
             <div data-alert class="alert-box {% if message.tags %}{{ message.tags }}{% endif %} radius">
             {{ message|safe }}
             <a href="#" class="close">&times;</a>
             </div>
-            {% endfor %}
-        {% endif %}
-        
-        <ul class="list-tree-fluid">{% recursetree page_list %}
-            <li class="tree-item{% if not node.visible %} hidden{% endif %}">
-            
-                <div class="indicator">
-                    <span class="has-tip" data-width="90" title="{{ node.get_visible_display }}"><i class="lsf">{% if node.visible %}<i class="icon-eye"></i>{% else %}<i class="icon-eye-slash"></i>{% endif %}</i></span>
-                    <span class="has-tip" data-width="210" title="{% blocktrans with published=node.published|date:"d/m/Y H:i" %}Published on {{ published }}{% endblocktrans %}"><i class="icon-calendar"></i></span>
-                </div>
+        {% endfor %}{% endif %}
+
+        <div class="list-jqtree"></div>
+
+        <noscript>{% spaceless %}
+            <ul class="list-tree-fluid">{% recursetree page_list %}
+                <li class="tree-item{% if not node.visible %} hidden{% endif %}">
                 
-                <div class="clearfix">
-                    {% if perms.sveedocuments.change_page %}
-                        <a href="{% url 'sveedocuments:page-edit' node.slug %}" class="button split">{{ node.title }} <span data-dropdown="page-drop-{{ node.id }}"></span></a><br>
-                    {% else %}
-                        <a href="#" data-dropdown="page-drop-{{ node.id }}" class="button{% if perms.sveedocuments.add_page or perms.sveedocuments.delete_page %} dropdown{% endif %}">{{ node.title }}</a><br>
-                    {% endif %}
+                    <div class="indicator">
+                        <span class="has-tip" data-width="90" title="{{ node.get_visible_display }}"><i class="lsf">{% if node.visible %}<i class="icon-eye"></i>{% else %}<i class="icon-eye-slash"></i>{% endif %}</i></span>
+                        <span class="has-tip" data-width="210" title="{% blocktrans with published=node.published|date:"d/m/Y H:i" %}Published on {{ published }}{% endblocktrans %}"><i class="icon-calendar"></i></span>
+                    </div>
                     
-                    {% if perms.sveedocuments.add_page or perms.sveedocuments.delete_page %}
-                    <ul id="page-drop-{{ node.id }}" class="f-dropdown" data-dropdown-content>
-                        {% if perms.sveedocuments.add_page %}
-                            <li><a href="{% url 'sveedocuments:page-add-child' node.slug %}" title="{% blocktrans %}Add a new child page to this one{% endblocktrans %}">{% trans "New child page" %}</a></li>
+                    <div class="clearfix">
+                        {% if perms.sveedocuments.change_page %}
+                            <a href="{% url 'sveedocuments:page-edit' node.slug %}" class="button split">{{ node.title }} <span data-dropdown="page-drop-{{ node.id }}"></span></a><br>
+                        {% else %}
+                            <a href="#" data-dropdown="page-drop-{{ node.id }}" class="button{% if perms.sveedocuments.add_page or perms.sveedocuments.delete_page %} dropdown{% endif %}">{{ node.title }}</a><br>
                         {% endif %}
-                        {% if perms.sveedocuments.delete_page %}
-                        <li><a href="{% url 'sveedocuments:page-delete' node.slug %}" title="{% blocktrans %}Recursively delete this page and his children{% endblocktrans %}">{% trans "Delete" %}</a></li>
+                        
+                        {% if perms.sveedocuments.add_page or perms.sveedocuments.delete_page %}
+                        <ul id="page-drop-{{ node.id }}" class="f-dropdown" data-dropdown-content>
+                            {% if perms.sveedocuments.add_page %}
+                                <li><a href="{% url 'sveedocuments:page-add-child' node.slug %}" title="{% blocktrans %}Add a new child page to this one{% endblocktrans %}">{% trans "New child page" %}</a></li>
+                            {% endif %}
+                            {% if perms.sveedocuments.delete_page %}
+                            <li><a href="{% url 'sveedocuments:page-delete' node.slug %}" title="{% blocktrans %}Recursively delete this page and his children{% endblocktrans %}">{% trans "Delete" %}</a></li>
+                            {% endif %}
+                        </ul>
                         {% endif %}
-                    </ul>
-                    {% endif %}
-                </div>
-                
-                {% if not node.is_leaf_node %}<ul class="children {% if not node.visible %}hidden_parent{% endif %}">{{ children }}</ul>{% endif %}
-            </li>
-        {% endrecursetree %}</ul>
+                    </div>
+                    
+                    {% if not node.is_leaf_node %}<ul class="children {% if not node.visible %}hidden_parent{% endif %}">{{ children }}</ul>{% endif %}
+                </li>
+            {% endrecursetree %}</ul>
+        {% endspaceless %}</noscript>
 {% endblock %}
